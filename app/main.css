@@ -72,6 +72,14 @@ body {
   overflow: visible !important;
 }
 
+@media (max-width: 1199px) {
+  .framer-home-root .framer-q7ME9 .framer-1wyflzi,
+  .framer-home-root .framer-q7ME9 .framer-Rc5K8.framer-18opktc {
+    width: min(570px, calc(100vw - 32px)) !important;
+    max-width: 100% !important;
+  }
+}
+
 /* CTA 1: scroll-triggered photo fly-in + text color reveal */
 .framer-home-root .framer-Jg4y9 .framer-1s11mc,
 .framer-home-root .framer-9iGXE .framer-1s11mc {
@@ -143,16 +151,66 @@ html.lenis body {
 .framer-footer-root {
   overflow: hidden;
   width: 100%;
+  max-width: 100%;
   background-color: rgb(10, 10, 12);
   position: relative;
 }
 
-/* Restore desktop footer layout (space-between top / bottom sections) */
-.framer-footer-root .framer-sVK8Z.framer-119qby4 {
-  height: 860px !important;
-  min-height: 860px !important;
-  justify-content: space-between !important;
-  position: relative !important;
+/* Desktop footer: preserve space-between layout */
+@media (min-width: 1200px) {
+  .framer-footer-root .framer-sVK8Z.framer-v-119qby4.framer-119qby4 {
+    height: 860px !important;
+    min-height: 860px !important;
+    justify-content: space-between !important;
+    position: relative !important;
+  }
+
+  .framer-footer-root .framer-sVK8Z.framer-v-119qby4 .framer-yin3yu {
+    flex-direction: row !important;
+    align-items: center !important;
+  }
+
+  .framer-footer-root .framer-sVK8Z.framer-v-119qby4 .framer-13i1f67 {
+    width: auto !important;
+    white-space: nowrap !important;
+    flex: 0 1 auto !important;
+  }
+
+  .framer-footer-root .framer-sVK8Z.framer-v-119qby4 .framer-jkcw9m {
+    flex-shrink: 0 !important;
+  }
+}
+
+/* Tablet + phone footer: use Framer's natural min-content height */
+@media (max-width: 1199px) {
+  .framer-footer-root .framer-sVK8Z.framer-119qby4 {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: min-content !important;
+    min-height: 0 !important;
+    justify-content: flex-start !important;
+  }
+
+  .framer-footer-root .framer-sVK8Z.framer-v-12x6pj0.framer-119qby4,
+  .framer-footer-root .framer-sVK8Z.framer-v-1rln2ss.framer-119qby4 {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+}
+
+/* Tablet footer bar: copyright left, Terms + Privacy right */
+@media (min-width: 810px) and (max-width: 1199px) {
+  .framer-footer-root .framer-sVK8Z .framer-j0gy2w {
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    width: 100% !important;
+  }
+
+  .framer-footer-root .framer-sVK8Z .framer-laa5cp {
+    width: min-content !important;
+    flex-wrap: nowrap !important;
+  }
 }
 
 .framer-footer-root .framer-sVK8Z .framer-yw6de4 {
@@ -165,21 +223,95 @@ html.lenis body {
   overflow: hidden !important;
 }
 
-/* Bottom bar: copyright left, legal links right */
 .framer-footer-root .framer-sVK8Z .framer-yin3yu {
-  align-items: center !important;
   background-color: transparent !important;
   width: 100% !important;
 }
 
-.framer-footer-root .framer-sVK8Z .framer-13i1f67 {
-  width: auto !important;
-  white-space: nowrap !important;
-  flex: 0 1 auto !important;
-}
+@media (max-width: 809px) {
+  /* Profile / branding block only — do not affect copyright or legal links */
+  .framer-footer-root .framer-sVK8Z .framer-13yfz6t,
+  .framer-footer-root .framer-sVK8Z .framer-1uukzj0 {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 12px !important;
+    width: 100% !important;
+  }
 
-.framer-footer-root .framer-sVK8Z .framer-jkcw9m {
-  flex-shrink: 0 !important;
+  /* Framer uses absolute positioning + spacer on phone — switch to normal flow */
+  .framer-footer-root .framer-sVK8Z .framer-1uukzj0 .framer-hj1gic {
+    display: none !important;
+    min-height: 0 !important;
+  }
+
+  .framer-footer-root .framer-sVK8Z .framer-1uukzj0 .framer-h4l9lb,
+  .framer-footer-root .framer-sVK8Z .framer-1uukzj0 .framer-izzrkk {
+    position: relative !important;
+    left: auto !important;
+    top: auto !important;
+    right: auto !important;
+    transform: none !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-inline: auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+
+  .framer-footer-root .framer-sVK8Z .framer-1uukzj0 .framer-18n779p {
+    align-items: center !important;
+    width: 100% !important;
+  }
+
+  .framer-footer-root .framer-sVK8Z .framer-1uukzj0 .framer-h4l9lb p.framer-styles-preset-y6kdwv,
+  .framer-footer-root .framer-sVK8Z .framer-1uukzj0 .framer-izzrkk p.framer-styles-preset-l8rvat,
+  .framer-footer-root
+    .framer-sVK8Z
+    .framer-1uukzj0
+    .framer-18n779p
+    h6.framer-styles-preset-fmwn5d,
+  .framer-footer-root
+    .framer-sVK8Z
+    .framer-1uukzj0
+    .framer-18n779p
+    a.framer-styles-preset-1f1g722,
+  .framer-footer-root
+    .framer-sVK8Z
+    .framer-1uukzj0
+    [data-framer-component-type="RichTextContainer"].framer-8frzqd,
+  .framer-footer-root
+    .framer-sVK8Z
+    .framer-1uukzj0
+    [data-framer-component-type="RichTextContainer"].framer-izzrkk {
+    --framer-text-alignment: center !important;
+    text-align: center !important;
+    width: 100% !important;
+  }
+
+  /* Copyright + Terms/Privacy bar — keep left-aligned, stacked on phone */
+  .framer-footer-root .framer-sVK8Z .framer-yin3yu {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 12px !important;
+  }
+
+  .framer-footer-root .framer-sVK8Z .framer-yin3yu .framer-13i1f67,
+  .framer-footer-root .framer-sVK8Z .framer-yin3yu p.framer-styles-preset-l8rvat {
+    --framer-text-alignment: start !important;
+    text-align: left !important;
+    width: auto !important;
+  }
+
+  .framer-footer-root .framer-sVK8Z .framer-jkcw9m {
+    width: 100% !important;
+    justify-content: flex-start !important;
+    align-items: flex-start !important;
+    flex-wrap: wrap !important;
+    gap: 16px !important;
+  }
 }
 
 /* Hide "Built in Framer" badge (also removed from footer.jsx) */

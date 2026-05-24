@@ -318,6 +318,17 @@ if (existsSync(footerPath)) {
       console.log("Removed 'Built in Framer' badge from footer.jsx")
     }
   }
+
+  // Show Terms/Privacy links on phone breakpoint (Framer hides them by default)
+  const hiddenMobileLinks = `if (baseVariant === "IhQrs_jAp") return false`
+  if (footer.includes(hiddenMobileLinks)) {
+    footer = footer.replace(
+      /const isDisplayed2 = \(\) => \{\s*if \(baseVariant === "IhQrs_jAp"\) return false\s*return true\s*\}/,
+      "const isDisplayed2 = () => {\n    return true\n  }"
+    )
+    writeFileSync(footerPath, footer)
+    console.log("Enabled footer legal links on phone breakpoint")
+  }
 }
 
 // Fix wrong social icons in sidebar (designer's accounts → Bibotecture's)
