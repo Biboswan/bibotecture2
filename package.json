@@ -11,13 +11,13 @@
     "typescript"
   ],
   "bugs": {
-    "url": "https://github.com/nirnejak/nextjs-typescript-saas/issues"
+    "url": "https://github.com/Biboswan/bibotecture-landing2"
   },
   "license": "MIT",
-  "author": "Jitendra Nirnejak <jeetnirnejak@gmail.com>",
+  "author": "Biboswan Roy <biboswan98@gmail.com>",
   "repository": {
     "type": "git",
-    "url": "https://github.com/nirnejak/nextjs-typescript-saas"
+    "url": "https://github.com/Biboswan/bibotecture-landing2"
   },
   "type": "module",
   "scripts": {
@@ -30,38 +30,34 @@
     "format:check": "oxfmt --check",
     "type-check": "tsc --pretty --noEmit",
     "prepare": "husky",
-    "db:generate": "drizzle-kit generate",
-    "db:migrate": "drizzle-kit migrate",
-    "db:push": "drizzle-kit push",
-    "db:studio": "drizzle-kit studio"
+    "framer:export": "unframer adc980491d2c803a --outDir ./framer --jsx && node scripts/patch-framer-export.mjs"
   },
   "dependencies": {
     "@mdx-js/loader": "^3.1.1",
     "@mdx-js/react": "^3.1.1",
-    "@neondatabase/serverless": "^1.1.0",
+    "@motionone/dom": "^10.13.1",
+    "@motionone/easing": "^10.14.0",
     "@next/mdx": "^16.2.6",
     "akar-icons": "^1.9.31",
-    "better-auth": "^1.6.11",
     "class-variance-authority": "^0.7.1",
-    "dotenv": "^17.4.2",
-    "drizzle-orm": "^0.45.2",
+    "lenis": "^1.1.2",
     "motion": "^12.38.0",
     "next": "^16.2.6",
     "next-view-transitions": "^0.3.5",
+    "nodemailer": "^8.0.8",
     "react": "^19.2.6",
     "react-dom": "^19.2.6",
     "sharp": "^0.34.5",
-    "sonner": "^2.0.7",
-    "use-sound": "^5.0.0"
+    "unframer": "4.1.7"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.3.0",
     "@tailwindcss/typography": "^0.5.19",
     "@types/mdx": "^2.0.13",
     "@types/node": "^25.8.0",
+    "@types/nodemailer": "^8.0.0",
     "@types/react": "^19.2.14",
     "babel-plugin-react-compiler": "^1.0.0",
-    "drizzle-kit": "^0.31.10",
     "husky": "^9.1.7",
     "lint-staged": "^17.0.5",
     "oxfmt": "^0.50.0",

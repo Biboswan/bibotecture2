@@ -4,7 +4,8 @@ import type { NextConfig } from "next"
 const nextConfig: NextConfig = {
   reactCompiler: true,
   trailingSlash: true,
-  reactStrictMode: true,
+  reactStrictMode: false,
+  transpilePackages: ["unframer"],
   pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
 }
 

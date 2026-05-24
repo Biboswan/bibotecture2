@@ -9,8 +9,196 @@
 
 ::selection,
 ::-moz-selection {
-  @apply bg-zinc-600 text-white;
+  @apply bg-violet-600 text-white;
   -webkit-text-fill-color: white;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: rgb(10, 10, 12);
+}
+
+body {
+  background-color: rgb(10, 10, 12);
+}
+
+/*
+ * Framer homedesk + Testimonials sticky stack fixes.
+ * Sticky breaks when any ancestor uses overflow: clip/hidden/auto.
+ */
+.framer-home-root {
+  overflow-x: clip;
+}
+
+.framer-home-root .framer-7UU7D.framer-1txw89t,
+.framer-home-root .framer-9iGXE.framer-1txw89t {
+  overflow: visible !important;
+  width: 100% !important;
+}
+
+.framer-home-root .framer-7UU7D .framer-10hggdb-container,
+.framer-home-root .framer-9iGXE .framer-1ggpelf-container {
+  overflow: visible !important;
+}
+
+/* CTA 1 component: scroll-triggered photo fly-in */
+.framer-home-root .framer-Jg4y9.framer-1s11mc,
+.framer-home-root .framer-Jg4y9 .framer-jq8wed {
+  overflow: visible !important;
+}
+
+.framer-home-root .framer-Jg4y9 .framer-11pawzc,
+.framer-home-root .framer-Jg4y9 .framer-6tp0k6,
+.framer-home-root .framer-Jg4y9 .framer-mde8w,
+.framer-home-root .framer-Jg4y9 .framer-1fl235r {
+  z-index: 1;
+  pointer-events: none;
+}
+
+.framer-home-root .framer-Jg4y9 .framer-1d39cn8 {
+  z-index: 4;
+  position: absolute;
+}
+
+.framer-home-root .framer-q7ME9.framer-1xntlbu {
+  width: 100% !important;
+  min-height: 1800px;
+}
+
+.framer-home-root .framer-q7ME9 .framer-uio4kc,
+.framer-home-root .framer-q7ME9 .framer-aq92ov,
+.framer-home-root .framer-q7ME9 .framer-kbi7hq-container,
+.framer-home-root .framer-q7ME9 .framer-1b4eiu9-container {
+  overflow: visible !important;
+}
+
+/* CTA 1: scroll-triggered photo fly-in + text color reveal */
+.framer-home-root .framer-Jg4y9 .framer-1s11mc,
+.framer-home-root .framer-9iGXE .framer-1s11mc {
+  overflow: visible !important;
+}
+
+/* Lenis smooth scroll (embedded in homedesk) overrides native smooth scroll */
+html.lenis {
+  scroll-behavior: auto !important;
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+/* Framer Navigation Bar + Sidebar overlay (outside .framer-home-root) */
+.framer-site-nav .framer-E7Muz.framer-2nvn7f {
+  width: 100% !important;
+}
+
+.framer-nav-sidebar .framer-lNSMz.framer-b9fpzs {
+  width: 100% !important;
+  height: 100dvh !important;
+  max-height: 100dvh;
+}
+
+.framer-nav-sidebar .framer-lNSMz .framer-o2vb6c-container {
+  flex: 1 1 auto !important;
+  height: auto !important;
+  min-height: 0;
+}
+
+.framer-nav-sidebar .framer-hka30.framer-1au75jr {
+  width: 100% !important;
+  height: 100% !important;
+  gap: 0 !important;
+}
+
+.framer-nav-sidebar .framer-hka30 .framer-t9gdjo {
+  flex: 1 1 auto !important;
+  height: auto !important;
+  min-height: 0;
+}
+
+.framer-nav-sidebar .framer-2otQ0.framer-qah2xo {
+  width: 100% !important;
+}
+
+.framer-home-root .framer-hjBE7.framer-11tn8c9,
+.framer-home-root .framer-hjBE7.framer-jsb6bg,
+.framer-home-root .framer-hjBE7.framer-oy5oz0 {
+  width: 100% !important;
+}
+
+.framer-home-root .framer-sVK8Z.framer-119qby4,
+.framer-home-root .framer-sVK8Z.framer-12x6pj0,
+.framer-home-root .framer-sVK8Z.framer-1rln2ss,
+.framer-page-root .framer-sVK8Z.framer-119qby4,
+.framer-page-root .framer-sVK8Z.framer-12x6pj0,
+.framer-page-root .framer-sVK8Z.framer-1rln2ss,
+.framer-footer-root .framer-sVK8Z.framer-119qby4,
+.framer-footer-root .framer-sVK8Z.framer-12x6pj0,
+.framer-footer-root .framer-sVK8Z.framer-1rln2ss {
+  width: 100% !important;
+  overflow: visible !important;
+}
+
+.framer-footer-root {
+  overflow: hidden;
+  width: 100%;
+  background-color: rgb(10, 10, 12);
+  position: relative;
+}
+
+/* Restore desktop footer layout (space-between top / bottom sections) */
+.framer-footer-root .framer-sVK8Z.framer-119qby4 {
+  height: 860px !important;
+  min-height: 860px !important;
+  justify-content: space-between !important;
+  position: relative !important;
+}
+
+.framer-footer-root .framer-sVK8Z .framer-yw6de4 {
+  overflow: visible !important;
+  background-color: transparent !important;
+  width: 100% !important;
+}
+
+.framer-footer-root .framer-sVK8Z .framer-1n8vtsj {
+  overflow: hidden !important;
+}
+
+/* Bottom bar: copyright left, legal links right */
+.framer-footer-root .framer-sVK8Z .framer-yin3yu {
+  align-items: center !important;
+  background-color: transparent !important;
+  width: 100% !important;
+}
+
+.framer-footer-root .framer-sVK8Z .framer-13i1f67 {
+  width: auto !important;
+  white-space: nowrap !important;
+  flex: 0 1 auto !important;
+}
+
+.framer-footer-root .framer-sVK8Z .framer-jkcw9m {
+  flex-shrink: 0 !important;
+}
+
+/* Hide "Built in Framer" badge (also removed from footer.jsx) */
+.framer-sVK8Z .framer-drkbac {
+  display: none !important;
+}
+
+.framer-page-root .framer-4RzhK.framer-1vu1brt {
+  width: fit-content;
+}
+
+.framer-page-root {
+  overflow-x: clip;
+}
+
+.framer-contact-page .framer-contact-grain {
+  background-image: url("/images/framer/grain.png");
+  background-repeat: repeat;
+  background-size: 256px 256px;
 }
 
 @theme {

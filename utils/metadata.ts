@@ -31,9 +31,12 @@ export const getMetadata = ({
     keywords: config.keywords,
 
     icons: {
-      icon: "/favicon.ico",
-      shortcut: "/icons/icon-512x512.png",
-      apple: "/icons/icon-512x512.png",
+      icon: [
+        { url: "/icon.svg", type: "image/svg+xml" },
+        { url: "/icons/bibotecture-logo.svg", type: "image/svg+xml" },
+      ],
+      shortcut: "/icon.svg",
+      apple: "/apple-icon.svg",
     },
     manifest: `${config.baseUrl}/manifest.json`,
 

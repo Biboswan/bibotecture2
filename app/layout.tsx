@@ -1,18 +1,21 @@
 import type { Viewport } from "next"
-import { Inter } from "next/font/google"
+import { Manrope } from "next/font/google"
 import localFont from "next/font/local"
 import { ViewTransitions } from "next-view-transitions"
 import type * as React from "react"
 
+import FramerProvider from "@/components/providers/framer-provider"
 import classNames from "@/utils/classNames"
 import { renderSchemaTags } from "@/utils/schema"
 
+import "@/framer/styles.css"
 import "./main.css"
 
-const sansFont = Inter({
+const sansFont = Manrope({
   variable: "--sans-font",
   subsets: ["latin"],
   display: "swap",
+  weight: ["200", "300", "400", "500", "600", "700"],
 })
 
 const monoFont = localFont({
@@ -27,7 +30,7 @@ const monoFont = localFont({
 })
 
 export const viewport: Viewport = {
-  themeColor: "#000000",
+  themeColor: "#09090b",
 }
 
 interface Props {
@@ -43,10 +46,8 @@ const RootLayout: React.FC<Props> = ({ children }) => {
       >
         <head>{renderSchemaTags()}</head>
 
-        <body
-          className={`overflow-x-hidden bg-zinc-50 font-sans dark:bg-zinc-900`}
-        >
-          {children}
+        <body className="bg-[rgb(10,10,12)] font-sans text-white">
+          <FramerProvider>{children}</FramerProvider>
         </body>
       </html>
     </ViewTransitions>

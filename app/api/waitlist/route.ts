@@ -1,37 +1,53 @@
 import { NextResponse } from "next/server"
+import {
+  type WaitlistRequest,
+  validateEmail,
+  validateEmailCredentials,
+  getSignupType,
+  createEmailTransporter,
+  verifyTransporter,
+  sendWaitlistEmails,
+} from "@/lib/email"
 
-import { db } from "@/db"
-import { waitlist } from "@/db/schema"
-
-export async function GET() {
-  try {
-    const allWaitlist = await db.select().from(waitlist)
-    return NextResponse.json(allWaitlist, { status: 200 })
-  } catch (error) {
-    console.error("Error fetching waitlist:", error)
-    return NextResponse.json(
-      { error: "Failed to fetch waitlist" },
-      { status: 500 }
-    )
-  }
-}
-
+// Main Handler
 export async function POST(request: Request) {
   try {
-    const body = await request.json()
-    const { email } = body
+    const { email, name, type }: WaitlistRequest = await request.json()
 
-    await db.insert(waitlist).values({ email })
+    // Validate input
+    if (!validateEmail(email)) {
+      return NextResponse.json(
+        { message: "Valid email is required" },
+        { status: 400 }
+      )
+    }
 
-    return NextResponse.json({ message: "Joined waitlist!" }, { status: 200 })
-  } catch (error) {
-    console.error("Error processing request:", error)
+    // Validate environment variables
+    if (!validateEmailCredentials()) {
+      console.error("Missing email credentials in environment variables")
+      return NextResponse.json(
+        { message: "Email service configuration error" },
+        { status: 500 }
+      )
+    }
+
+    // Setup email transporter
+    const transporter = createEmailTransporter()
+    await verifyTransporter(transporter)
+
+    // Prepare and send emails
+    const signupType = getSignupType(type)
+    await sendWaitlistEmails(transporter, email, name, signupType)
+
     return NextResponse.json(
-      {
-        message: "Something went wrong!",
-        error: "Failed to process request",
-      },
-      { status: 400 }
+      { message: "Successfully added to waitlist" },
+      { status: 200 }
+    )
+  } catch (error) {
+    console.error("Error adding to waitlist:", error)
+    return NextResponse.json(
+      { message: "Failed to add to waitlist" },
+      { status: 500 }
     )
   }
 }
