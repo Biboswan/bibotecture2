@@ -47,7 +47,7 @@ export const HeroSection: React.FC = () => {
             </span>
             <br />
             <span className="text-gray-900 dark:text-white">
-              with help from Digital Twins of Experts
+              with realtime coaching from AI clones of Experts
             </span>
           </h1>
 
