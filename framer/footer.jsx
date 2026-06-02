@@ -1111,7 +1111,7 @@ var Component = /* @__PURE__ */ React.forwardRef(function (props, ref) {
                                   "linkedin icon"
                                 ),
                                 FRqngJApY:
-                                  "https://www.linkedin.com/in/yuliia-tsyhanenko-220b9b23b/",
+                                  "https://www.linkedin.com/company/bibotecture",
                                 height: "100%",
                                 id: "toeOtvbBl",
                                 layoutId: "toeOtvbBl",
@@ -1886,7 +1886,7 @@ var Component = /* @__PURE__ */ React.forwardRef(function (props, ref) {
                             "var(--extracted-r6o4lv, var(--token-a2ff6e51-46f4-43bd-9193-b115ff4b5b03, rgb(255, 255, 255)))",
                         }}
                       >
-                        {"\xA9 Clark Rosenberg 2025 | All Rights Reserved"}
+                        {"\xA9 Bibotecture 2026 | All Rights Reserved"}
                       </motion.p>
                     </React.Fragment>
                   </RichText>

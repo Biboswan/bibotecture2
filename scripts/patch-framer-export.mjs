@@ -329,6 +329,29 @@ if (existsSync(footerPath)) {
     writeFileSync(footerPath, footer)
     console.log("Enabled footer legal links on phone breakpoint")
   }
+
+  // Fix wrong LinkedIn URL in footer phone variant (designer's profile → Bibotecture)
+  const wrongLinkedInUrl =
+    "https://www.linkedin.com/in/yuliia-tsyhanenko-220b9b23b/"
+  if (footer.includes(wrongLinkedInUrl)) {
+    footer = footer.replaceAll(
+      wrongLinkedInUrl,
+      "https://www.linkedin.com/company/bibotecture"
+    )
+    writeFileSync(footerPath, footer)
+    console.log("Fixed LinkedIn URL in footer phone variant")
+  }
+
+  // Fix wrong copyright text in footer tablet variant (template author → Bibotecture)
+  const wrongCopyright = "\xA9 Clark Rosenberg 2025 | All Rights Reserved"
+  if (footer.includes(wrongCopyright)) {
+    footer = footer.replaceAll(
+      wrongCopyright,
+      "\xA9 Bibotecture 2026 | All Rights Reserved"
+    )
+    writeFileSync(footerPath, footer)
+    console.log("Fixed copyright text in footer tablet variant")
+  }
 }
 
 // Fix wrong social icons in sidebar (designer's accounts → Bibotecture's)
