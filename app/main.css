@@ -272,8 +272,16 @@ html.lenis body {
     width: 100% !important;
   }
 
-  .framer-footer-root .framer-sVK8Z .framer-1uukzj0 .framer-h4l9lb p.framer-styles-preset-y6kdwv,
-  .framer-footer-root .framer-sVK8Z .framer-1uukzj0 .framer-izzrkk p.framer-styles-preset-l8rvat,
+  .framer-footer-root
+    .framer-sVK8Z
+    .framer-1uukzj0
+    .framer-h4l9lb
+    p.framer-styles-preset-y6kdwv,
+  .framer-footer-root
+    .framer-sVK8Z
+    .framer-1uukzj0
+    .framer-izzrkk
+    p.framer-styles-preset-l8rvat,
   .framer-footer-root
     .framer-sVK8Z
     .framer-1uukzj0
@@ -305,7 +313,10 @@ html.lenis body {
   }
 
   .framer-footer-root .framer-sVK8Z .framer-yin3yu .framer-13i1f67,
-  .framer-footer-root .framer-sVK8Z .framer-yin3yu p.framer-styles-preset-l8rvat {
+  .framer-footer-root
+    .framer-sVK8Z
+    .framer-yin3yu
+    p.framer-styles-preset-l8rvat {
     --framer-text-alignment: start !important;
     text-align: left !important;
     width: auto !important;
