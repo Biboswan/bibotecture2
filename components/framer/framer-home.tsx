@@ -1,9 +1,9 @@
 "use client"
 
-import type * as React from "react"
+import * as React from "react"
 
 import CtaPhotoScrollDriver from "@/components/framer/cta-photo-scroll-driver"
-import Navbar from "@/components/layout/Navbar"
+import SiteTopChrome from "@/components/layout/SiteTopChrome"
 import HomedeskFramer from "@/framer/homedesk"
 import FooterFramer from "@/framer/footer"
 import FaqFramer from "@/framer/faq"
@@ -17,7 +17,7 @@ const Footer = FooterFramer.Responsive as FramerComponent
 const FramerHome: React.FC = () => {
   return (
     <>
-      <Navbar />
+      <SiteTopChrome />
       <div
         className="framer-home-root min-h-dvh"
         style={{ backgroundColor: "var(--unframer-bg-dark, rgb(10, 10, 12))" }}

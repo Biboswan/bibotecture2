@@ -1,0 +1,73 @@
+"use client"
+
+import { Cross } from "akar-icons"
+import Link from "next/link"
+import * as React from "react"
+
+import classNames from "@/utils/classNames"
+
+export const CHATCOACH_ANNOUNCEMENT_HEIGHT = 44
+
+const STORAGE_KEY = "chatcoach-announcement-dismissed"
+
+export interface Props {
+  embedded?: boolean
+  onVisibilityChange?: (visible: boolean) => void
+}
+
+const ChatCoachAnnouncement: React.FC<Props> = ({
+  embedded = false,
+  onVisibilityChange,
+}) => {
+  const [visible, setVisible] = React.useState(true)
+
+  React.useEffect(() => {
+    if (localStorage.getItem(STORAGE_KEY) === "true") {
+      setVisible(false)
+    }
+  }, [])
+
+  React.useEffect(() => {
+    onVisibilityChange?.(visible)
+  }, [visible, onVisibilityChange])
+
+  const dismiss = React.useCallback(() => {
+    localStorage.setItem(STORAGE_KEY, "true")
+    setVisible(false)
+  }, [])
+
+  if (!visible) return null
+
+  return (
+    <div
+      role="region"
+      aria-label="Product announcement"
+      className={classNames(
+        "pointer-events-auto flex items-center justify-center",
+        "border-b border-white/10 bg-[rgb(10,10,12)] px-4 shadow-[0_1px_0_rgba(255,255,255,0.06)]",
+        embedded ? "relative w-full" : "fixed inset-x-0 top-0 z-[10000]"
+      )}
+      style={{ height: CHATCOACH_ANNOUNCEMENT_HEIGHT }}
+    >
+      <p className="flex flex-1 items-center justify-center gap-1.5 pr-8 text-center text-sm text-[rgb(204,204,204)] sm:gap-2 sm:pr-10 sm:text-[15px]">
+        <span>We&apos;re building Chat Coach —</span>
+        <Link
+          href="/chatcoach/"
+          className="font-medium text-cyan-400 underline-offset-2 transition-colors hover:text-cyan-300 hover:underline"
+        >
+          get 1 month of early access
+        </Link>
+      </p>
+      <button
+        type="button"
+        onClick={dismiss}
+        aria-label="Dismiss announcement"
+        className="absolute top-1/2 right-3 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full text-[rgb(104,104,104)] transition-colors hover:bg-white/5 hover:text-white sm:right-4"
+      >
+        <Cross size={14} />
+      </button>
+    </div>
+  )
+}
+
+export default ChatCoachAnnouncement

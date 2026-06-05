@@ -96,6 +96,12 @@ html.lenis body {
   height: auto;
 }
 
+/* Homepage top chrome: announcement + nav pinned above Framer scroll layers */
+.site-top-chrome {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
 /* Framer Navigation Bar + Sidebar overlay (outside .framer-home-root) */
 .framer-site-nav .framer-E7Muz.framer-2nvn7f {
   width: 100% !important;

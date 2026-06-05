@@ -6,13 +6,19 @@ import { useCallback, useEffect, useState } from "react"
 
 import NavigationBarFramer from "@/framer/navigation-bar"
 import SidebarFramer from "@/framer/sidebar"
+import classNames from "@/utils/classNames"
 
 type FramerComponent = React.ComponentType<Record<string, unknown>>
 
 const NavigationBar = NavigationBarFramer.Responsive as FramerComponent
 const Sidebar = SidebarFramer.Responsive as FramerComponent
 
-const Navbar: React.FC = () => {
+export interface Props {
+  embedded?: boolean
+  offsetTop?: number
+}
+
+const Navbar: React.FC<Props> = ({ embedded = false, offsetTop = 0 }) => {
   const [open, setOpen] = useState(false)
 
   const openMenu = useCallback(() => setOpen(true), [])
@@ -41,7 +47,13 @@ const Navbar: React.FC = () => {
 
   return (
     <>
-      <div className="framer-site-nav pointer-events-none fixed inset-x-0 top-0 z-[9998]">
+      <div
+        className={classNames(
+          "framer-site-nav pointer-events-none w-full",
+          embedded ? "relative" : "fixed inset-x-0 z-[9998]"
+        )}
+        style={embedded ? undefined : { top: offsetTop }}
+      >
         <div className="pointer-events-auto w-full">
           <NavigationBar style={{ width: "100%" }} tap={openMenu} />
         </div>
@@ -58,7 +70,10 @@ const Navbar: React.FC = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.22 }}
-            className="framer-nav-sidebar fixed inset-0 z-[9999]"
+            className={classNames(
+              "framer-nav-sidebar fixed inset-0",
+              embedded ? "z-[10001]" : "z-[9999]"
+            )}
           >
             <Sidebar
               style={{ width: "100%", height: "100dvh" }}
