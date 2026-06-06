@@ -11,14 +11,10 @@ export const CHATCOACH_ANNOUNCEMENT_HEIGHT = 44
 const STORAGE_KEY = "chatcoach-announcement-dismissed"
 
 export interface Props {
-  embedded?: boolean
   onVisibilityChange?: (visible: boolean) => void
 }
 
-const ChatCoachAnnouncement: React.FC<Props> = ({
-  embedded = false,
-  onVisibilityChange,
-}) => {
+const ChatCoachAnnouncement: React.FC<Props> = ({ onVisibilityChange }) => {
   const [visible, setVisible] = React.useState(true)
 
   React.useEffect(() => {
@@ -43,9 +39,8 @@ const ChatCoachAnnouncement: React.FC<Props> = ({
       role="region"
       aria-label="Product announcement"
       className={classNames(
-        "pointer-events-auto relative flex items-center justify-center",
-        "border-b border-white/10 bg-[rgb(10,10,12)] py-2 pr-11 pl-4 shadow-[0_1px_0_rgba(255,255,255,0.06)] sm:py-0",
-        embedded ? "w-full" : "fixed inset-x-0 top-0 z-[10000]"
+        "relative flex w-full items-center justify-center",
+        "border-b border-white/10 bg-[rgb(10,10,12)] py-2 pr-11 pl-4 shadow-[0_1px_0_rgba(255,255,255,0.06)] sm:py-0"
       )}
       style={{ minHeight: CHATCOACH_ANNOUNCEMENT_HEIGHT }}
     >
@@ -53,7 +48,7 @@ const ChatCoachAnnouncement: React.FC<Props> = ({
         We&apos;re building Chat Coach —{" "}
         <Link
           href="/chatcoach/"
-          className="font-medium whitespace-nowrap text-cyan-400 underline-offset-2 transition-colors hover:text-cyan-300 hover:underline"
+          className="cursor-pointer font-medium whitespace-nowrap text-cyan-400 underline-offset-2 transition-colors hover:text-cyan-300 hover:underline"
         >
           get 1 month of early access
         </Link>
@@ -62,7 +57,7 @@ const ChatCoachAnnouncement: React.FC<Props> = ({
         type="button"
         onClick={dismiss}
         aria-label="Dismiss announcement"
-        className="absolute top-1/2 right-2 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full text-[rgb(104,104,104)] transition-colors hover:bg-white/5 hover:text-white sm:right-4"
+        className="absolute top-1/2 right-2 flex h-8 w-8 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full text-[rgb(104,104,104)] transition-colors hover:bg-white/5 hover:text-white sm:right-4"
       >
         <Cross size={14} />
       </button>

@@ -107,6 +107,15 @@ html.lenis body {
   width: 100% !important;
 }
 
+/*
+ * Embedded nav: Framer applies scroll-linked translateY for hover/gesture hit
+ * testing via viewport coordinates. Disable it so menu hover/tap targets match
+ * the visible layout inside fixed site-top-chrome.
+ */
+.site-top-chrome .framer-site-nav .framer-E7Muz.framer-2nvn7f {
+  transform: none !important;
+}
+
 .framer-nav-sidebar .framer-lNSMz.framer-b9fpzs {
   width: 100% !important;
   height: 100dvh !important;
@@ -131,8 +140,18 @@ html.lenis body {
   min-height: 0;
 }
 
-.framer-nav-sidebar .framer-2otQ0.framer-qah2xo {
+.framer-nav-sidebar .framer-2otQ0.framer-qah2xo,
+.framer-nav-sidebar a.framer-qah2xo {
   width: 100% !important;
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+.framer-nav-sidebar .framer-hka30 .framer-16la1ri-container,
+.framer-nav-sidebar .framer-hka30 .framer-1kl64f4-container,
+.framer-nav-sidebar .framer-hka30 .framer-4lrzgh-container,
+.framer-nav-sidebar .framer-hka30 .framer-1k0gem8-container {
+  transform: none !important;
 }
 
 .framer-home-root .framer-hjBE7.framer-11tn8c9,
