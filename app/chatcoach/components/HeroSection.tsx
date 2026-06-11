@@ -51,14 +51,10 @@ export const HeroSection: React.FC = () => {
             iOS app · Chrome extension · WhatsApp · early access
           </div>
 
-          <h1 className="text-4xl leading-[1.05] font-semibold tracking-tight text-balance sm:text-5xl lg:text-7xl">
-            <span className="bg-gradient-to-r from-cyan-400 via-purple-400 to-cyan-300 bg-clip-text text-transparent">
-              Ace Conversations
-            </span>
+          <h1 className="text-4xl leading-[1.05] font-semibold tracking-tight text-balance text-white sm:text-5xl lg:text-7xl">
+            Ace Conversations
             <br />
-            <span className="text-white">
-              with real-time coaching from AI clones of Experts
-            </span>
+            with real-time coaching from AI clones of Experts
           </h1>
 
           <p className="mx-auto mt-6 max-w-3xl text-base leading-relaxed text-[rgb(160,160,170)] sm:text-lg lg:text-xl">

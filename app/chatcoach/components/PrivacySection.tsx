@@ -7,32 +7,56 @@ import classNames from "@/utils/classNames"
 import SectionHeader from "./SectionHeader"
 import { useScrollAnimation } from "../hooks/useScrollAnimation"
 
-const privacyBadges = [
-  {
-    label: "Real-time processing",
-    detail: "Analyzed as you type, not saved",
-    comingSoon: false,
-  },
-  {
-    label: "Delete anytime",
-    detail: "Full control on your device",
-    comingSoon: false,
-  },
-  {
-    label: "Self-hosted AI",
-    detail: "No external model providers",
-    comingSoon: true,
-  },
-  {
-    label: "End-to-end encrypted",
-    detail: "Protected in transit",
-    comingSoon: true,
-  },
-  {
-    label: "GDPR aligned",
-    detail: "Audit-ready controls",
-    comingSoon: true,
-  },
+interface PrincipleProps {
+  title: string
+  description: string
+  isLast?: boolean
+}
+
+const Principle: React.FC<PrincipleProps> = ({
+  title,
+  description,
+  isLast,
+}) => {
+  return (
+    <div className="relative flex gap-6 sm:gap-8">
+      <div className="flex flex-col items-center">
+        <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full border border-white/15 bg-white/5 text-cyan-400/90">
+          <svg
+            className="h-4 w-4"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M5 13l4 4L19 7"
+            />
+          </svg>
+        </div>
+        {!isLast ? (
+          <div className="mt-3 w-px flex-1 bg-gradient-to-b from-white/20 to-transparent" />
+        ) : null}
+      </div>
+      <div className={classNames(isLast ? "pb-0" : "pb-12 sm:pb-14")}>
+        <h3 className="mb-2 text-xl font-medium tracking-tight text-white sm:text-2xl">
+          {title}
+        </h3>
+        <p className="max-w-2xl text-base leading-relaxed text-[rgb(160,160,170)] sm:text-lg">
+          {description}
+        </p>
+      </div>
+    </div>
+  )
+}
+
+const roadmapItems = [
+  "Self-hosted AI",
+  "End-to-end encryption",
+  "GDPR alignment",
 ]
 
 export const PrivacySection: React.FC = () => {
@@ -61,81 +85,65 @@ export const PrivacySection: React.FC = () => {
       id="privacy"
       ref={ref}
       className={classNames(
-        "border-t border-white/8 px-4 py-20 transition-all duration-1000 sm:px-6 lg:px-8 lg:py-28",
+        "border-t border-white/8 bg-[rgb(14,14,18)] px-4 py-20 transition-all duration-1000 sm:px-6 lg:px-8 lg:py-28",
         isVisible ? "opacity-100" : "opacity-0"
       )}
     >
-      <div className="mx-auto max-w-6xl">
+      <div className="mx-auto max-w-4xl">
         <SectionHeader
           label="Privacy"
           title="Built for sensitive conversations."
-          description="What is live today — and what we are building toward."
+          description="Real-time processing on your device. Nothing stored on our servers."
         />
 
-        <div
-          className={classNames(
-            "mb-3 grid gap-3 sm:grid-cols-2 lg:grid-cols-5",
-            "transition-all duration-700",
-            isVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
-          )}
-        >
-          {privacyBadges.map((badge) => (
+        <div>
+          {principles.map((principle, index) => (
             <div
-              key={badge.label}
+              key={principle.title}
               className={classNames(
-                "relative rounded-xl border px-4 py-4",
-                badge.comingSoon
-                  ? "border-white/6 bg-[rgb(14,14,18)]/60 opacity-70"
-                  : "border-white/10 bg-[rgb(14,14,18)]"
+                "transition-all duration-700",
+                isVisible
+                  ? "translate-x-0 opacity-100"
+                  : "translate-x-4 opacity-0"
               )}
+              style={{
+                transitionDelay: isVisible ? `${index * 120}ms` : "0ms",
+              }}
             >
-              {badge.comingSoon ? (
-                <span className="mb-2 inline-block rounded-full border border-white/10 bg-white/5 px-2 py-0.5 font-mono text-[10px] tracking-wide text-[rgb(130,130,140)] uppercase">
-                  Coming soon
-                </span>
-              ) : null}
-              <p
-                className={classNames(
-                  "text-sm font-medium",
-                  badge.comingSoon ? "text-[rgb(180,180,190)]" : "text-white"
-                )}
-              >
-                {badge.label}
-              </p>
-              <p className="mt-1 text-xs leading-relaxed text-[rgb(130,130,140)]">
-                {badge.detail}
-              </p>
+              <Principle
+                title={principle.title}
+                description={principle.description}
+                isLast={index === principles.length - 1}
+              />
             </div>
           ))}
         </div>
 
-        <p className="mb-8 text-xs text-[rgb(100,100,110)]">
-          Privacy infrastructure in active development. Roadmap items reflect
-          our direction, not current guarantees.
-        </p>
-
-        <div className="grid gap-4 lg:grid-cols-3">
-          {principles.map((principle, index) => (
-            <article
-              key={principle.title}
-              className={classNames(
-                "rounded-2xl border border-white/10 bg-[rgb(14,14,18)] p-7 transition-all duration-700",
-                isVisible
-                  ? "translate-y-0 opacity-100"
-                  : "translate-y-6 opacity-0"
-              )}
-              style={{
-                transitionDelay: isVisible ? `${150 + index * 100}ms` : "0ms",
-              }}
-            >
-              <h3 className="mb-3 text-lg font-medium text-white">
-                {principle.title}
-              </h3>
-              <p className="text-sm leading-relaxed text-[rgb(160,160,170)] sm:text-base">
-                {principle.description}
-              </p>
-            </article>
-          ))}
+        <div
+          className={classNames(
+            "mt-10 border-t border-white/8 pt-10 transition-all duration-700",
+            isVisible ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
+          )}
+          style={{
+            transitionDelay: isVisible ? "400ms" : "0ms",
+          }}
+        >
+          <p className="mb-4 font-mono text-[11px] tracking-[0.2em] text-[rgb(120,120,130)] uppercase">
+            On the roadmap
+          </p>
+          <div className="flex flex-wrap gap-2">
+            {roadmapItems.map((item) => (
+              <span
+                key={item}
+                className="rounded-full border border-white/8 bg-white/[0.03] px-3 py-1.5 text-sm text-[rgb(140,140,150)]"
+              >
+                {item}
+              </span>
+            ))}
+          </div>
+          <p className="mt-5 text-xs leading-relaxed text-[rgb(100,100,110)]">
+            Roadmap items reflect our direction — not current guarantees.
+          </p>
         </div>
       </div>
     </section>
