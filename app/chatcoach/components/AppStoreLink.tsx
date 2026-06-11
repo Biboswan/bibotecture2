@@ -17,7 +17,7 @@ const AppStoreLink: React.FC<Props> = ({ className }) => {
       target="_blank"
       rel="noopener noreferrer"
       className={classNames(
-        "inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-2 text-sm text-white transition-colors hover:border-white/25 hover:bg-white/10",
+        "border-cc-strong bg-cc-elevated text-cc-primary shadow-cc-card hover:border-cc-accent hover:bg-cc-surface inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm transition-colors",
         className
       )}
     >

@@ -23,23 +23,22 @@ export const EarlyAccessSection: React.FC = () => {
       )}
     >
       <div className="mx-auto max-w-4xl">
-        <div className="relative overflow-hidden rounded-[28px] border border-white/10 bg-[rgb(14,14,18)] px-6 py-12 text-center sm:px-10 sm:py-16">
+        <div className="border-cc bg-cc-elevated shadow-cc-featured relative overflow-hidden rounded-[28px] px-6 py-12 text-center sm:px-10 sm:py-16">
           <div
-            className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(0,202,254,0.12),transparent_55%)]"
+            className="chatcoach-glow-cta pointer-events-none absolute inset-0"
             aria-hidden="true"
           />
 
           <div className="relative">
-            <p className="mb-4 font-mono text-[11px] tracking-[0.2em] text-cyan-400/90 uppercase">
+            <p className="chatcoach-label mb-4 font-mono text-[11px] tracking-[0.2em] uppercase">
               Early access
             </p>
-            <h2 className="text-3xl leading-tight font-semibold tracking-tight text-balance text-white sm:text-4xl">
-              One month free on iOS and Chrome.
+            <h2 className="text-cc-primary text-3xl leading-tight font-semibold tracking-tight text-balance sm:text-4xl">
+              One month free for early testers.
             </h2>
-            <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-[rgb(160,160,170)] sm:text-lg">
-              Join the first cohort shaping Chat Coach. Early testers get
-              TestFlight access on iPhone, Chrome extension access on desktop,
-              and unlimited use for 30 days while we refine the experience.
+            <p className="text-cc-muted mx-auto mt-5 max-w-2xl text-base leading-relaxed sm:text-lg">
+              Join the first cohort shaping Chat Coach — unlimited use for 30
+              days while we refine the experience.
             </p>
             <div className="mt-10 flex flex-col items-center justify-center gap-4">
               <div className="flex flex-col items-center gap-4 sm:flex-row">
@@ -48,9 +47,7 @@ export const EarlyAccessSection: React.FC = () => {
                 </Button>
                 <PlatformLinks />
               </div>
-              <p className="text-sm text-[rgb(120,120,130)]">
-                No credit card required · WhatsApp on mobile and web
-              </p>
+              <p className="text-cc-subtle text-sm">No credit card required</p>
             </div>
           </div>
         </div>

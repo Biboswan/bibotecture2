@@ -14,13 +14,8 @@ const ChatCoachShell: React.FC<Props> = ({ children }) => {
   return (
     <WaitlistProvider>
       <ChatCoachHeader />
-      <main
-        className="chatcoach-page min-h-dvh bg-[rgb(10,10,12)] text-white"
-        style={{ paddingTop: CHATCOACH_HEADER_HEIGHT }}
-      >
-        {children}
-        <ChatCoachFooter />
-      </main>
+      <main style={{ paddingTop: CHATCOACH_HEADER_HEIGHT }}>{children}</main>
+      <ChatCoachFooter />
     </WaitlistProvider>
   )
 }

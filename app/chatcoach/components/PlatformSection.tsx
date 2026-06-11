@@ -66,7 +66,7 @@ export const PlatformSection: React.FC = () => {
         >
           <div>
             <div
-              className="mb-8 inline-flex rounded-full border border-white/10 bg-[rgb(14,14,18)] p-1"
+              className="border-cc bg-cc-surface shadow-cc-card mb-8 inline-flex rounded-full p-1"
               role="tablist"
               aria-label="Choose platform"
             >
@@ -80,8 +80,8 @@ export const PlatformSection: React.FC = () => {
                   className={classNames(
                     "rounded-full px-5 py-2 text-sm font-medium transition-colors",
                     activePlatform === platform.id
-                      ? "bg-white text-[rgb(10,10,12)]"
-                      : "text-[rgb(160,160,170)] hover:text-white"
+                      ? "chatcoach-btn-primary px-5 py-2 shadow-none"
+                      : "text-cc-muted hover:text-cc-primary"
                   )}
                 >
                   {platform.label}
@@ -91,10 +91,10 @@ export const PlatformSection: React.FC = () => {
 
             {active ? (
               <div className="space-y-4">
-                <h3 className="text-2xl font-medium tracking-tight text-white">
+                <h3 className="text-cc-primary text-2xl font-medium tracking-tight">
                   {active.title}
                 </h3>
-                <p className="text-base leading-relaxed text-[rgb(160,160,170)]">
+                <p className="text-cc-muted text-base leading-relaxed">
                   {active.description}
                 </p>
                 <div className="flex flex-wrap gap-3 pt-2">

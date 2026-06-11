@@ -25,18 +25,18 @@ const Step: React.FC<StepProps> = ({
   return (
     <div className="relative flex gap-6 sm:gap-8">
       <div className="flex flex-col items-center">
-        <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full border border-white/15 bg-white/5 font-mono text-sm text-white">
+        <div className="border-cc bg-cc-elevated shadow-cc-card chatcoach-gradient-text flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full font-mono text-sm">
           {number}
         </div>
         {!isLast ? (
-          <div className="mt-3 w-px flex-1 bg-gradient-to-b from-white/20 to-transparent" />
+          <div className="mt-3 w-px flex-1 bg-gradient-to-b from-black/10 to-transparent" />
         ) : null}
       </div>
       <div className="pb-12 sm:pb-14">
-        <h3 className="mb-2 text-xl font-medium tracking-tight text-white sm:text-2xl">
+        <h3 className="text-cc-primary mb-2 text-xl font-medium tracking-tight sm:text-2xl">
           {title}
         </h3>
-        <p className="max-w-2xl text-base leading-relaxed text-[rgb(160,160,170)] sm:text-lg">
+        <p className="text-cc-muted max-w-2xl text-base leading-relaxed sm:text-lg">
           {description}
         </p>
         {bullets?.length ? (
@@ -44,9 +44,9 @@ const Step: React.FC<StepProps> = ({
             {bullets.map((bullet) => (
               <li
                 key={bullet}
-                className="flex items-start gap-2 text-sm text-[rgb(180,180,190)] sm:text-base"
+                className="text-cc-muted flex items-start gap-2 text-sm sm:text-base"
               >
-                <span className="mt-2 h-1 w-1 flex-shrink-0 rounded-full bg-cyan-400" />
+                <span className="mt-2 h-1 w-1 flex-shrink-0 rounded-full bg-[rgb(0,202,254)]" />
                 {bullet}
               </li>
             ))}
@@ -63,9 +63,9 @@ export const HowItWorksSection: React.FC = () => {
   const steps = [
     {
       number: "01",
-      title: "Install on iPhone or add the Chrome extension",
+      title: "Install beside WhatsApp",
       description:
-        "Use the native iOS app for WhatsApp on your phone, or the Chrome extension for WhatsApp Web on desktop. Coaching appears as a side panel while you draft.",
+        "Set up on mobile or desktop — coaching appears in a side panel while you draft.",
       bullets: [
         "iMessage, Telegram, and more messaging apps are on the roadmap.",
       ],
@@ -76,7 +76,7 @@ export const HowItWorksSection: React.FC = () => {
       description:
         "Chat Coach reads tone, emotional cues, and conversation patterns as you draft, offering guidance exactly when you need it.",
       bullets: [
-        "Choose AI coaches modeled on negotiation experts, dating coaches, and communicators.",
+        "Choose AI coaches for negotiation, dating, real estate, and more.",
       ],
     },
     {
@@ -92,7 +92,7 @@ export const HowItWorksSection: React.FC = () => {
       id="how-it-works"
       ref={ref}
       className={classNames(
-        "border-t border-white/8 px-4 py-20 transition-all duration-1000 sm:px-6 lg:px-8 lg:py-28",
+        "border-cc bg-cc-section border-t px-4 py-20 transition-all duration-1000 sm:px-6 lg:px-8 lg:py-28",
         isVisible ? "opacity-100" : "opacity-0"
       )}
     >

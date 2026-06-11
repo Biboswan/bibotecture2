@@ -2,6 +2,7 @@ import * as React from "react"
 
 import ChatCoachShell from "./components/ChatCoachShell"
 import { EarlyAccessSection } from "./components/EarlyAccessSection"
+import { ExpertCoachesSection } from "./components/ExpertCoachesSection"
 import { HeroSection } from "./components/HeroSection"
 import { HowItWorksSection } from "./components/HowItWorksSection"
 import { NarrativeSection } from "./components/NarrativeSection"
@@ -15,6 +16,7 @@ export default function ChatCoachPage() {
       <NarrativeSection />
       <ProductExplanationSection />
       <HowItWorksSection />
+      <ExpertCoachesSection />
       <PrivacySection />
       <EarlyAccessSection />
     </ChatCoachShell>

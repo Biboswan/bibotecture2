@@ -36,12 +36,14 @@ export const WaitlistProvider: React.FC<Props> = ({ children }) => {
 
   return (
     <WaitlistContext.Provider value={value}>
-      {children}
-      <WaitlistModal
-        isOpen={isOpen}
-        onClose={() => setIsOpen(false)}
-        type="early-access"
-      />
+      <div className="chatcoach-page min-h-dvh">
+        {children}
+        <WaitlistModal
+          isOpen={isOpen}
+          onClose={() => setIsOpen(false)}
+          type="early-access"
+        />
+      </div>
     </WaitlistContext.Provider>
   )
 }

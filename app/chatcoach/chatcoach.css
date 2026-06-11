@@ -1,0 +1,241 @@
+.chatcoach-page {
+  --cc-accent-from: #00cafe;
+  --cc-accent-to: #a075ff;
+  --cc-text: 15 16 24;
+  --cc-text-muted: 92 97 120;
+  --cc-text-subtle: 130 135 155;
+  --cc-text-faint: 160 165 180;
+  --cc-bg: 247 248 252;
+  --cc-bg-section: 240 242 248;
+  --cc-bg-elevated: 255 255 255;
+  --cc-bg-surface: 245 246 250;
+  --cc-bg-card: 255 255 255;
+  --cc-border: 15 16 24 / 0.08;
+  --cc-border-strong: 15 16 24 / 0.12;
+
+  color: rgb(var(--cc-text));
+  background-color: rgb(var(--cc-bg));
+  background-image:
+    radial-gradient(
+      ellipse 120% 80% at 50% -20%,
+      rgba(0, 202, 254, 0.1),
+      transparent 52%
+    ),
+    radial-gradient(
+      ellipse 70% 50% at 100% 30%,
+      rgba(160, 117, 255, 0.08),
+      transparent 45%
+    ),
+    radial-gradient(
+      ellipse 55% 40% at 0% 90%,
+      rgba(236, 72, 153, 0.04),
+      transparent 42%
+    );
+}
+
+.text-cc-primary {
+  color: rgb(var(--cc-text));
+}
+
+.text-cc-muted {
+  color: rgb(var(--cc-text-muted));
+}
+
+.text-cc-subtle {
+  color: rgb(var(--cc-text-subtle));
+}
+
+.text-cc-faint {
+  color: rgb(var(--cc-text-faint));
+}
+
+.border-cc {
+  border-color: rgba(var(--cc-border));
+}
+
+.border-cc-strong {
+  border-color: rgba(var(--cc-border-strong));
+}
+
+.bg-cc-elevated {
+  background-color: rgb(var(--cc-bg-elevated));
+}
+
+.bg-cc-section {
+  background-color: rgb(var(--cc-bg-section));
+}
+
+.bg-cc-surface {
+  background-color: rgb(var(--cc-bg-surface));
+}
+
+.bg-cc-card {
+  background-color: rgb(var(--cc-bg-card));
+}
+
+.shadow-cc-card {
+  box-shadow:
+    0 1px 2px rgba(15, 16, 24, 0.04),
+    0 8px 32px rgba(15, 16, 24, 0.06);
+}
+
+.shadow-cc-featured {
+  box-shadow:
+    0 2px 8px rgba(15, 16, 24, 0.04),
+    0 24px 64px rgba(15, 16, 24, 0.1);
+}
+
+.cc-pill {
+  border: 1px solid rgba(var(--cc-border-strong));
+  background-color: rgb(var(--cc-bg-elevated));
+  color: rgb(var(--cc-text-muted));
+}
+
+.chatcoach-gradient-text {
+  background: linear-gradient(
+    103deg,
+    var(--cc-accent-from) 1.74%,
+    var(--cc-accent-to) 97.65%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.chatcoach-label {
+  background: linear-gradient(
+    103deg,
+    rgba(0, 160, 210, 0.95) 1.74%,
+    rgba(130, 90, 230, 0.95) 97.65%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.chatcoach-glow-hero {
+  background: radial-gradient(
+    ellipse 80% 60% at 50% -10%,
+    rgba(0, 202, 254, 0.12),
+    transparent 55%
+  );
+}
+
+.chatcoach-glow-preview {
+  background:
+    radial-gradient(
+      ellipse at center,
+      rgba(0, 202, 254, 0.08),
+      transparent 42%
+    ),
+    radial-gradient(
+      ellipse at 75% 25%,
+      rgba(160, 117, 255, 0.08),
+      transparent 48%
+    );
+}
+
+.chatcoach-glow-cta {
+  background:
+    radial-gradient(
+      circle at 50% 0%,
+      rgba(0, 202, 254, 0.1),
+      transparent 55%
+    ),
+    radial-gradient(
+      circle at 80% 100%,
+      rgba(160, 117, 255, 0.08),
+      transparent 50%
+    );
+}
+
+.chatcoach-btn-primary {
+  background-color: #00cafe !important;
+  background-image: linear-gradient(
+    103deg,
+    #00cafe 1.74%,
+    #a075ff 97.65%
+  ) !important;
+  color: rgb(255 255 255) !important;
+  box-shadow: 0 8px 28px -8px rgba(0, 160, 220, 0.45);
+}
+
+.chatcoach-btn-primary:hover:not(:disabled) {
+  background-color: #33d4fe !important;
+  background-image: linear-gradient(
+    103deg,
+    #33d4fe 1.74%,
+    #b48fff 97.65%
+  ) !important;
+}
+
+.border-cc-accent {
+  border-color: rgba(160, 117, 255, 0.35);
+}
+
+.cc-dot-active {
+  background: linear-gradient(103deg, #00cafe 1.74%, #a075ff 97.65%);
+}
+
+.cc-dot-inactive {
+  background-color: rgba(15, 16, 24, 0.15);
+}
+
+.cc-dot-inactive:hover {
+  background-color: rgba(15, 16, 24, 0.25);
+}
+
+.cc-header {
+  border-bottom: 1px solid rgba(var(--cc-border));
+  background-color: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(12px);
+}
+
+.cc-modal-panel {
+  border: 1px solid rgba(var(--cc-border-strong));
+  background-color: rgb(var(--cc-bg-elevated));
+  box-shadow:
+    0 4px 16px rgba(15, 16, 24, 0.06),
+    0 32px 80px rgba(15, 16, 24, 0.12);
+}
+
+.cc-input {
+  border: 1px solid rgba(var(--cc-border-strong));
+  background-color: rgb(var(--cc-bg-surface));
+  color: rgb(var(--cc-text));
+}
+
+.cc-input::placeholder {
+  color: rgb(var(--cc-text-faint));
+}
+
+.cc-input:focus {
+  border-color: rgba(160, 117, 255, 0.45);
+  outline: none;
+}
+
+.cc-carousel-arrow {
+  border: 1px solid rgba(var(--cc-border-strong));
+  background-color: rgba(255, 255, 255, 0.95);
+  color: rgb(var(--cc-text-muted));
+  box-shadow: 0 4px 16px rgba(15, 16, 24, 0.1);
+  backdrop-filter: blur(8px);
+}
+
+.cc-carousel-arrow:hover {
+  border-color: rgba(var(--cc-border-strong));
+  background-color: rgb(255 255 255);
+  color: rgb(var(--cc-text));
+}
+
+.cc-carousel-badge {
+  border: 1px solid rgba(var(--cc-border-strong));
+  background-color: rgba(255, 255, 255, 0.95);
+  color: rgb(var(--cc-text-muted));
+  backdrop-filter: blur(8px);
+}
+
+.cc-preview-frame {
+  border: 1px solid rgba(var(--cc-border-strong));
+  background-color: rgb(232 234 240);
+}

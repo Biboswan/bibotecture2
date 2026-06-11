@@ -21,7 +21,7 @@ const Principle: React.FC<PrincipleProps> = ({
   return (
     <div className="relative flex gap-6 sm:gap-8">
       <div className="flex flex-col items-center">
-        <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full border border-white/15 bg-white/5 text-cyan-400/90">
+        <div className="border-cc bg-cc-elevated shadow-cc-card flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full text-[rgb(0,160,210)]">
           <svg
             className="h-4 w-4"
             fill="none"
@@ -38,14 +38,14 @@ const Principle: React.FC<PrincipleProps> = ({
           </svg>
         </div>
         {!isLast ? (
-          <div className="mt-3 w-px flex-1 bg-gradient-to-b from-white/20 to-transparent" />
+          <div className="mt-3 w-px flex-1 bg-gradient-to-b from-black/10 to-transparent" />
         ) : null}
       </div>
       <div className={classNames(isLast ? "pb-0" : "pb-12 sm:pb-14")}>
-        <h3 className="mb-2 text-xl font-medium tracking-tight text-white sm:text-2xl">
+        <h3 className="text-cc-primary mb-2 text-xl font-medium tracking-tight sm:text-2xl">
           {title}
         </h3>
-        <p className="max-w-2xl text-base leading-relaxed text-[rgb(160,160,170)] sm:text-lg">
+        <p className="text-cc-muted max-w-2xl text-base leading-relaxed sm:text-lg">
           {description}
         </p>
       </div>
@@ -69,9 +69,9 @@ export const PrivacySection: React.FC = () => {
         "When you request insights, messages pass through the model to generate guidance. That processing data is not persisted on our servers.",
     },
     {
-      title: "iOS app and Chrome extension",
+      title: "No training on your messages",
       description:
-        "Chat Coach ships on iPhone and as a Chrome extension for WhatsApp Web today. More messaging apps are on the roadmap — without changing how privacy works.",
+        "We don't use your conversations to train models. Processing generates your guidance, then it's gone.",
     },
     {
       title: "You stay in control",
@@ -85,7 +85,7 @@ export const PrivacySection: React.FC = () => {
       id="privacy"
       ref={ref}
       className={classNames(
-        "border-t border-white/8 bg-[rgb(14,14,18)] px-4 py-20 transition-all duration-1000 sm:px-6 lg:px-8 lg:py-28",
+        "border-cc bg-cc-elevated border-t px-4 py-20 transition-all duration-1000 sm:px-6 lg:px-8 lg:py-28",
         isVisible ? "opacity-100" : "opacity-0"
       )}
     >
@@ -121,27 +121,27 @@ export const PrivacySection: React.FC = () => {
 
         <div
           className={classNames(
-            "mt-10 border-t border-white/8 pt-10 transition-all duration-700",
+            "border-cc mt-10 border-t pt-10 transition-all duration-700",
             isVisible ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
           )}
           style={{
             transitionDelay: isVisible ? "400ms" : "0ms",
           }}
         >
-          <p className="mb-4 font-mono text-[11px] tracking-[0.2em] text-[rgb(120,120,130)] uppercase">
+          <p className="text-cc-subtle mb-4 font-mono text-[11px] tracking-[0.2em] uppercase">
             On the roadmap
           </p>
           <div className="flex flex-wrap gap-2">
             {roadmapItems.map((item) => (
               <span
                 key={item}
-                className="rounded-full border border-white/8 bg-white/[0.03] px-3 py-1.5 text-sm text-[rgb(140,140,150)]"
+                className="border-cc bg-cc-surface text-cc-subtle rounded-full px-3 py-1.5 text-sm"
               >
                 {item}
               </span>
             ))}
           </div>
-          <p className="mt-5 text-xs leading-relaxed text-[rgb(100,100,110)]">
+          <p className="text-cc-faint mt-5 text-xs leading-relaxed">
             Roadmap items reflect our direction — not current guarantees.
           </p>
         </div>

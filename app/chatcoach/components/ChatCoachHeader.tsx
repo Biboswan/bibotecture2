@@ -12,6 +12,7 @@ export const CHATCOACH_HEADER_HEIGHT = 64
 
 const navLinks = [
   { href: "#how-it-works", label: "How it works" },
+  { href: "#coaches", label: "Coaches" },
   { href: "#privacy", label: "Privacy" },
 ]
 
@@ -29,15 +30,15 @@ const ChatCoachHeader: React.FC = () => {
   return (
     <>
       <header
-        className="fixed inset-x-0 top-0 z-[10000] border-b border-white/8 bg-[rgb(10,10,12)]/90 backdrop-blur-md"
+        className="cc-header fixed inset-x-0 top-0 z-[10000]"
         style={{ height: CHATCOACH_HEADER_HEIGHT }}
       >
         <div className="mx-auto flex h-full max-w-6xl items-center justify-between px-4 sm:px-6 lg:px-8">
           <Link href="/chatcoach/" className="group flex flex-col gap-0.5">
-            <span className="text-base font-semibold tracking-tight text-white">
+            <span className="text-cc-primary text-base font-semibold tracking-tight">
               Chat Coach
             </span>
-            <span className="text-[11px] text-[rgb(120,120,130)] transition-colors group-hover:text-[rgb(160,160,170)]">
+            <span className="text-cc-subtle group-hover:text-cc-muted text-[11px] transition-colors">
               by Bibotecture
             </span>
           </Link>
@@ -50,7 +51,7 @@ const ChatCoachHeader: React.FC = () => {
               <a
                 key={link.href}
                 href={link.href}
-                className="text-sm text-[rgb(160,160,170)] transition-colors hover:text-white"
+                className="text-cc-muted hover:text-cc-primary text-sm transition-colors"
               >
                 {link.label}
               </a>
@@ -64,7 +65,7 @@ const ChatCoachHeader: React.FC = () => {
             type="button"
             aria-expanded={menuOpen}
             aria-label={menuOpen ? "Close menu" : "Open menu"}
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 text-white md:hidden"
+            className="border-cc-strong bg-cc-elevated text-cc-primary shadow-cc-card flex h-10 w-10 items-center justify-center rounded-full md:hidden"
             onClick={() => setMenuOpen((open) => !open)}
           >
             <svg
@@ -95,7 +96,7 @@ const ChatCoachHeader: React.FC = () => {
 
       <div
         className={classNames(
-          "fixed inset-0 z-[10001] bg-[rgb(10,10,12)]/95 backdrop-blur-sm transition-opacity duration-200 md:hidden",
+          "fixed inset-0 z-[10001] bg-white/90 backdrop-blur-sm transition-opacity duration-200 md:hidden",
           menuOpen
             ? "pointer-events-auto opacity-100"
             : "pointer-events-none opacity-0"
@@ -110,7 +111,7 @@ const ChatCoachHeader: React.FC = () => {
             <a
               key={link.href}
               href={link.href}
-              className="text-2xl font-medium text-white"
+              className="text-cc-primary text-2xl font-medium"
               onClick={() => setMenuOpen(false)}
             >
               {link.label}

@@ -18,10 +18,10 @@ export interface Props {
 
 const IosPreview: React.FC = () => {
   return (
-    <div className="flex aspect-[16/10] flex-col items-center justify-center rounded-[24px] border border-dashed border-white/12 bg-[rgb(10,10,12)] px-8 text-center">
-      <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-white/10 bg-white/5">
+    <div className="border-cc-strong bg-cc-surface flex aspect-[16/10] flex-col items-center justify-center rounded-[24px] border border-dashed px-8 text-center">
+      <div className="border-cc bg-cc-elevated shadow-cc-card flex h-14 w-14 items-center justify-center rounded-2xl">
         <svg
-          className="h-7 w-7 text-[rgb(160,160,170)]"
+          className="text-cc-muted h-7 w-7"
           fill="none"
           stroke="currentColor"
           strokeWidth="1.5"
@@ -32,12 +32,12 @@ const IosPreview: React.FC = () => {
           <path d="M11 5.5h2" strokeLinecap="round" />
         </svg>
       </div>
-      <p className="mt-5 text-lg font-medium text-white">Native iOS app</p>
-      <p className="mt-3 max-w-xs text-sm leading-relaxed text-[rgb(130,130,140)]">
+      <p className="text-cc-primary mt-5 text-lg font-medium">Native iOS app</p>
+      <p className="text-cc-muted mt-3 max-w-xs text-sm leading-relaxed">
         Available on iPhone via early access. App previews aren&apos;t public
         yet — request TestFlight when you join.
       </p>
-      <p className="mt-4 font-mono text-[11px] tracking-wide text-[rgb(100,100,110)] uppercase">
+      <p className="text-cc-faint mt-4 font-mono text-[11px] tracking-wide uppercase">
         iOS {chatCoachConfig.minIosVersion}+ · WhatsApp
       </p>
     </div>
@@ -56,10 +56,8 @@ const CarouselArrow: React.FC<{
       direction === "prev" ? "Previous screenshot" : "Next screenshot"
     }
     className={classNames(
-      "flex items-center justify-center rounded-full border text-[rgb(160,160,170)] transition-colors hover:border-white/20 hover:text-white",
-      overlay
-        ? "h-11 w-11 border-white/20 bg-[rgb(13,13,20)]/90 text-white shadow-lg backdrop-blur-sm hover:border-white/40 hover:bg-[rgb(22,21,32)]"
-        : "border-white/10 p-2"
+      "flex items-center justify-center rounded-full transition-colors",
+      overlay ? "cc-carousel-arrow h-11 w-11" : "border-cc text-cc-muted p-2"
     )}
   >
     <svg
@@ -115,10 +113,8 @@ const ChromePreview: React.FC<{
     <div>
       <div
         className={classNames(
-          "overflow-hidden rounded-[24px] border bg-[rgb(11,11,18)]",
-          featured
-            ? "border-white/15 shadow-[0_40px_120px_-40px_rgba(0,0,0,0.85)]"
-            : "border-white/10"
+          "cc-preview-frame overflow-hidden rounded-[24px]",
+          featured && "shadow-cc-featured"
         )}
       >
         <div
@@ -154,7 +150,7 @@ const ChromePreview: React.FC<{
 
           {showCarousel && screenshots.length > 1 ? (
             <>
-              <div className="absolute top-4 right-4 z-10 rounded-full border border-white/15 bg-[rgb(10,10,12)]/90 px-3 py-1 font-mono text-xs text-white backdrop-blur-sm">
+              <div className="cc-carousel-badge absolute top-4 right-4 z-10 rounded-full px-3 py-1 font-mono text-xs">
                 {activeIndex + 1} / {screenshots.length}
               </div>
               <div className="absolute top-1/2 left-3 z-10 -translate-y-1/2 sm:left-4">
@@ -176,7 +172,7 @@ const ChromePreview: React.FC<{
         </div>
 
         {showCarousel && screenshots.length > 1 ? (
-          <div className="flex items-center justify-center gap-4 border-t border-white/10 px-4 py-3 sm:px-5">
+          <div className="border-cc bg-cc-elevated flex items-center justify-center gap-4 border-t px-4 py-3 sm:px-5">
             <div className="flex gap-2">
               {screenshots.map((screenshot, screenshotIndex) => (
                 <button
@@ -186,8 +182,8 @@ const ChromePreview: React.FC<{
                   className={classNames(
                     "rounded-full transition-all duration-300",
                     screenshotIndex === activeIndex
-                      ? "h-2 w-8 bg-white"
-                      : "h-2 w-2 bg-white/30 hover:bg-white/50"
+                      ? "cc-dot-active h-2 w-8"
+                      : "cc-dot-inactive h-2 w-2"
                   )}
                   aria-label={`View ${screenshot.label}`}
                 />

@@ -85,23 +85,23 @@ export const WaitlistModal: React.FC<Props> = ({ isOpen, onClose, type }) => {
   const emailLabelId = "waitlist-email-label"
 
   return (
-    <div className="fixed inset-0 z-[10001] flex items-center justify-center p-4">
+    <div className="fixed inset-0 z-[10002] flex items-center justify-center p-4">
       <button
         type="button"
         aria-label="Close dialog"
-        className="absolute inset-0 bg-black/70 backdrop-blur-sm"
+        className="absolute inset-0 bg-black/30 backdrop-blur-sm"
         onClick={onClose}
       />
       <div
         role="dialog"
         aria-modal="true"
         aria-labelledby={titleId}
-        className="relative w-full max-w-md rounded-[24px] border border-white/10 bg-[rgb(16,16,20)] p-8 shadow-[0_40px_120px_-40px_rgba(0,0,0,0.9)]"
+        className="cc-modal-panel relative w-full max-w-md rounded-[24px] p-8"
       >
         <button
           type="button"
           onClick={onClose}
-          className="absolute top-4 right-4 rounded-full p-1 text-[rgb(120,120,130)] transition-colors hover:text-white"
+          className="text-cc-subtle hover:text-cc-primary absolute top-4 right-4 rounded-full p-1 transition-colors"
           aria-label="Close"
         >
           <svg
@@ -121,20 +121,20 @@ export const WaitlistModal: React.FC<Props> = ({ isOpen, onClose, type }) => {
 
         <div className="space-y-6">
           <div>
-            <p className="mb-3 font-mono text-[11px] tracking-[0.2em] text-cyan-400/90 uppercase">
+            <p className="chatcoach-label mb-3 font-mono text-[11px] tracking-[0.2em] uppercase">
               {type === "early-access" ? "Early access" : "Waitlist"}
             </p>
             <h2
               id={titleId}
-              className="text-2xl font-semibold tracking-tight text-white"
+              className="text-cc-primary text-2xl font-semibold tracking-tight"
             >
               {type === "early-access"
                 ? "Request early access"
                 : "Join the waitlist"}
             </h2>
-            <p className="mt-2 text-sm leading-relaxed text-[rgb(160,160,170)]">
+            <p className="text-cc-muted mt-2 text-sm leading-relaxed">
               {type === "early-access"
-                ? "Join early access for the iOS app and Chrome extension — one month free. We will send install details to your email."
+                ? "One month free. We'll email install instructions after you sign up."
                 : "We will notify you when Chat Coach launches on the App Store and Chrome Web Store."}
             </p>
           </div>
@@ -143,7 +143,7 @@ export const WaitlistModal: React.FC<Props> = ({ isOpen, onClose, type }) => {
             <div className="py-6 text-center">
               <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full border border-emerald-500/20 bg-emerald-500/10">
                 <svg
-                  className="h-7 w-7 text-emerald-400"
+                  className="h-7 w-7 text-emerald-500"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -156,12 +156,12 @@ export const WaitlistModal: React.FC<Props> = ({ isOpen, onClose, type }) => {
                   />
                 </svg>
               </div>
-              <h3 className="mb-2 text-lg font-medium text-white">
+              <h3 className="text-cc-primary mb-2 text-lg font-medium">
                 You are on the list
               </h3>
-              <p className="text-sm text-[rgb(160,160,170)]">
+              <p className="text-cc-muted text-sm">
                 {type === "early-access"
-                  ? "Check your inbox for TestFlight and Chrome extension access."
+                  ? "Check your inbox for next steps."
                   : "We will notify you when we launch on the App Store and Chrome Web Store."}
               </p>
             </div>
@@ -169,7 +169,7 @@ export const WaitlistModal: React.FC<Props> = ({ isOpen, onClose, type }) => {
             <form onSubmit={handleSubmit} className="space-y-4">
               <label
                 id={nameLabelId}
-                className="block text-sm font-medium text-[rgb(180,180,190)]"
+                className="text-cc-muted block text-sm font-medium"
               >
                 Name (optional)
                 <input
@@ -180,15 +180,15 @@ export const WaitlistModal: React.FC<Props> = ({ isOpen, onClose, type }) => {
                   placeholder="Your name"
                   value={name}
                   onChange={(event) => setName(event.target.value)}
-                  className="mt-2 w-full rounded-xl border border-white/10 bg-[rgb(10,10,12)] px-4 py-3 text-white placeholder-[rgb(100,100,110)] transition-colors focus:border-cyan-400/40 focus:outline-none"
+                  className="cc-input mt-2 w-full rounded-xl px-4 py-3 transition-colors"
                 />
               </label>
 
               <label
                 id={emailLabelId}
-                className="block text-sm font-medium text-[rgb(180,180,190)]"
+                className="text-cc-muted block text-sm font-medium"
               >
-                Email <span className="text-red-400">*</span>
+                Email <span className="text-red-500">*</span>
                 <input
                   id="email"
                   name="email"
@@ -198,13 +198,13 @@ export const WaitlistModal: React.FC<Props> = ({ isOpen, onClose, type }) => {
                   value={email}
                   onChange={(event) => setEmail(event.target.value)}
                   required
-                  className="mt-2 w-full rounded-xl border border-white/10 bg-[rgb(10,10,12)] px-4 py-3 text-white placeholder-[rgb(100,100,110)] transition-colors focus:border-cyan-400/40 focus:outline-none"
+                  className="cc-input mt-2 w-full rounded-xl px-4 py-3 transition-colors"
                 />
               </label>
 
               {error ? (
                 <div className="rounded-xl border border-red-500/20 bg-red-500/10 p-3">
-                  <p className="text-sm text-red-300">{error}</p>
+                  <p className="text-sm text-red-600">{error}</p>
                 </div>
               ) : null}
 

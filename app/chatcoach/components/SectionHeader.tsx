@@ -25,16 +25,16 @@ const SectionHeader: React.FC<Props> = ({
         className
       )}
     >
-      <p className="mb-4 font-mono text-[11px] tracking-[0.2em] text-cyan-400/90 uppercase">
+      <p className="chatcoach-label mb-4 font-mono text-[11px] tracking-[0.2em] uppercase">
         {label}
       </p>
-      <h2 className="text-3xl leading-[1.1] font-semibold tracking-tight text-balance text-white sm:text-4xl lg:text-5xl">
+      <h2 className="text-cc-primary text-3xl leading-[1.1] font-semibold tracking-tight text-balance sm:text-4xl lg:text-5xl">
         {title}
       </h2>
       {description ? (
         <p
           className={classNames(
-            "mt-5 text-base leading-relaxed text-[rgb(160,160,170)] sm:text-lg",
+            "text-cc-muted mt-5 text-base leading-relaxed sm:text-lg",
             align === "center" && "mx-auto max-w-2xl"
           )}
         >

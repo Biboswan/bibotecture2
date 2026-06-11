@@ -19,16 +19,14 @@ const FeatureCard: React.FC<FeatureCardProps> = ({
   description,
 }) => {
   return (
-    <article className="group relative flex h-full flex-col rounded-2xl border border-white/10 bg-[rgb(14,14,18)] p-8 transition-colors duration-300 hover:border-white/15 hover:bg-[rgb(18,18,24)]">
-      <span className="mb-8 font-mono text-xs tracking-[0.18em] text-cyan-400/80">
+    <article className="group border-cc bg-cc-elevated shadow-cc-card hover:border-cc-accent relative flex h-full flex-col rounded-2xl p-8 transition-colors duration-300">
+      <span className="chatcoach-label mb-8 font-mono text-xs tracking-[0.18em]">
         {index}
       </span>
-      <h3 className="mb-3 text-xl font-medium tracking-tight text-white">
+      <h3 className="text-cc-primary mb-3 text-xl font-medium tracking-tight">
         {title}
       </h3>
-      <p className="text-base leading-relaxed text-[rgb(160,160,170)]">
-        {description}
-      </p>
+      <p className="text-cc-muted text-base leading-relaxed">{description}</p>
     </article>
   )
 }
@@ -58,7 +56,7 @@ export const ProductExplanationSection: React.FC = () => {
     <section
       ref={ref}
       className={classNames(
-        "border-t border-white/8 px-4 py-20 transition-all duration-1000 sm:px-6 lg:px-8 lg:py-28",
+        "border-cc border-t px-4 py-20 transition-all duration-1000 sm:px-6 lg:px-8 lg:py-28",
         isVisible ? "opacity-100" : "opacity-0"
       )}
     >
@@ -66,7 +64,7 @@ export const ProductExplanationSection: React.FC = () => {
         <SectionHeader
           label="Capabilities"
           title="A private insight layer for how you communicate."
-          description="On iPhone and in Chrome — with guidance that stays beside WhatsApp on mobile and web."
+          description="Guidance beside the thread — not a chatbot tab you have to context-switch into."
         />
 
         <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
