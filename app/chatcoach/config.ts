@@ -6,19 +6,23 @@ export const chatCoachConfig = {
   publicScreenshots: [
     {
       src: "/images/chatcoach/chatcoach.png",
-      alt: "Chat Coach interface — quick suggestions",
+      alt: "Chat Coach Chrome extension beside WhatsApp Web with smart suggestions",
+      label: "Smart suggestions",
     },
     {
       src: "/images/chatcoach/chatcoach2.png",
-      alt: "Chat Coach interface — reasoning panel",
+      alt: "Chat Coach Chrome extension analyzing a WhatsApp Web conversation",
+      label: "Coach analysis",
     },
     {
       src: "/images/chatcoach/chatcoach3.png",
-      alt: "Chat Coach interface — coach selection",
+      alt: "Chat Coach Chrome extension showing quick reply suggestions",
+      label: "Quick replies",
     },
     {
       src: "/images/chatcoach/chatcoach4.png",
-      alt: "Chat Coach interface — message refinement",
+      alt: "Chat Coach Chrome extension detecting conversation context",
+      label: "Context detection",
     },
   ],
 } as const

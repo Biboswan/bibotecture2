@@ -12,6 +12,7 @@ export type PreviewPlatform = "chrome" | "ios"
 export interface Props {
   platform: PreviewPlatform
   showCarousel?: boolean
+  variant?: "default" | "featured"
   className?: string
 }
 
@@ -43,11 +44,56 @@ const IosPreview: React.FC = () => {
   )
 }
 
-const ChromePreview: React.FC<{ showCarousel: boolean }> = ({
-  showCarousel,
-}) => {
+const CarouselArrow: React.FC<{
+  direction: "prev" | "next"
+  onClick: () => void
+  overlay?: boolean
+}> = ({ direction, onClick, overlay }) => (
+  <button
+    type="button"
+    onClick={onClick}
+    aria-label={
+      direction === "prev" ? "Previous screenshot" : "Next screenshot"
+    }
+    className={classNames(
+      "flex items-center justify-center rounded-full border text-[rgb(160,160,170)] transition-colors hover:border-white/20 hover:text-white",
+      overlay
+        ? "h-11 w-11 border-white/20 bg-[rgb(13,13,20)]/90 text-white shadow-lg backdrop-blur-sm hover:border-white/40 hover:bg-[rgb(22,21,32)]"
+        : "border-white/10 p-2"
+    )}
+  >
+    <svg
+      className={overlay ? "h-5 w-5" : "h-4 w-4"}
+      fill="none"
+      stroke="currentColor"
+      viewBox="0 0 24 24"
+    >
+      {direction === "prev" ? (
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={1.5}
+          d="M15 19l-7-7 7-7"
+        />
+      ) : (
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={1.5}
+          d="M9 5l7 7-7 7"
+        />
+      )}
+    </svg>
+  </button>
+)
+
+const ChromePreview: React.FC<{
+  showCarousel: boolean
+  variant: "default" | "featured"
+}> = ({ showCarousel, variant }) => {
   const screenshots = chatCoachConfig.publicScreenshots
   const [index, setIndex] = React.useState(0)
+  const featured = variant === "featured"
 
   React.useEffect(() => {
     if (!showCarousel || screenshots.length <= 1) return
@@ -60,13 +106,30 @@ const ChromePreview: React.FC<{ showCarousel: boolean }> = ({
   }, [showCarousel, screenshots.length])
 
   const activeIndex = showCarousel ? index : 0
-  const active = screenshots[activeIndex]
+
+  const goTo = (nextIndex: number) => {
+    setIndex((nextIndex + screenshots.length) % screenshots.length)
+  }
 
   return (
     <div>
-      <div className="relative aspect-[16/10] w-full overflow-hidden rounded-[24px] border border-white/10 bg-[rgb(16,16,20)]">
-        {showCarousel ? (
-          screenshots.map((screenshot, screenshotIndex) => (
+      <div
+        className={classNames(
+          "overflow-hidden rounded-[24px] border bg-[rgb(11,11,18)]",
+          featured
+            ? "border-white/15 shadow-[0_40px_120px_-40px_rgba(0,0,0,0.85)]"
+            : "border-white/10"
+        )}
+      >
+        <div
+          className={classNames(
+            "relative w-full",
+            featured
+              ? "aspect-[16/9] min-h-[240px] sm:min-h-[320px] lg:min-h-[400px]"
+              : "aspect-[16/9] sm:aspect-[2/1]"
+          )}
+        >
+          {screenshots.map((screenshot, screenshotIndex) => (
             <div
               key={screenshot.src}
               className={classNames(
@@ -77,43 +140,62 @@ const ChromePreview: React.FC<{ showCarousel: boolean }> = ({
               <Image
                 src={screenshot.src}
                 alt={screenshot.alt}
-                width={1920}
-                height={1200}
-                className="h-full w-full object-cover object-top"
+                fill
+                sizes={
+                  featured
+                    ? "(max-width: 768px) 100vw, 1024px"
+                    : "(max-width: 768px) 100vw, 600px"
+                }
+                className="object-contain object-center"
                 priority={screenshotIndex === 0}
               />
             </div>
-          ))
-        ) : (
-          <Image
-            src={active.src}
-            alt={active.alt}
-            width={1920}
-            height={1200}
-            className="h-full w-full object-cover object-top"
-            priority
-          />
-        )}
-      </div>
-
-      {showCarousel && screenshots.length > 1 ? (
-        <div className="mt-4 flex justify-center gap-2">
-          {screenshots.map((screenshot, screenshotIndex) => (
-            <button
-              key={screenshot.src}
-              type="button"
-              onClick={() => setIndex(screenshotIndex)}
-              className={classNames(
-                "h-1.5 rounded-full transition-all duration-300",
-                screenshotIndex === activeIndex
-                  ? "w-6 bg-white"
-                  : "w-1.5 bg-white/30 hover:bg-white/50"
-              )}
-              aria-label={`View screenshot ${screenshotIndex + 1}`}
-            />
           ))}
+
+          {showCarousel && screenshots.length > 1 ? (
+            <>
+              <div className="absolute top-4 right-4 z-10 rounded-full border border-white/15 bg-[rgb(10,10,12)]/90 px-3 py-1 font-mono text-xs text-white backdrop-blur-sm">
+                {activeIndex + 1} / {screenshots.length}
+              </div>
+              <div className="absolute top-1/2 left-3 z-10 -translate-y-1/2 sm:left-4">
+                <CarouselArrow
+                  direction="prev"
+                  overlay
+                  onClick={() => goTo(activeIndex - 1)}
+                />
+              </div>
+              <div className="absolute top-1/2 right-3 z-10 -translate-y-1/2 sm:right-4">
+                <CarouselArrow
+                  direction="next"
+                  overlay
+                  onClick={() => goTo(activeIndex + 1)}
+                />
+              </div>
+            </>
+          ) : null}
         </div>
-      ) : null}
+
+        {showCarousel && screenshots.length > 1 ? (
+          <div className="flex items-center justify-center gap-4 border-t border-white/10 px-4 py-3 sm:px-5">
+            <div className="flex gap-2">
+              {screenshots.map((screenshot, screenshotIndex) => (
+                <button
+                  key={screenshot.src}
+                  type="button"
+                  onClick={() => setIndex(screenshotIndex)}
+                  className={classNames(
+                    "rounded-full transition-all duration-300",
+                    screenshotIndex === activeIndex
+                      ? "h-2 w-8 bg-white"
+                      : "h-2 w-2 bg-white/30 hover:bg-white/50"
+                  )}
+                  aria-label={`View ${screenshot.label}`}
+                />
+              ))}
+            </div>
+          </div>
+        ) : null}
+      </div>
     </div>
   )
 }
@@ -121,6 +203,7 @@ const ChromePreview: React.FC<{ showCarousel: boolean }> = ({
 const ProductPreview: React.FC<Props> = ({
   platform,
   showCarousel = false,
+  variant = "default",
   className,
 }) => {
   return (
@@ -128,7 +211,7 @@ const ProductPreview: React.FC<Props> = ({
       {platform === "ios" ? (
         <IosPreview />
       ) : (
-        <ChromePreview showCarousel={showCarousel} />
+        <ChromePreview showCarousel={showCarousel} variant={variant} />
       )}
     </div>
   )

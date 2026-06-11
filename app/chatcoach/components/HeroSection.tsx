@@ -1,7 +1,6 @@
 "use client"
 
 import * as React from "react"
-import Image from "next/image"
 
 import classNames from "@/utils/classNames"
 
@@ -9,27 +8,12 @@ import { chatCoachConfig } from "../config"
 import { useScrollAnimation } from "../hooks/useScrollAnimation"
 import { Button } from "./Button"
 import PlatformLinks from "./PlatformLinks"
+import ProductPreview from "./ProductPreview"
 import { useWaitlist } from "./WaitlistProvider"
-
-const chatcoachImages = [
-  "/images/chatcoach/chatcoach.png",
-  "/images/chatcoach/chatcoach2.png",
-  "/images/chatcoach/chatcoach3.png",
-  "/images/chatcoach/chatcoach4.png",
-]
 
 export const HeroSection: React.FC = () => {
   const { ref, isVisible } = useScrollAnimation(0.15)
   const { openWaitlist } = useWaitlist()
-  const [currentImageIndex, setCurrentImageIndex] = React.useState(0)
-
-  React.useEffect(() => {
-    const interval = window.setInterval(() => {
-      setCurrentImageIndex((prev) => (prev + 1) % chatcoachImages.length)
-    }, 6000)
-
-    return () => window.clearInterval(interval)
-  }, [])
 
   return (
     <section
@@ -89,102 +73,16 @@ export const HeroSection: React.FC = () => {
 
         <div className="relative mx-auto mt-16 w-full max-w-5xl lg:mt-20">
           <div
-            className="absolute -inset-px rounded-[28px] bg-gradient-to-b from-white/20 via-white/5 to-transparent opacity-60"
+            className="pointer-events-none absolute -inset-4 rounded-[32px] bg-[radial-gradient(ellipse_at_center,rgba(0,202,254,0.08),transparent_70%)]"
             aria-hidden="true"
           />
-          <div className="relative overflow-hidden rounded-[28px] border border-white/10 bg-[rgb(16,16,20)] shadow-[0_40px_120px_-40px_rgba(0,0,0,0.8)]">
-            <div className="relative aspect-[16/10] w-full">
-              {chatcoachImages.map((src, index) => (
-                <div
-                  key={src}
-                  className={classNames(
-                    "absolute inset-0 transition-opacity duration-700",
-                    index === currentImageIndex ? "opacity-100" : "opacity-0"
-                  )}
-                >
-                  <Image
-                    src={src}
-                    alt={`Chat Coach interface screenshot ${index + 1}`}
-                    width={1920}
-                    height={1200}
-                    className="h-full w-full object-cover object-top"
-                    priority={index === 0}
-                  />
-                </div>
-              ))}
-            </div>
-
-            <div className="flex items-center justify-between border-t border-white/10 px-5 py-4">
-              <div className="flex gap-2">
-                {chatcoachImages.map((src, index) => (
-                  <button
-                    key={src}
-                    type="button"
-                    onClick={() => setCurrentImageIndex(index)}
-                    className={classNames(
-                      "h-1.5 rounded-full transition-all duration-300",
-                      index === currentImageIndex
-                        ? "w-6 bg-white"
-                        : "w-1.5 bg-white/30 hover:bg-white/50"
-                    )}
-                    aria-label={`View screenshot ${index + 1}`}
-                  />
-                ))}
-              </div>
-              <div className="hidden items-center gap-2 sm:flex">
-                <button
-                  type="button"
-                  onClick={() =>
-                    setCurrentImageIndex(
-                      (prev) =>
-                        (prev - 1 + chatcoachImages.length) %
-                        chatcoachImages.length
-                    )
-                  }
-                  className="rounded-full border border-white/10 p-2 text-[rgb(160,160,170)] transition-colors hover:border-white/20 hover:text-white"
-                  aria-label="Previous screenshot"
-                >
-                  <svg
-                    className="h-4 w-4"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={1.5}
-                      d="M15 19l-7-7 7-7"
-                    />
-                  </svg>
-                </button>
-                <button
-                  type="button"
-                  onClick={() =>
-                    setCurrentImageIndex(
-                      (prev) => (prev + 1) % chatcoachImages.length
-                    )
-                  }
-                  className="rounded-full border border-white/10 p-2 text-[rgb(160,160,170)] transition-colors hover:border-white/20 hover:text-white"
-                  aria-label="Next screenshot"
-                >
-                  <svg
-                    className="h-4 w-4"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={1.5}
-                      d="M9 5l7 7-7 7"
-                    />
-                  </svg>
-                </button>
-              </div>
-            </div>
-          </div>
+          <p className="mb-4 text-center font-mono text-[11px] tracking-[0.18em] text-cyan-400/90 uppercase">
+            Chrome extension preview
+          </p>
+          <ProductPreview platform="chrome" showCarousel variant="featured" />
+          <p className="mt-4 text-center text-xs text-[rgb(120,120,130)]">
+            Chrome extension preview · iOS app available via early access
+          </p>
         </div>
       </div>
     </section>
