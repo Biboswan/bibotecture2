@@ -30,7 +30,7 @@ const ChatCoachFooter: React.FC = () => {
             Terms
           </Link>
           <a
-            href="mailto:hello@bibotecture.com"
+            href="mailto:bibo@bibotecture.com"
             className="text-cc-muted hover:text-cc-primary transition-colors"
           >
             Contact
