@@ -1,32 +1,31 @@
 "use client"
-import React from "react"
 
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+import * as React from "react"
+
+import classNames from "@/utils/classNames"
+
+export interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode
-  variant?: "primary" | "outline"
-  className?: string
-  onClick?: () => void
+  variant?: "primary" | "secondary" | "ghost"
 }
 
-export const Button: React.FC<ButtonProps> = ({
+export const Button: React.FC<Props> = ({
   children,
   variant = "primary",
-  className = "",
-  onClick,
+  className,
   ...rest
 }) => {
-  const baseStyles =
-    "flex items-center gap-2 px-8 py-3.5 font-medium uppercase rounded-md cursor-pointer"
-  const variants = {
-    primary:
-      "bg-[linear-gradient(103deg,#00CAFE_1.74%,#A075FF_97.65%)] text-slate-950",
-    outline: "border-b border-white text-white",
-  }
-
   return (
     <button
-      onClick={onClick}
-      className={`${baseStyles} ${variants[variant]} ${className}`}
+      className={classNames(
+        "inline-flex cursor-pointer items-center justify-center gap-2 rounded-full px-7 py-3.5 text-sm font-medium tracking-tight transition-colors duration-200 disabled:cursor-not-allowed disabled:opacity-50",
+        variant === "primary" &&
+          "bg-white text-[rgb(10,10,12)] hover:bg-[rgb(235,235,240)]",
+        variant === "secondary" &&
+          "border border-white/15 bg-white/5 text-white hover:border-white/25 hover:bg-white/10",
+        variant === "ghost" && "text-[rgb(160,160,170)] hover:text-white",
+        className
+      )}
       {...rest}
     >
       {children}

@@ -1,6 +1,10 @@
 "use client"
 
-import React from "react"
+import * as React from "react"
+
+import classNames from "@/utils/classNames"
+
+import SectionHeader from "./SectionHeader"
 import { useScrollAnimation } from "../hooks/useScrollAnimation"
 
 interface StepProps {
@@ -8,25 +12,43 @@ interface StepProps {
   title: string
   description: string
   bullets?: string[]
+  isLast?: boolean
 }
 
-const Step: React.FC<StepProps> = ({ number, title, description, bullets }) => {
+const Step: React.FC<StepProps> = ({
+  number,
+  title,
+  description,
+  bullets,
+  isLast,
+}) => {
   return (
-    <div className="flex flex-col items-start gap-6 sm:flex-row sm:items-center">
-      <div className="flex h-16 w-16 flex-shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-cyan-400 to-purple-500 text-2xl font-bold text-white shadow-lg">
-        {number}
+    <div className="relative flex gap-6 sm:gap-8">
+      <div className="flex flex-col items-center">
+        <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full border border-white/15 bg-white/5 font-mono text-sm text-white">
+          {number}
+        </div>
+        {!isLast ? (
+          <div className="mt-3 w-px flex-1 bg-gradient-to-b from-white/20 to-transparent" />
+        ) : null}
       </div>
-      <div className="flex-1">
-        <h3 className="mb-2 text-2xl font-semibold text-gray-900 dark:text-white">
+      <div className="pb-12 sm:pb-14">
+        <h3 className="mb-2 text-xl font-medium tracking-tight text-white sm:text-2xl">
           {title}
         </h3>
-        <p className="text-lg leading-relaxed text-gray-600 dark:text-gray-300">
+        <p className="max-w-2xl text-base leading-relaxed text-[rgb(160,160,170)] sm:text-lg">
           {description}
         </p>
         {bullets?.length ? (
-          <ul className="mt-4 space-y-2 text-lg leading-relaxed text-gray-600 dark:text-gray-300">
+          <ul className="mt-4 space-y-2">
             {bullets.map((bullet) => (
-              <li key={bullet}>{bullet}</li>
+              <li
+                key={bullet}
+                className="flex items-start gap-2 text-sm text-[rgb(180,180,190)] sm:text-base"
+              >
+                <span className="mt-2 h-1 w-1 flex-shrink-0 rounded-full bg-cyan-400" />
+                {bullet}
+              </li>
             ))}
           </ul>
         ) : null}
@@ -36,61 +58,70 @@ const Step: React.FC<StepProps> = ({ number, title, description, bullets }) => {
 }
 
 export const HowItWorksSection: React.FC = () => {
-  const { ref, isVisible } = useScrollAnimation(0.2)
+  const { ref, isVisible } = useScrollAnimation(0.15)
 
   const steps = [
     {
-      number: "1",
-      title: "Connect Chat Coach to your messaging app",
+      number: "01",
+      title: "Install on iPhone or add the Chrome extension",
       description:
-        "Seamlessly integrate Chat Coach as a side panel in your conversations. Your privacy is protected — we analyze context, not content.",
-    },
-    {
-      number: "2",
-      title: "Get real-time communication insights",
-      description:
-        "Chat Coach analyzes tone, emotional cues, and conversation patterns as you chat, providing instant guidance when you need it.",
+        "Use the native iOS app for WhatsApp on your phone, or the Chrome extension for WhatsApp Web on desktop. Coaching appears as a side panel while you draft.",
       bullets: [
-        "✓ Private model processing — no ChatGPT data sharing, full coach oversight",
+        "iMessage, Telegram, and more messaging apps are on the roadmap.",
       ],
     },
     {
-      number: "3",
-      title: "Ask for guidance or explore quick suggestions",
+      number: "02",
+      title: "Get feedback before you hit send",
       description:
-        "Get answers about communication psychology, emotional intelligence, difficult conversations, and more — right when you need them.",
+        "Chat Coach reads tone, emotional cues, and conversation patterns as you draft, offering guidance exactly when you need it.",
+      bullets: [
+        "Choose AI coaches modeled on negotiation experts, dating coaches, and communicators.",
+      ],
+    },
+    {
+      number: "03",
+      title: "Ask for guidance or explore suggestions",
+      description:
+        "Get answers on communication psychology, difficult conversations, and emotional intelligence — without leaving the thread.",
     },
   ]
 
   return (
     <section
+      id="how-it-works"
       ref={ref}
-      className={`px-4 py-20 transition-opacity duration-1000 sm:px-6 lg:px-8 lg:py-32 ${
+      className={classNames(
+        "border-t border-white/8 px-4 py-20 transition-all duration-1000 sm:px-6 lg:px-8 lg:py-28",
         isVisible ? "opacity-100" : "opacity-0"
-      }`}
+      )}
     >
       <div className="mx-auto max-w-4xl">
-        <h2 className="mb-16 text-center text-4xl font-bold text-gray-900 sm:text-5xl lg:text-6xl dark:text-white">
-          How It Works
-        </h2>
+        <SectionHeader
+          label="How it works"
+          title="Guidance that stays beside the conversation."
+        />
 
-        <div className="space-y-12">
+        <div>
           {steps.map((step, index) => (
             <div
               key={step.number}
-              className={`transition-all duration-700 ${
+              className={classNames(
+                "transition-all duration-700",
                 isVisible
                   ? "translate-x-0 opacity-100"
-                  : "translate-x-8 opacity-0"
-              }`}
+                  : "translate-x-4 opacity-0"
+              )}
               style={{
-                transitionDelay: isVisible ? `${index * 150}ms` : "0ms",
+                transitionDelay: isVisible ? `${index * 120}ms` : "0ms",
               }}
             >
               <Step
                 number={step.number}
                 title={step.title}
                 description={step.description}
+                bullets={step.bullets}
+                isLast={index === steps.length - 1}
               />
             </div>
           ))}

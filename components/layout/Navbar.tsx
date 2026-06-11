@@ -59,7 +59,7 @@ export const NavSidebar: React.FC<NavSidebarProps> = ({
           transition={{ duration: 0.22 }}
           className={classNames(
             "framer-nav-sidebar fixed inset-0",
-            embedded ? "z-[10001]" : "z-[9999]"
+            embedded ? "z-10001" : "z-9999"
           )}
         >
           <Sidebar
@@ -113,7 +113,7 @@ const Navbar: React.FC<Props> = ({
       <div
         className={classNames(
           "framer-site-nav pointer-events-none w-full",
-          embedded ? "relative" : "fixed inset-x-0 z-[9998]"
+          embedded ? "relative" : "fixed inset-x-0 z-9998"
         )}
         style={embedded ? undefined : { top: offsetTop }}
       >

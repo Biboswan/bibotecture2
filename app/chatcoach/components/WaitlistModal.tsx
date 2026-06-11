@@ -1,27 +1,23 @@
 "use client"
 
-import React, { useState, useEffect } from "react"
+import * as React from "react"
+
 import { Button } from "./Button"
 
-interface WaitlistModalProps {
+export interface Props {
   isOpen: boolean
   onClose: () => void
   type: "waitlist" | "early-access"
 }
 
-export const WaitlistModal: React.FC<WaitlistModalProps> = ({
-  isOpen,
-  onClose,
-  type,
-}) => {
-  const [email, setEmail] = useState("")
-  const [name, setName] = useState("")
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [error, setError] = useState<string | null>(null)
-  const [success, setSuccess] = useState(false)
+export const WaitlistModal: React.FC<Props> = ({ isOpen, onClose, type }) => {
+  const [email, setEmail] = React.useState("")
+  const [name, setName] = React.useState("")
+  const [isSubmitting, setIsSubmitting] = React.useState(false)
+  const [error, setError] = React.useState<string | null>(null)
+  const [success, setSuccess] = React.useState(false)
 
-  // Reset form when modal opens/closes
-  useEffect(() => {
+  React.useEffect(() => {
     if (isOpen) {
       setEmail("")
       setName("")
@@ -30,19 +26,19 @@ export const WaitlistModal: React.FC<WaitlistModalProps> = ({
     }
   }, [isOpen])
 
-  // Close on Escape key
-  useEffect(() => {
-    const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === "Escape" && isOpen) {
+  React.useEffect(() => {
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape" && isOpen) {
         onClose()
       }
     }
+
     window.addEventListener("keydown", handleEscape)
     return () => window.removeEventListener("keydown", handleEscape)
   }, [isOpen, onClose])
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
+  const handleSubmit = async (event: React.FormEvent) => {
+    event.preventDefault()
     setError(null)
     setSuccess(false)
 
@@ -68,8 +64,7 @@ export const WaitlistModal: React.FC<WaitlistModalProps> = ({
       }
 
       setSuccess(true)
-      // Auto-close after 2 seconds on success
-      setTimeout(() => {
+      window.setTimeout(() => {
         onClose()
       }, 2000)
     } catch (err) {
@@ -90,27 +85,27 @@ export const WaitlistModal: React.FC<WaitlistModalProps> = ({
   const emailLabelId = "waitlist-email-label"
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+    <div className="fixed inset-0 z-[10001] flex items-center justify-center p-4">
       <button
         type="button"
         aria-label="Close dialog"
-        className="absolute inset-0 bg-black/50 backdrop-blur-sm"
+        className="absolute inset-0 bg-black/70 backdrop-blur-sm"
         onClick={onClose}
       />
       <div
         role="dialog"
         aria-modal="true"
         aria-labelledby={titleId}
-        className="relative w-full max-w-md transform rounded-2xl bg-white p-8 shadow-2xl transition-all dark:bg-gray-900"
+        className="relative w-full max-w-md rounded-[24px] border border-white/10 bg-[rgb(16,16,20)] p-8 shadow-[0_40px_120px_-40px_rgba(0,0,0,0.9)]"
       >
-        {/* Close button */}
         <button
+          type="button"
           onClick={onClose}
-          className="absolute top-4 right-4 text-gray-400 transition-colors hover:text-gray-600 dark:hover:text-gray-300"
+          className="absolute top-4 right-4 rounded-full p-1 text-[rgb(120,120,130)] transition-colors hover:text-white"
           aria-label="Close"
         >
           <svg
-            className="h-6 w-6"
+            className="h-5 w-5"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -118,35 +113,37 @@ export const WaitlistModal: React.FC<WaitlistModalProps> = ({
             <path
               strokeLinecap="round"
               strokeLinejoin="round"
-              strokeWidth={2}
+              strokeWidth={1.5}
               d="M6 18L18 6M6 6l12 12"
             />
           </svg>
         </button>
 
-        {/* Content */}
         <div className="space-y-6">
           <div>
+            <p className="mb-3 font-mono text-[11px] tracking-[0.2em] text-cyan-400/90 uppercase">
+              {type === "early-access" ? "Early access" : "Waitlist"}
+            </p>
             <h2
               id={titleId}
-              className="mb-2 text-3xl font-bold text-gray-900 dark:text-white"
+              className="text-2xl font-semibold tracking-tight text-white"
             >
               {type === "early-access"
-                ? "Get Early Access"
-                : "Join the Waitlist"}
+                ? "Request early access"
+                : "Join the waitlist"}
             </h2>
-            <p className="text-gray-600 dark:text-gray-300">
+            <p className="mt-2 text-sm leading-relaxed text-[rgb(160,160,170)]">
               {type === "early-access"
-                ? "Be among the first to experience Chat Coach with 1 month free."
-                : "We'll notify you when Chat Coach launches."}
+                ? "Join early access for the iOS app and Chrome extension — one month free. We will send install details to your email."
+                : "We will notify you when Chat Coach launches on the App Store and Chrome Web Store."}
             </p>
           </div>
 
           {success ? (
-            <div className="py-8 text-center">
-              <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-green-100 dark:bg-green-900/30">
+            <div className="py-6 text-center">
+              <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full border border-emerald-500/20 bg-emerald-500/10">
                 <svg
-                  className="h-8 w-8 text-green-600 dark:text-green-400"
+                  className="h-7 w-7 text-emerald-400"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -154,25 +151,25 @@ export const WaitlistModal: React.FC<WaitlistModalProps> = ({
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    strokeWidth={2}
+                    strokeWidth={1.5}
                     d="M5 13l4 4L19 7"
                   />
                 </svg>
               </div>
-              <h3 className="mb-2 text-xl font-semibold text-gray-900 dark:text-white">
-                You&apos;re in! 🎉
+              <h3 className="mb-2 text-lg font-medium text-white">
+                You are on the list
               </h3>
-              <p className="text-gray-600 dark:text-gray-300">
+              <p className="text-sm text-[rgb(160,160,170)]">
                 {type === "early-access"
-                  ? "We'll be in touch soon with your early access."
-                  : "We'll notify you when we launch."}
+                  ? "Check your inbox for TestFlight and Chrome extension access."
+                  : "We will notify you when we launch on the App Store and Chrome Web Store."}
               </p>
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-4">
               <label
                 id={nameLabelId}
-                className="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                className="block text-sm font-medium text-[rgb(180,180,190)]"
               >
                 Name (optional)
                 <input
@@ -182,48 +179,45 @@ export const WaitlistModal: React.FC<WaitlistModalProps> = ({
                   aria-labelledby={nameLabelId}
                   placeholder="Your name"
                   value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  className="mt-2 w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-gray-900 placeholder-gray-400 transition-all focus:ring-2 focus:ring-cyan-500 focus:outline-none dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:focus:ring-purple-500"
+                  onChange={(event) => setName(event.target.value)}
+                  className="mt-2 w-full rounded-xl border border-white/10 bg-[rgb(10,10,12)] px-4 py-3 text-white placeholder-[rgb(100,100,110)] transition-colors focus:border-cyan-400/40 focus:outline-none"
                 />
               </label>
 
               <label
                 id={emailLabelId}
-                className="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                className="block text-sm font-medium text-[rgb(180,180,190)]"
               >
-                Email <span className="text-red-500">*</span>
+                Email <span className="text-red-400">*</span>
                 <input
                   id="email"
                   name="email"
                   type="email"
                   aria-labelledby={emailLabelId}
-                  placeholder="your.email@example.com"
+                  placeholder="you@company.com"
                   value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  onChange={(event) => setEmail(event.target.value)}
                   required
-                  className="mt-2 w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-gray-900 placeholder-gray-400 transition-all focus:ring-2 focus:ring-cyan-500 focus:outline-none dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:focus:ring-purple-500"
+                  className="mt-2 w-full rounded-xl border border-white/10 bg-[rgb(10,10,12)] px-4 py-3 text-white placeholder-[rgb(100,100,110)] transition-colors focus:border-cyan-400/40 focus:outline-none"
                 />
               </label>
 
-              {error && (
-                <div className="rounded-lg border border-red-200 bg-red-50 p-3 dark:border-red-800 dark:bg-red-900/20">
-                  <p className="text-sm text-red-600 dark:text-red-400">
-                    {error}
-                  </p>
+              {error ? (
+                <div className="rounded-xl border border-red-500/20 bg-red-500/10 p-3">
+                  <p className="text-sm text-red-300">{error}</p>
                 </div>
-              )}
+              ) : null}
 
               <Button
                 type="submit"
                 disabled={isSubmitting}
-                variant="primary"
-                className="w-full py-4 text-lg"
+                className="w-full py-3.5"
               >
                 {isSubmitting
                   ? "Submitting..."
                   : type === "early-access"
-                    ? "Claim Early Access"
-                    : "Join Waitlist"}
+                    ? "Claim early access"
+                    : "Join waitlist"}
               </Button>
             </form>
           )}

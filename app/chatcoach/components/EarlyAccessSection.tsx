@@ -1,49 +1,60 @@
 "use client"
 
-import React, { useState } from "react"
+import * as React from "react"
+
+import classNames from "@/utils/classNames"
+
 import { Button } from "./Button"
+import PlatformLinks from "./PlatformLinks"
 import { useScrollAnimation } from "../hooks/useScrollAnimation"
-import { WaitlistModal } from "./WaitlistModal"
+import { useWaitlist } from "./WaitlistProvider"
 
 export const EarlyAccessSection: React.FC = () => {
   const { ref, isVisible } = useScrollAnimation(0.2)
-  const [isModalOpen, setIsModalOpen] = useState(false)
+  const { openWaitlist } = useWaitlist()
 
   return (
     <section
+      id="early-access"
       ref={ref}
-      className={`bg-gradient-to-br from-cyan-50/50 via-purple-50/50 to-pink-50/50 px-4 py-20 transition-opacity duration-1000 sm:px-6 lg:px-8 lg:py-32 dark:from-gray-900/50 dark:via-gray-800/50 dark:to-gray-900/50 ${
+      className={classNames(
+        "px-4 py-20 transition-all duration-1000 sm:px-6 lg:px-8 lg:py-28",
         isVisible ? "opacity-100" : "opacity-0"
-      }`}
+      )}
     >
-      <div className="mx-auto max-w-4xl text-center">
-        <h2 className="mb-8 text-4xl font-bold text-gray-900 sm:text-5xl lg:text-6xl dark:text-white">
-          Get 1 Month of Early Access —{" "}
-          <span className="bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">
-            Free.
-          </span>
-        </h2>
+      <div className="mx-auto max-w-4xl">
+        <div className="relative overflow-hidden rounded-[28px] border border-white/10 bg-[rgb(14,14,18)] px-6 py-12 text-center sm:px-10 sm:py-16">
+          <div
+            className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(0,202,254,0.12),transparent_55%)]"
+            aria-hidden="true"
+          />
 
-        <p className="mx-auto mb-12 max-w-3xl text-xl leading-relaxed text-gray-600 sm:text-2xl dark:text-gray-300">
-          Be among the first to experience AI-powered communication insights.
-          Early testers get unlimited access for 30 days while we polish the
-          full experience.
-        </p>
-
-        <Button
-          variant="primary"
-          onClick={() => setIsModalOpen(true)}
-          className="transform rounded-lg px-12 py-5 text-lg shadow-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl"
-        >
-          Claim Early Access
-        </Button>
+          <div className="relative">
+            <p className="mb-4 font-mono text-[11px] tracking-[0.2em] text-cyan-400/90 uppercase">
+              Early access
+            </p>
+            <h2 className="text-3xl leading-tight font-semibold tracking-tight text-balance text-white sm:text-4xl">
+              One month free on iOS and Chrome.
+            </h2>
+            <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-[rgb(160,160,170)] sm:text-lg">
+              Join the first cohort shaping Chat Coach. Early testers get
+              TestFlight access on iPhone, Chrome extension access on desktop,
+              and unlimited use for 30 days while we refine the experience.
+            </p>
+            <div className="mt-10 flex flex-col items-center justify-center gap-4">
+              <div className="flex flex-col items-center gap-4 sm:flex-row">
+                <Button onClick={openWaitlist}>
+                  Get Early Access — 1 Month Free
+                </Button>
+                <PlatformLinks />
+              </div>
+              <p className="text-sm text-[rgb(120,120,130)]">
+                No credit card required · WhatsApp on mobile and web
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
-
-      <WaitlistModal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        type="early-access"
-      />
     </section>
   )
 }
