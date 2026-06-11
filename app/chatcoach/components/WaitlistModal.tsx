@@ -101,7 +101,7 @@ export const WaitlistModal: React.FC<Props> = ({ isOpen, onClose, type }) => {
         <button
           type="button"
           onClick={onClose}
-          className="text-cc-subtle hover:text-cc-primary absolute top-4 right-4 rounded-full p-1 transition-colors"
+          className="text-cc-subtle hover:text-cc-primary absolute top-4 right-4 cursor-pointer rounded-full p-1 transition-colors"
           aria-label="Close"
         >
           <svg
