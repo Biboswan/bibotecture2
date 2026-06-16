@@ -38,7 +38,7 @@ export const HeroSection: React.FC = () => {
             <span className="chatcoach-gradient-text">Ace Conversations</span>
             <br />
             <span className="text-cc-primary">
-              with real-time coaching from AI clones of Experts
+              with real-time coaching from Expert Minds
             </span>
           </h1>
 
