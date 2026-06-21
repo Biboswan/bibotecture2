@@ -48,9 +48,6 @@ const ChatCoachHeader: React.FC = () => {
               <span className="text-cc-primary text-base font-semibold tracking-tight">
                 Chat <span style={{ color: "#6366f1" }}>Coach</span>
               </span>
-              <span className="text-cc-subtle group-hover:text-cc-muted text-[11px] transition-colors">
-                by Bibotecture
-              </span>
             </span>
           </Link>
 
