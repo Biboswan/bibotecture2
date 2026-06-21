@@ -1,5 +1,6 @@
 "use client"
 
+import Image from "next/image"
 import Link from "next/link"
 import * as React from "react"
 
@@ -34,12 +35,22 @@ const ChatCoachHeader: React.FC = () => {
         style={{ height: CHATCOACH_HEADER_HEIGHT }}
       >
         <div className="mx-auto flex h-full max-w-6xl items-center justify-between px-4 sm:px-6 lg:px-8">
-          <Link href="/chatcoach/" className="group flex flex-col gap-0.5">
-            <span className="text-cc-primary text-base font-semibold tracking-tight">
-              Chat Coach
-            </span>
-            <span className="text-cc-subtle group-hover:text-cc-muted text-[11px] transition-colors">
-              by Bibotecture
+          <Link href="/chatcoach/" className="group flex items-center gap-2.5">
+            <Image
+              src="/images/chatcoach/ChatCoachLogo.png"
+              alt="Chat Coach logo"
+              width={36}
+              height={36}
+              priority
+              className="h-9 w-9"
+            />
+            <span className="flex flex-col gap-0.5">
+              <span className="text-cc-primary text-base font-semibold tracking-tight">
+                Chat <span style={{ color: "#6366f1" }}>Coach</span>
+              </span>
+              <span className="text-cc-subtle group-hover:text-cc-muted text-[11px] transition-colors">
+                by Bibotecture
+              </span>
             </span>
           </Link>
 

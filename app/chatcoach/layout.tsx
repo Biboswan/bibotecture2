@@ -6,9 +6,9 @@ import { getMetadata } from "@/utils/metadata"
 
 export const metadata = getMetadata({
   path: "/chatcoach/",
-  title: "Chat Coach — Realtime AI conversation coaching",
+  title: "Chat Coach — Realtime conversation coaching from expert minds",
   description:
-    "Get instant WhatsApp coaching on iPhone and in Chrome — before you hit send. AI coaches for negotiation, dating, real estate, and more. Early access — one month free.",
+    "Get instant WhatsApp coaching on iPhone and in Chrome — before you hit send. Expert coaches for negotiation, dating, real estate, and more. Early access — one month free.",
   image: "/images/chatcoach/chatcoach.png",
 })
 
