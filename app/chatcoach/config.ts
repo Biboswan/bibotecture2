@@ -19,10 +19,5 @@ export const chatCoachConfig = {
       alt: "Chat Coach Chrome extension showing quick reply suggestions",
       label: "Quick replies",
     },
-    {
-      src: "/images/chatcoach/chatcoach4.png",
-      alt: "Chat Coach Chrome extension detecting conversation context",
-      label: "Context detection",
-    },
   ],
 } as const
