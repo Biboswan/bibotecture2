@@ -4,6 +4,8 @@ import * as React from "react"
 
 import classNames from "@/utils/classNames"
 
+type Experience = "coach-chat" | "quick-suggestions"
+
 export interface MobileCoachMessage {
   id: string
   body: string
@@ -11,78 +13,51 @@ export interface MobileCoachMessage {
   time: string
 }
 
+export interface MobileCoachProperty {
+  eyebrow: string
+  title: string
+  detail: string
+  price: string
+}
+
+export interface MobileCoachConversation {
+  contact: string
+  status: string
+  avatar: string
+  messages: MobileCoachMessage[]
+  property?: MobileCoachProperty
+}
+
 export interface MobileCoachSuggestion {
   title: string
+  score: string
   body: string
   reason: string
 }
 
-export interface MobileCoachQuestion {
-  prompt: string
-  answer: string
-}
-
 export interface MobileCoachScenario {
-  contact: string
-  status: string
-  avatar: string
-  defaultCoach: CoachId
-  context: string
-  messages: MobileCoachMessage[]
-  suggestions: MobileCoachSuggestion[]
-  questions: MobileCoachQuestion[]
+  coach: {
+    name: string
+    initials: string
+    speciality: string
+  }
+  coachChat: {
+    conversation: MobileCoachConversation
+    question: string
+    answer: string[]
+  }
+  quickSuggestions: {
+    conversation: MobileCoachConversation
+    suggestions: MobileCoachSuggestion[]
+  }
 }
 
 export interface Props {
   scenario: MobileCoachScenario
+  initialExperience?: Experience
+  outcome?: string
   className?: string
 }
-
-type CoachId = "general" | "negotiation" | "dating"
-type CoachView = "suggestions" | "ask"
-
-interface CoachOption {
-  id: CoachId
-  name: string
-  speciality: string
-  bestFor: string
-}
-
-const coaches: CoachOption[] = [
-  {
-    id: "general",
-    name: "ChatCoach",
-    speciality: "EQ & communication",
-    bestFor: "Everyday conversations",
-  },
-  {
-    id: "negotiation",
-    name: "Chris Voss",
-    speciality: "Negotiation & tactical empathy",
-    bestFor: "Sales & difficult asks",
-  },
-  {
-    id: "dating",
-    name: "Matthew Hussey",
-    speciality: "Dating communication",
-    bestFor: "Dating & relationships",
-  },
-]
-
-const SparkIcon: React.FC<{ className?: string }> = ({ className }) => (
-  <svg
-    className={className}
-    fill="none"
-    stroke="currentColor"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    strokeWidth="1.8"
-    viewBox="0 0 24 24"
-    aria-hidden="true"
-  >
-    <path d="M12 3l1.2 4.1a5 5 0 0 0 3.4 3.4L21 12l-4.4 1.5a5 5 0 0 0-3.4 3.4L12 21l-1.2-4.1a5 5 0 0 0-3.4-3.4L3 12l4.4-1.5a5 5 0 0 0 3.4-3.4L12 3Z" />
-  </svg>
-)
 
 const MessageBubble: React.FC<{ message: MobileCoachMessage }> = ({
   message,
@@ -95,14 +70,14 @@ const MessageBubble: React.FC<{ message: MobileCoachMessage }> = ({
   >
     <div
       className={classNames(
-        "max-w-[84%] rounded-2xl px-3 py-2 text-[13px] leading-snug shadow-sm",
+        "max-w-[84%] rounded-lg px-2.5 py-2 text-[11px] leading-[1.4] shadow-sm",
         message.direction === "outgoing"
-          ? "rounded-br-sm bg-[#d9fdd3] text-[#17231a]"
-          : "rounded-bl-sm bg-white text-[#1d2433]"
+          ? "rounded-tr-sm bg-[#d9fdd3] text-[#17231a]"
+          : "rounded-tl-sm bg-white text-[#1d2433]"
       )}
     >
       <p>{message.body}</p>
-      <p className="mt-1 text-right text-[9px] text-black/45">
+      <p className="mt-1 text-right text-[8px] text-black/45">
         {message.time}
         {message.direction === "outgoing" ? "  ✓✓" : ""}
       </p>
@@ -110,328 +85,452 @@ const MessageBubble: React.FC<{ message: MobileCoachMessage }> = ({
   </div>
 )
 
-const CoachPicker: React.FC<{
-  selectedCoach: CoachOption
-  isOpen: boolean
-  onToggle: () => void
-  onSelect: (coach: CoachOption) => void
-}> = ({ selectedCoach, isOpen, onToggle, onSelect }) => {
-  const menuId = React.useId()
+const PropertyCard: React.FC<{ property: MobileCoachProperty }> = ({
+  property,
+}) => (
+  <article className="ml-auto w-[78%] rounded-lg rounded-tr-sm bg-[#d9fdd3] p-1 shadow-sm">
+    <div className="relative h-16 overflow-hidden rounded-md bg-[linear-gradient(135deg,#bfd5cf_0_30%,#f4eee2_30%_42%,#90aca7_42%_56%,#e5d7c6_56%_70%,#71928d_70%)]">
+      <div className="absolute inset-x-0 bottom-0 h-9 bg-gradient-to-t from-[#163b34]/65 to-transparent" />
+      <p className="absolute bottom-1.5 left-2 text-[6px] font-bold tracking-[0.08em] text-white uppercase">
+        {property.eyebrow}
+      </p>
+    </div>
+    <div className="grid gap-0.5 px-1.5 py-1.5">
+      <strong className="text-[10px] text-slate-900">{property.title}</strong>
+      <span className="text-[8px] text-slate-500">{property.detail}</span>
+      <b className="text-[10px] text-slate-900">{property.price}</b>
+    </div>
+  </article>
+)
 
-  return (
-    <div className="relative">
+const Conversation: React.FC<{
+  conversation: MobileCoachConversation
+  sentMessages: MobileCoachMessage[]
+}> = ({ conversation, sentMessages }) => (
+  <div className="min-h-0 flex-1 overflow-y-auto bg-[#efeae2] px-3 py-3">
+    <span className="mx-auto mb-2 block w-max rounded-md bg-white/90 px-2 py-1 text-[7px] text-slate-500 shadow-sm">
+      TODAY
+    </span>
+    <div className="space-y-2">
+      {conversation.messages.map((message, index) => (
+        <React.Fragment key={message.id}>
+          <MessageBubble message={message} />
+          {conversation.property && index === 1 ? (
+            <PropertyCard property={conversation.property} />
+          ) : null}
+        </React.Fragment>
+      ))}
+      {sentMessages.map((message) => (
+        <MessageBubble key={message.id} message={message} />
+      ))}
+    </div>
+  </div>
+)
+
+const CoachBar: React.FC<{
+  conversation: MobileCoachConversation
+  scenario: MobileCoachScenario
+  isExpanded: boolean
+  coachInfoOpen: boolean
+  autoSuggest: boolean
+  onToggleExpanded: () => void
+  onToggleCoachInfo: () => void
+  onToggleAutoSuggest: () => void
+}> = ({
+  conversation,
+  scenario,
+  isExpanded,
+  coachInfoOpen,
+  autoSuggest,
+  onToggleExpanded,
+  onToggleCoachInfo,
+  onToggleAutoSuggest,
+}) => (
+  <div className="relative flex min-h-12 items-center gap-1.5 border-b border-slate-200 bg-white px-2 py-1.5">
+    <button
+      type="button"
+      aria-label={isExpanded ? "Collapse coach" : "Open coach"}
+      aria-expanded={isExpanded}
+      onClick={onToggleExpanded}
+      className={classNames(
+        "text-xl text-blue-500 transition-transform",
+        !isExpanded && "rotate-180"
+      )}
+    >
+      ‹
+    </button>
+    <span className="flex min-w-0 items-center gap-1 rounded-lg bg-blue-500 px-1.5 py-1 text-[8px] font-semibold text-white">
+      <span className="grid h-5 w-5 flex-none place-items-center rounded-full bg-blue-900 text-[6px]">
+        {conversation.avatar}
+      </span>
+      <span className="max-w-20 truncate">{conversation.contact}</span>
+      <span aria-hidden="true">⌄</span>
+    </span>
+    <button
+      type="button"
+      aria-expanded={coachInfoOpen}
+      onClick={onToggleCoachInfo}
+      className="flex min-w-0 flex-1 items-center gap-1 rounded-lg bg-slate-100 px-1.5 py-1 text-left text-[8px] font-semibold text-slate-900"
+    >
+      <span className="grid h-5 w-5 flex-none place-items-center rounded-full bg-[#030213] text-[6px] text-white">
+        {scenario.coach.initials}
+      </span>
+      <span className="truncate">{scenario.coach.name}</span>
+      <span className="ml-auto" aria-hidden="true">
+        ⌄
+      </span>
+    </button>
+    <span className="flex flex-none items-center gap-1">
+      <svg
+        className="h-3 w-3 text-blue-500"
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        aria-hidden="true"
+      >
+        <path d="M13 2 4.5 13.5H11l-1 8.5L20 10h-6.5z" />
+      </svg>
       <button
         type="button"
-        aria-expanded={isOpen}
-        aria-controls={menuId}
-        onClick={onToggle}
-        className="flex w-full items-center gap-2 rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-left shadow-sm transition hover:border-blue-300 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none"
+        role="switch"
+        aria-checked={autoSuggest}
+        aria-label="Auto-suggest"
+        onClick={onToggleAutoSuggest}
+        className={classNames(
+          "relative inline-flex h-4 w-7 flex-none items-center rounded-full px-0.5 transition-colors",
+          autoSuggest ? "bg-emerald-400" : "bg-slate-300"
+        )}
       >
-        <span className="flex h-8 w-8 flex-none items-center justify-center rounded-lg bg-blue-50 text-blue-500">
-          <SparkIcon className="h-5 w-5" />
-        </span>
-        <span className="min-w-0 flex-1">
-          <span className="block truncate text-xs font-semibold text-slate-900">
-            {selectedCoach.name}
-          </span>
-          <span className="block truncate text-[10px] text-slate-500">
-            {selectedCoach.speciality}
-          </span>
-        </span>
-        <svg
+        <span
           className={classNames(
-            "h-4 w-4 flex-none text-slate-400 transition-transform",
-            isOpen && "rotate-180"
+            "h-3 w-3 rounded-full bg-white shadow-sm transition-transform",
+            autoSuggest ? "translate-x-3" : "translate-x-0"
           )}
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          viewBox="0 0 24 24"
-          aria-hidden="true"
-        >
-          <path d="m6 9 6 6 6-6" />
-        </svg>
+        />
       </button>
+    </span>
 
-      {isOpen ? (
-        <div
-          id={menuId}
-          className="absolute top-[calc(100%+6px)] right-0 left-0 z-30 overflow-hidden rounded-2xl border border-slate-200 bg-white p-1.5 shadow-2xl"
-        >
-          <p className="px-2.5 pt-1.5 pb-1 text-[9px] font-semibold tracking-[0.14em] text-slate-400 uppercase">
-            Choose your coach
-          </p>
-          {coaches.map((coach) => {
-            const isSelected = coach.id === selectedCoach.id
+    {coachInfoOpen ? (
+      <div className="absolute top-[calc(100%+6px)] right-2 z-30 w-56 rounded-xl border border-slate-200 bg-white p-3 shadow-xl">
+        <p className="text-[10px] font-semibold text-slate-900">
+          {scenario.coach.name}
+        </p>
+        <p className="mt-1 text-[9px] leading-relaxed text-slate-500">
+          {scenario.coach.speciality}
+        </p>
+        <p className="mt-2 text-[8px] font-semibold text-emerald-600">
+          Selected for this conversation
+        </p>
+      </div>
+    ) : null}
+  </div>
+)
 
-            return (
-              <button
-                key={coach.id}
-                type="button"
-                onClick={() => onSelect(coach)}
-                className={classNames(
-                  "flex w-full items-center gap-2 rounded-xl px-2.5 py-2 text-left transition",
-                  isSelected ? "bg-blue-50" : "hover:bg-slate-50"
-                )}
-              >
-                <span
-                  className={classNames(
-                    "flex h-7 w-7 flex-none items-center justify-center rounded-lg",
-                    isSelected
-                      ? "bg-blue-100 text-blue-600"
-                      : "bg-slate-100 text-slate-500"
-                  )}
-                >
-                  <SparkIcon className="h-4 w-4" />
-                </span>
-                <span className="min-w-0 flex-1">
-                  <span className="block truncate text-[11px] font-semibold text-slate-900">
-                    {coach.name}
-                  </span>
-                  <span className="block truncate text-[9px] text-slate-500">
-                    {coach.bestFor}
-                  </span>
-                </span>
-                {isSelected ? (
-                  <span className="text-xs font-bold text-blue-500">✓</span>
-                ) : null}
-              </button>
-            )
-          })}
-        </div>
-      ) : null}
+const CoachConversation: React.FC<{
+  scenario: MobileCoachScenario
+}> = ({ scenario }) => (
+  <div className="min-h-0 flex-1 overflow-y-auto bg-white p-3">
+    <div className="ml-auto max-w-[92%] rounded-xl border border-blue-100 bg-blue-50 p-2.5 text-[9px] leading-[1.45] text-slate-700">
+      <header className="mb-1.5 flex items-center justify-between">
+        <b className="text-[8px] text-slate-900">You</b>
+        <time className="text-[7px] text-slate-400">Just now</time>
+      </header>
+      {scenario.coachChat.question}
     </div>
-  )
-}
+
+    <div className="mt-2.5 max-w-[94%] rounded-xl border border-slate-200 bg-white p-2.5 text-[9px] leading-[1.45] text-slate-700 shadow-sm">
+      <header className="mb-2 flex items-center gap-1.5">
+        <span className="grid h-5 w-5 place-items-center rounded-full bg-[#030213] text-[6px] text-white">
+          {scenario.coach.initials}
+        </span>
+        <b className="text-[8px] text-slate-900">{scenario.coach.name}</b>
+        <em className="rounded-full bg-blue-50 px-1.5 py-0.5 text-[6px] font-bold text-blue-600 not-italic">
+          Coach
+        </em>
+      </header>
+      <div className="space-y-2">
+        {scenario.coachChat.answer.map((paragraph) => (
+          <p key={paragraph}>{paragraph}</p>
+        ))}
+      </div>
+    </div>
+
+    <div className="mt-2.5 flex items-center rounded-full border border-slate-200 bg-slate-100 py-1 pr-1 pl-3">
+      <input
+        aria-label={`Message ${scenario.coach.name}`}
+        placeholder={`Message ${scenario.coach.name.split(" ")[0]}…`}
+        className="min-w-0 flex-1 bg-transparent text-[9px] outline-none placeholder:text-slate-400"
+      />
+      <button
+        type="button"
+        aria-label="Send coach question"
+        className="grid h-6 w-6 place-items-center rounded-full bg-blue-500 text-[10px] text-white"
+      >
+        ↑
+      </button>
+    </div>
+  </div>
+)
 
 const SuggestionCard: React.FC<{
   suggestion: MobileCoachSuggestion
   onUse: () => void
 }> = ({ suggestion, onUse }) => (
-  <article className="rounded-xl border border-slate-200 bg-white p-3 shadow-sm">
-    <div className="flex items-center justify-between gap-2">
-      <p className="text-[10px] font-semibold text-blue-600">
+  <button
+    type="button"
+    onClick={onUse}
+    className="w-[250px] flex-none overflow-hidden rounded-xl border border-[#030213] bg-white text-left transition hover:border-blue-500"
+  >
+    <header className="flex items-center justify-between border-b border-slate-200 px-2.5 py-2">
+      <b className="font-mono text-[8px] tracking-[0.04em] text-blue-600 uppercase">
         {suggestion.title}
-      </p>
-      <span className="rounded-full bg-blue-50 px-2 py-0.5 text-[8px] font-medium text-blue-600">
-        Suggested
-      </span>
-    </div>
-    <p className="mt-2 text-[11px] leading-relaxed text-slate-800">
-      {suggestion.body}
+      </b>
+      <span className="text-[8px] text-slate-400">{suggestion.score}</span>
+    </header>
+    <p className="min-h-16 px-2.5 py-2 text-[9px] leading-[1.4] text-slate-800">
+      &ldquo;{suggestion.body}&rdquo;
     </p>
-    <div className="mt-2.5 flex items-end justify-between gap-3 border-t border-slate-100 pt-2">
-      <p className="text-[9px] leading-snug text-slate-400">
-        {suggestion.reason}
-      </p>
-      <button
-        type="button"
-        onClick={onUse}
-        className="flex-none rounded-lg bg-slate-900 px-2.5 py-1.5 text-[9px] font-semibold text-white transition hover:bg-blue-600 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none"
-      >
-        Use reply
-      </button>
-    </div>
-  </article>
+    <footer className="border-t border-slate-200 bg-slate-100 px-2.5 py-2">
+      <span className="block font-mono text-[7px] tracking-[0.08em] text-slate-400 uppercase">
+        Why this works
+      </span>
+      <b className="mt-1 block text-[8px] text-blue-600">{suggestion.reason}</b>
+    </footer>
+  </button>
 )
 
-const MobileCoachDemo: React.FC<Props> = ({ scenario, className }) => {
+const QuickSuggestions: React.FC<{
+  scenario: MobileCoachScenario
+  onUseSuggestion: (suggestion: MobileCoachSuggestion) => void
+}> = ({ scenario, onUseSuggestion }) => (
+  <div className="min-h-0 flex-1 overflow-y-auto bg-white py-3">
+    <div className="flex gap-2 overflow-x-auto px-3 pb-2">
+      {scenario.quickSuggestions.suggestions.map((suggestion) => (
+        <SuggestionCard
+          key={suggestion.title}
+          suggestion={suggestion}
+          onUse={() => onUseSuggestion(suggestion)}
+        />
+      ))}
+    </div>
+    <div className="mx-3 mt-1 flex items-center rounded-full border border-slate-200 bg-slate-100 py-1 pr-1 pl-3">
+      <input
+        aria-label={`Ask ${scenario.coach.name}`}
+        placeholder="Ask your coach…"
+        className="min-w-0 flex-1 bg-transparent text-[9px] outline-none placeholder:text-slate-400"
+      />
+      <button
+        type="button"
+        aria-label="Send coach question"
+        className="grid h-6 w-6 place-items-center rounded-full bg-blue-500 text-[10px] text-white"
+      >
+        ↑
+      </button>
+    </div>
+  </div>
+)
+
+const MobileCoachDemo: React.FC<Props> = ({
+  scenario,
+  initialExperience = "coach-chat",
+  outcome,
+  className,
+}) => {
   const draftId = React.useId()
-  const [selectedCoachId, setSelectedCoachId] = React.useState<CoachId>(
-    scenario.defaultCoach
-  )
-  const [isPickerOpen, setIsPickerOpen] = React.useState(false)
-  const [activeView, setActiveView] = React.useState<CoachView>("suggestions")
+  const [experience, setExperience] =
+    React.useState<Experience>(initialExperience)
   const [draft, setDraft] = React.useState("")
-  const [sentMessages, setSentMessages] = React.useState<MobileCoachMessage[]>(
-    []
-  )
-  const [activeQuestion, setActiveQuestion] = React.useState(
-    scenario.questions[0]
-  )
+  const [sentMessages, setSentMessages] = React.useState<
+    Record<Experience, MobileCoachMessage[]>
+  >({ "coach-chat": [], "quick-suggestions": [] })
+  const [isCoachExpanded, setIsCoachExpanded] = React.useState(true)
+  const [coachInfoOpen, setCoachInfoOpen] = React.useState(false)
+  const [autoSuggest, setAutoSuggest] = React.useState(true)
 
-  const selectedCoach =
-    coaches.find((coach) => coach.id === selectedCoachId) ?? coaches[0]
-  const messages = [...scenario.messages, ...sentMessages]
+  const isCoachChat = experience === "coach-chat"
+  const conversation = isCoachChat
+    ? scenario.coachChat.conversation
+    : scenario.quickSuggestions.conversation
 
-  const selectCoach = (coach: CoachOption) => {
-    setSelectedCoachId(coach.id)
-    setIsPickerOpen(false)
-  }
-
-  const useSuggestion = (suggestion: MobileCoachSuggestion) => {
-    setDraft(suggestion.body)
+  const changeExperience = (nextExperience: Experience) => {
+    setExperience(nextExperience)
+    setDraft("")
+    setIsCoachExpanded(true)
+    setCoachInfoOpen(false)
   }
 
   const sendDraft = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-
     const body = draft.trim()
     if (!body) return
 
-    setSentMessages((current) => [
+    setSentMessages((current) => ({
       ...current,
-      {
-        id: `visitor-${current.length}`,
-        body,
-        direction: "outgoing",
-        time: "Now",
-      },
-    ])
+      [experience]: [
+        ...current[experience],
+        {
+          id: `${experience}-${current[experience].length}`,
+          body,
+          direction: "outgoing",
+          time: "now",
+        },
+      ],
+    }))
     setDraft("")
   }
 
   return (
     <div
       className={classNames(
-        "cc-phone-glow relative mx-auto w-full max-w-[390px] rounded-[48px] p-3",
+        "cc-phone-glow relative mx-auto w-full max-w-[410px] rounded-[48px] p-3",
         className
       )}
     >
-      <div className="relative overflow-hidden rounded-[38px] border-[6px] border-[#111827] bg-[#f6f7fb] shadow-[0_30px_80px_rgba(15,16,24,0.22)]">
-        <div className="absolute top-2 left-1/2 z-40 h-5 w-24 -translate-x-1/2 rounded-full bg-[#111827]" />
-
-        <div className="flex h-[720px] flex-col sm:h-[760px]">
-          <div className="bg-[#075e5b] px-4 pt-8 pb-3 text-white">
-            <div className="flex items-center gap-3">
-              <span className="text-lg text-white/90" aria-hidden="true">
-                ‹
-              </span>
-              <span className="flex h-9 w-9 items-center justify-center rounded-full bg-white/15 text-xs font-bold">
-                {scenario.avatar}
-              </span>
-              <span className="min-w-0 flex-1">
-                <span className="block truncate text-sm font-semibold">
-                  {scenario.contact}
-                </span>
-                <span className="block text-[10px] text-white/65">
-                  {scenario.status}
-                </span>
-              </span>
-              <span className="text-lg text-white/85" aria-hidden="true">
-                ···
-              </span>
-            </div>
-          </div>
-
-          <div className="min-h-0 flex-1 overflow-y-auto bg-[#efe9e1] px-3 py-4">
-            <div className="space-y-2">
-              {messages.map((message) => (
-                <MessageBubble key={message.id} message={message} />
-              ))}
-            </div>
-          </div>
-
-          <div className="relative z-20 border-t border-slate-200 bg-[#f8fafc] px-3 pt-3">
-            <div className="grid grid-cols-[1fr_auto] items-center gap-2">
-              <CoachPicker
-                selectedCoach={selectedCoach}
-                isOpen={isPickerOpen}
-                onToggle={() => setIsPickerOpen((open) => !open)}
-                onSelect={selectCoach}
-              />
-              <span className="rounded-xl bg-blue-50 px-2.5 py-3 text-[9px] font-medium whitespace-nowrap text-blue-600">
-                {scenario.context}
-              </span>
-            </div>
-
-            <div
-              className="mt-3 grid grid-cols-2 rounded-xl bg-slate-200/70 p-1"
-              role="tablist"
-              aria-label="Coach tools"
-            >
-              {(["suggestions", "ask"] as const).map((view) => (
-                <button
-                  key={view}
-                  type="button"
-                  role="tab"
-                  aria-selected={activeView === view}
-                  onClick={() => setActiveView(view)}
-                  className={classNames(
-                    "rounded-lg px-3 py-1.5 text-[10px] font-semibold capitalize transition",
-                    activeView === view
-                      ? "bg-white text-blue-600 shadow-sm"
-                      : "text-slate-500"
-                  )}
-                >
-                  {view === "suggestions" ? "Quick suggestions" : "Ask coach"}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          <div className="h-[190px] overflow-y-auto bg-[#f8fafc] px-3 py-3">
-            {activeView === "suggestions" ? (
-              <div className="space-y-2">
-                {scenario.suggestions.map((suggestion) => (
-                  <SuggestionCard
-                    key={suggestion.title}
-                    suggestion={suggestion}
-                    onUse={() => useSuggestion(suggestion)}
-                  />
-                ))}
-              </div>
-            ) : (
-              <div>
-                <div className="flex flex-wrap gap-1.5">
-                  {scenario.questions.map((question) => (
-                    <button
-                      key={question.prompt}
-                      type="button"
-                      onClick={() => setActiveQuestion(question)}
-                      className={classNames(
-                        "rounded-full border px-2.5 py-1 text-[9px] transition",
-                        activeQuestion.prompt === question.prompt
-                          ? "border-blue-200 bg-blue-50 text-blue-700"
-                          : "border-slate-200 bg-white text-slate-500 hover:border-blue-200"
-                      )}
-                    >
-                      {question.prompt}
-                    </button>
-                  ))}
-                </div>
-                <div className="mt-3 rounded-xl border border-blue-100 bg-white p-3 shadow-sm">
-                  <p className="flex items-center gap-1.5 text-[9px] font-semibold text-blue-600">
-                    <SparkIcon className="h-3.5 w-3.5" />
-                    {selectedCoach.name}
-                  </p>
-                  <p className="mt-2 text-[11px] leading-relaxed text-slate-700">
-                    {activeQuestion.answer}
-                  </p>
-                </div>
-              </div>
+      <div className="mb-4 flex justify-center">
+        <div
+          className="border-cc bg-cc-elevated shadow-cc-card grid grid-cols-2 rounded-full border p-1"
+          role="tablist"
+          aria-label="Choose prototype state"
+        >
+          <button
+            type="button"
+            role="tab"
+            aria-selected={isCoachChat}
+            onClick={() => changeExperience("coach-chat")}
+            className={classNames(
+              "rounded-full px-4 py-2 text-xs font-medium transition",
+              isCoachChat
+                ? "bg-[#030213] text-white"
+                : "text-cc-muted hover:text-cc-primary"
             )}
-          </div>
+          >
+            1:1 coach
+          </button>
+          <button
+            type="button"
+            role="tab"
+            aria-selected={!isCoachChat}
+            onClick={() => changeExperience("quick-suggestions")}
+            className={classNames(
+              "rounded-full px-4 py-2 text-xs font-medium transition",
+              !isCoachChat
+                ? "bg-[#030213] text-white"
+                : "text-cc-muted hover:text-cc-primary"
+            )}
+          >
+            Quick suggestions
+          </button>
+        </div>
+      </div>
+
+      <div className="relative overflow-hidden rounded-[38px] border-[7px] border-[#111816] bg-white shadow-[0_30px_80px_rgba(15,16,24,0.22)]">
+        <div className="flex h-[760px] flex-col">
+          <header className="flex h-16 flex-none items-center gap-2 bg-[#f8f7f2] px-3 text-[#030213]">
+            <span className="text-2xl" aria-hidden="true">
+              ‹
+            </span>
+            <span className="grid h-9 w-9 flex-none place-items-center rounded-full bg-gradient-to-br from-[#e4bea4] to-[#6f4937] text-[9px] font-bold text-white">
+              {conversation.avatar}
+            </span>
+            <span className="min-w-0 flex-1">
+              <strong className="block truncate text-xs">
+                {conversation.contact}
+              </strong>
+              <span className="block text-[9px] text-slate-500">
+                {conversation.status}
+              </span>
+            </span>
+            <span className="text-base" aria-hidden="true">
+              ▢
+            </span>
+            <span className="text-base" aria-hidden="true">
+              ⌕
+            </span>
+          </header>
+
+          <Conversation
+            conversation={conversation}
+            sentMessages={sentMessages[experience]}
+          />
 
           <form
             onSubmit={sendDraft}
-            className="flex items-end gap-2 border-t border-slate-200 bg-white px-3 pt-2 pb-5"
+            className="flex h-13 flex-none items-center gap-1.5 bg-[#f0f2f3] px-2 py-1.5"
           >
+            <span className="text-xl text-slate-600" aria-hidden="true">
+              ＋
+            </span>
             <label className="sr-only" htmlFor={draftId}>
-              Try a reply
+              Message {conversation.contact}
             </label>
-            <textarea
-              id={draftId}
-              aria-label="Try a reply"
-              value={draft}
-              onChange={(event) => setDraft(event.target.value)}
-              rows={2}
-              placeholder="Choose a suggestion or write a reply…"
-              className="min-h-11 flex-1 resize-none rounded-xl bg-slate-100 px-3 py-2 text-[11px] leading-snug text-slate-800 outline-none placeholder:text-slate-400 focus:ring-2 focus:ring-blue-400"
-            />
+            <div className="flex h-9 min-w-0 flex-1 items-center rounded-full bg-white px-3">
+              <input
+                id={draftId}
+                aria-label={`Message ${conversation.contact}`}
+                value={draft}
+                onChange={(event) => setDraft(event.target.value)}
+                placeholder="Message"
+                className="min-w-0 flex-1 text-[10px] outline-none placeholder:text-slate-400"
+              />
+              <span className="text-slate-400" aria-hidden="true">
+                ▣
+              </span>
+            </div>
             <button
               type="submit"
               disabled={!draft.trim()}
-              aria-label="Send reply"
-              className="flex h-11 w-11 flex-none items-center justify-center rounded-xl bg-blue-500 text-lg text-white transition hover:bg-blue-600 disabled:cursor-not-allowed disabled:bg-slate-300"
+              aria-label={draft ? "Send message" : "Record voice message"}
+              className="grid h-9 w-9 flex-none place-items-center rounded-full bg-[#030213] text-xs text-white disabled:bg-slate-500"
             >
-              ↑
+              {draft ? "➤" : "♩"}
             </button>
           </form>
+
+          <section
+            className={classNames(
+              "flex flex-col overflow-hidden border-t border-slate-200 bg-white transition-[flex-basis] duration-300",
+              isCoachExpanded
+                ? isCoachChat
+                  ? "basis-[350px]"
+                  : "basis-[255px]"
+                : "basis-12"
+            )}
+          >
+            <CoachBar
+              conversation={conversation}
+              scenario={scenario}
+              isExpanded={isCoachExpanded}
+              coachInfoOpen={coachInfoOpen}
+              autoSuggest={autoSuggest}
+              onToggleExpanded={() => setIsCoachExpanded((open) => !open)}
+              onToggleCoachInfo={() => setCoachInfoOpen((open) => !open)}
+              onToggleAutoSuggest={() => setAutoSuggest((on) => !on)}
+            />
+            {isCoachExpanded ? (
+              isCoachChat ? (
+                <CoachConversation scenario={scenario} />
+              ) : (
+                <QuickSuggestions
+                  scenario={scenario}
+                  onUseSuggestion={(suggestion) => setDraft(suggestion.body)}
+                />
+              )
+            ) : null}
+          </section>
+
+          <footer className="flex h-10 flex-none items-center justify-between bg-[#d9dde1] px-6 text-xl text-slate-600">
+            <span aria-hidden="true">◎</span>
+            <span aria-hidden="true">♩</span>
+          </footer>
         </div>
       </div>
-      <p className="text-cc-subtle mt-5 text-center text-xs">
-        Try it: switch coach, choose a suggestion, or ask a question.
+      {outcome ? (
+        <div className="border-cc-strong bg-cc-elevated shadow-cc-card mt-5 flex items-center gap-3 rounded-xl border px-4 py-3">
+          <span className="cc-dot-active h-2 w-2 flex-none rounded-full" />
+          <p className="text-cc-primary text-sm font-medium">{outcome}</p>
+        </div>
+      ) : null}
+      <p className="text-cc-subtle mt-4 text-center text-xs">
+        Try both views, use a coach reply, then edit and send it.
       </p>
     </div>
   )

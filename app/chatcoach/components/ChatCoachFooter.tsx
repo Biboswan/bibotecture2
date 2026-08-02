@@ -30,6 +30,12 @@ const ChatCoachFooter: React.FC = () => {
 
         <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm">
           <Link
+            href="/chatcoach/coaches/"
+            className="text-cc-muted hover:text-cc-primary transition-colors"
+          >
+            For coaches
+          </Link>
+          <Link
             href="/privacy-policy/"
             className="text-cc-muted hover:text-cc-primary transition-colors"
           >

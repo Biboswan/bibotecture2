@@ -1,0 +1,12 @@
+---
+description: Never use em-dashes anywhere in this repo
+alwaysApply: true
+---
+
+# No em-dashes
+
+Never use em-dashes (`—`) anywhere: not in UI copy, metadata, code comments,
+docs, or commit messages. Em-dashes read as AI-generated.
+
+Use a comma, colon, period, or parentheses instead. This is a hard rule and
+applies to every file, including regenerated Framer components.

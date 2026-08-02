@@ -6,7 +6,7 @@ import { getMetadata } from "@/utils/metadata"
 
 export const metadata = getMetadata({
   path: "/",
-  title: `${config.appName} — Full-stack agency`,
+  title: `${config.appName} · Full-stack agency`,
   description: config.appDescription,
 })
 

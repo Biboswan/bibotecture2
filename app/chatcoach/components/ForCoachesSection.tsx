@@ -24,7 +24,7 @@ const benefits = [
   {
     title: "A lower-barrier offering",
     description:
-      "People who can't afford 1:1 can still experience your approach — and upgrade later.",
+      "People who can't afford 1:1 can still experience your approach, and upgrade later.",
   },
   {
     title: "Measurable impact",
@@ -38,14 +38,14 @@ export const ForCoachesSection: React.FC = () => {
 
   return (
     <section
-      id="coaches"
+      id="partner-benefits"
       className="border-cc scroll-mt-20 border-t px-4 py-20 sm:px-6 lg:px-8 lg:py-28"
     >
       <div ref={ref} className="mx-auto max-w-6xl">
         <SectionHeader
           label="For coaches & experts"
           title="Turn your expertise into an expert mind that coaches thousands."
-          description="Your method, working around the clock — reaching people you could never fit into a calendar."
+          description="Your method, working around the clock, reaching people you could never fit into a calendar."
         />
 
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">

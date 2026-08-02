@@ -29,7 +29,7 @@ const platforms: {
     id: "ios",
     label: "iPhone",
     title: "WhatsApp on mobile",
-    description: `Native iOS app for iPhone ${chatCoachConfig.minIosVersion}+. Available via TestFlight for early access — we don't publish app screenshots publicly yet.`,
+    description: `Native iOS app for iPhone ${chatCoachConfig.minIosVersion}+. Available via TestFlight for early access. We don't publish app screenshots publicly yet.`,
   },
 ]
 
@@ -54,7 +54,7 @@ export const PlatformSection: React.FC = () => {
         <SectionHeader
           label="Platforms"
           title="iPhone or Chrome. Same coaching."
-          description="Pick where you chat — Chat Coach sits beside WhatsApp on mobile or WhatsApp Web on desktop."
+          description="Pick where you chat. Chat Coach sits beside WhatsApp on mobile or WhatsApp Web on desktop."
         />
 
         <div

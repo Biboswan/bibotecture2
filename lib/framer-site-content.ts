@@ -2,7 +2,7 @@ export const contactPageContent = {
   badge: "Available for new projects",
   title: "Get in touch",
   intro: [
-    "At Bibotecture, we craft your vision into a product end to end — pairing, intuitive design and considered UX with well-tested, production-grade code that ships. We bring domain depth across enterprise SaaS, cybersecurity, AI, Web3, Chrome extensions, and accessibility.",
+    "At Bibotecture, we craft your vision into a product end to end, pairing intuitive design and considered UX with well-tested, production-grade code that ships. We bring domain depth across enterprise SaaS, cybersecurity, AI, Web3, Chrome extensions, and accessibility.",
     "Have a project in mind? Let's create something great together! Book a call or drop a message.",
   ],
   formHeading:
@@ -89,7 +89,7 @@ export const termsOfServiceContent: LegalSection = {
     {
       heading: "Limitation of liability",
       body: [
-        "To the maximum extent permitted by law, Bibotecture Ltd is not liable for any indirect, incidental, or consequential damages — including lost profits, lost data, or business interruption — arising from the use of our Website or services.",
+        "To the maximum extent permitted by law, Bibotecture Ltd is not liable for any indirect, incidental, or consequential damages (including lost profits, lost data, or business interruption) arising from the use of our Website or services.",
         "Our total liability for any claim arising out of or related to our services shall not exceed the amount paid by you for those services in the three months preceding the claim.",
         "We do not guarantee that our Website will be error-free, uninterrupted, or free from security vulnerabilities.",
       ],
@@ -140,7 +140,7 @@ export const privacyPolicyContent: LegalSection = {
       body: [
         "We collect information you provide directly and information collected automatically when you visit our Website:",
         "Contact information: Name, email address, and message content when you fill in a contact or waitlist form.",
-        "Usage data: Browser type, device information, IP address, pages visited, and time spent on pages — collected automatically via standard server logs.",
+        "Usage data: Browser type, device information, IP address, pages visited, and time spent on pages, collected automatically via standard server logs.",
         "We do not collect payment information directly. Any payment processing is handled by third-party providers under their own privacy policies.",
       ],
     },

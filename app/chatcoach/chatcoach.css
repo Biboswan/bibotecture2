@@ -137,11 +137,7 @@
 
 .chatcoach-glow-cta {
   background:
-    radial-gradient(
-      circle at 50% 0%,
-      rgba(0, 202, 254, 0.1),
-      transparent 55%
-    ),
+    radial-gradient(circle at 50% 0%, rgba(0, 202, 254, 0.1), transparent 55%),
     radial-gradient(
       circle at 80% 100%,
       rgba(160, 117, 255, 0.08),

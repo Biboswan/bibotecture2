@@ -19,8 +19,8 @@ export const NarrativeSection: React.FC = () => {
     >
       <div className="mx-auto max-w-4xl space-y-8">
         <p className="text-cc-muted text-lg leading-relaxed sm:text-xl lg:text-2xl">
-          How you communicate — and how you perceive others&apos; communication
-          — is dictated by how you think, your life experiences, your
+          How you communicate, and how you perceive others&apos; communication,
+          is dictated by how you think, your life experiences, your
           self-awareness, and the current context, and how you express them
           effectively.
         </p>

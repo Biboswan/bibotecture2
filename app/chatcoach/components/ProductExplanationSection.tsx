@@ -38,12 +38,12 @@ export const ProductExplanationSection: React.FC = () => {
     {
       title: "Native iOS app",
       description:
-        "WhatsApp coaching on iPhone — a dedicated app built for conversations on the go.",
+        "WhatsApp coaching on iPhone, a dedicated app built for conversations on the go.",
     },
     {
       title: "Chrome extension",
       description:
-        "WhatsApp Web coaching on desktop — a side panel that stays beside the thread in your browser.",
+        "WhatsApp Web coaching on desktop, a side panel that stays beside the thread in your browser.",
     },
     {
       title: "Real-time guidance",
@@ -64,7 +64,7 @@ export const ProductExplanationSection: React.FC = () => {
         <SectionHeader
           label="Capabilities"
           title="A private insight layer for how you communicate."
-          description="Guidance beside the thread — not a chatbot tab you have to context-switch into."
+          description="Guidance beside the thread, not a chatbot tab you have to context-switch into."
         />
 
         <div className="grid grid-cols-1 gap-5 md:grid-cols-3">

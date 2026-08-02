@@ -26,7 +26,7 @@ const coaches = [
     bestFor: "Salary talks, deals, and pushback",
     hook: "Calibrated questions. Tactical empathy. No amateur hour.",
     description:
-      "Get FBI-style negotiation coaching in the thread — how to de-escalate, hold your frame, and move the conversation forward.",
+      "Get FBI-style negotiation coaching in the thread: how to de-escalate, hold your frame, and move the conversation forward.",
     example: '"How am I supposed to do that?"',
   },
   {
@@ -36,7 +36,7 @@ const coaches = [
     bestFor: "First messages, flirting, and follow-ups",
     hook: "High-value energy. Playful. Actually memorable.",
     description:
-      "Get Matthew Hussey-style dating coaching in the thread — how to spark connection, stay confident, and never send a message that sounds copy-pasted.",
+      "Get Matthew Hussey-style dating coaching in the thread: how to spark connection, stay confident, and never send a message that sounds copy-pasted.",
     example: '"Ask something only they could answer."',
   },
 ]
@@ -113,10 +113,10 @@ export const ExpertCoachesSection: React.FC = () => {
 
         <div className="mt-10 flex flex-col items-center gap-4 text-center">
           <p className="text-cc-faint max-w-2xl text-xs leading-relaxed">
-            Coach modes are inspired by well-known communication styles — not
+            Coach modes are inspired by well-known communication styles, not
             affiliated with or endorsed by any public figure.
           </p>
-          <DownloadCta label="Try coaches — add to Chrome" />
+          <DownloadCta label="Try coaches on Chrome" />
         </div>
       </div>
     </section>

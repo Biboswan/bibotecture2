@@ -35,7 +35,7 @@ const IosPreview: React.FC = () => {
       <p className="text-cc-primary mt-5 text-lg font-medium">Native iOS app</p>
       <p className="text-cc-muted mt-3 max-w-xs text-sm leading-relaxed">
         Available on iPhone via early access. App previews aren&apos;t public
-        yet — request TestFlight when you join.
+        yet. Request TestFlight when you join.
       </p>
       <p className="text-cc-faint mt-4 font-mono text-[11px] tracking-wide uppercase">
         iOS {chatCoachConfig.minIosVersion}+ · WhatsApp

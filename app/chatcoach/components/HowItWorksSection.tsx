@@ -65,7 +65,7 @@ export const HowItWorksSection: React.FC = () => {
       number: "01",
       title: "Install beside WhatsApp",
       description:
-        "Set up on mobile or desktop — coaching appears in a side panel while you draft.",
+        "Set up on mobile or desktop. Coaching appears in a side panel while you draft.",
       bullets: [
         "iMessage, Telegram, and more messaging apps are on the roadmap.",
       ],
@@ -83,7 +83,7 @@ export const HowItWorksSection: React.FC = () => {
       number: "03",
       title: "Ask for guidance or explore suggestions",
       description:
-        "Get answers on communication psychology, difficult conversations, and emotional intelligence — without leaving the thread.",
+        "Get answers on communication psychology, difficult conversations, and emotional intelligence, without leaving the thread.",
     },
   ]
 

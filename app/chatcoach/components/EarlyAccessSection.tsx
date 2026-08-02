@@ -4,6 +4,7 @@ import { motion, useInView } from "motion/react"
 import * as React from "react"
 
 import DownloadCta from "./DownloadCta"
+import PrivateAlphaForm from "./PrivateAlphaForm"
 
 export const EarlyAccessSection: React.FC = () => {
   const ref = React.useRef<HTMLDivElement>(null)
@@ -32,10 +33,17 @@ export const EarlyAccessSection: React.FC = () => {
             </h2>
             <p className="text-cc-muted mx-auto mt-5 max-w-2xl text-base leading-relaxed sm:text-lg">
               Add Chat Coach to Chrome and get a mentor beside your WhatsApp
-              threads — reading the moment, before you hit send.
+              threads, reading the moment, before you hit send.
             </p>
             <div className="mt-10 flex flex-col items-center justify-center gap-4">
-              <DownloadCta />
+              <div className="flex w-full flex-col items-center justify-center gap-3 lg:flex-row lg:items-start">
+                <DownloadCta
+                  label="Add to Chrome"
+                  brandedChromeIcon
+                  className="min-h-14"
+                />
+                <PrivateAlphaForm />
+              </div>
               <p className="text-cc-subtle text-sm">
                 Free to start · Real-time · Nothing stored
               </p>

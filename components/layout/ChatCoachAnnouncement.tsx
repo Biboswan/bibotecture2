@@ -45,7 +45,7 @@ const ChatCoachAnnouncement: React.FC<Props> = ({ onVisibilityChange }) => {
       style={{ minHeight: CHATCOACH_ANNOUNCEMENT_HEIGHT }}
     >
       <p className="text-center text-[13px] leading-snug text-balance text-[rgb(204,204,204)] sm:text-[15px]">
-        We&apos;re building Chat Coach —{" "}
+        We&apos;re building Chat Coach:{" "}
         <Link
           href="/chatcoach/"
           className="cursor-pointer font-medium whitespace-nowrap text-cyan-400 underline-offset-2 transition-colors hover:text-cyan-300 hover:underline"

@@ -254,7 +254,7 @@ html.lenis body {
 }
 
 @media (max-width: 809px) {
-  /* Profile / branding block only — do not affect copyright or legal links */
+  /* Profile / branding block only, do not affect copyright or legal links */
   .framer-footer-root .framer-sVK8Z .framer-13yfz6t,
   .framer-footer-root .framer-sVK8Z .framer-1uukzj0 {
     display: flex !important;
@@ -264,7 +264,7 @@ html.lenis body {
     width: 100% !important;
   }
 
-  /* Framer uses absolute positioning + spacer on phone — switch to normal flow */
+  /* Framer uses absolute positioning + spacer on phone, switch to normal flow */
   .framer-footer-root .framer-sVK8Z .framer-1uukzj0 .framer-hj1gic {
     display: none !important;
     min-height: 0 !important;
@@ -324,7 +324,7 @@ html.lenis body {
     width: 100% !important;
   }
 
-  /* Copyright + Terms/Privacy bar — keep left-aligned, stacked on phone */
+  /* Copyright + Terms/Privacy bar, keep left-aligned, stacked on phone */
   .framer-footer-root .framer-sVK8Z .framer-yin3yu {
     flex-direction: column !important;
     align-items: flex-start !important;

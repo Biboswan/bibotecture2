@@ -7,12 +7,12 @@ const withoutPoints = [
   "Learn the hard way.",
   "Rewrite the message five times.",
   "Stay clueless about what went wrong.",
-  "Watch reel after reel — and change nothing.",
+  "Watch reel after reel, and change nothing.",
 ]
 
 const withPoints = [
   "A mentor in your corner, 24/7.",
-  "Read the moment — both sides of it.",
+  "Read the moment, both sides of it.",
   "Understand yourself and them.",
   "Say the thing that actually lands.",
 ]
@@ -29,7 +29,7 @@ export const ContrastSection: React.FC = () => {
             Two ways to send the next message
           </p>
           <h2 className="text-cc-primary text-3xl leading-tight font-semibold tracking-tight text-balance sm:text-4xl">
-            Keep guessing — or start understanding.
+            Keep guessing, or start understanding.
           </h2>
         </div>
 
@@ -57,23 +57,10 @@ export const ContrastSection: React.FC = () => {
             </ul>
           </motion.div>
 
-          {/* Arrow */}
+          {/* OR divider */}
           <div className="flex items-center justify-center py-2 md:py-0">
-            <div className="border-cc bg-cc-elevated shadow-cc-card chatcoach-gradient-text flex h-10 w-10 items-center justify-center rounded-full border">
-              <svg
-                className="h-4 w-4 rotate-90 md:rotate-0"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                aria-hidden="true"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M9 5l7 7-7 7"
-                />
-              </svg>
+            <div className="border-cc bg-cc-elevated shadow-cc-card chatcoach-gradient-text flex h-10 w-10 items-center justify-center rounded-full border text-xs font-semibold tracking-wide">
+              OR
             </div>
           </div>
 

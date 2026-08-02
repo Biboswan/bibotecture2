@@ -3,10 +3,9 @@
 import { motion, useInView } from "motion/react"
 import * as React from "react"
 
-import { chatCoachConfig } from "../config"
-import BrowserFrame from "./BrowserFrame"
 import DownloadCta from "./DownloadCta"
-import PhoneShot from "./PhoneShot"
+import MobileCoachDemo from "./MobileCoachDemo"
+import { datingCoachScenario } from "./mobileCoachScenarios"
 
 export const DatingSection: React.FC = () => {
   const ref = React.useRef<HTMLDivElement>(null)
@@ -28,20 +27,11 @@ export const DatingSection: React.FC = () => {
           transition={{ duration: 0.7, ease: "easeOut" }}
           className="relative order-last lg:order-first"
         >
-          <BrowserFrame
-            src={chatCoachConfig.dating.chromeHardBoundary}
-            alt="Chat Coach guiding a hard-boundary conversation in a dating chat"
-            address="web.whatsapp.com"
-            sizes="(max-width: 768px) 100vw, 640px"
+          <MobileCoachDemo
+            scenario={datingCoachScenario}
+            initialExperience="coach-chat"
+            outcome="Outcome: protect your time with a clear boundary, without attacking or trying to control the other person."
           />
-          <div className="absolute -right-4 -bottom-10 hidden w-40 sm:block lg:-right-10 lg:w-48">
-            <PhoneShot
-              src={chatCoachConfig.dating.mobileQuickSuggestions}
-              alt="Chat Coach quick suggestions on a dating conversation on iPhone"
-              width={200}
-              sizes="200px"
-            />
-          </div>
         </motion.div>
 
         {/* Copy */}
@@ -58,7 +48,7 @@ export const DatingSection: React.FC = () => {
           </h2>
           <p className="text-cc-muted mt-6 text-base leading-relaxed sm:text-lg">
             Understanding yourself. Understanding them. Then finding the right
-            words. Most of us learn the hard way — or stay clueless about what
+            words. Most of us learn the hard way, or stay clueless about what
             went wrong for years.
           </p>
           <p className="text-cc-muted mt-4 text-base leading-relaxed sm:text-lg">
@@ -71,7 +61,7 @@ export const DatingSection: React.FC = () => {
           </p>
 
           <div className="mt-8 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
-            <DownloadCta />
+            <DownloadCta brandedChromeIcon />
             <span className="text-cc-faint text-xs">
               Modeled on Matthew Hussey-style coaching
             </span>

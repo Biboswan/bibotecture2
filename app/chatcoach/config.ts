@@ -3,10 +3,9 @@ const CHATCOACH_IMG = "/images/chatcoach"
 export const chatCoachConfig = {
   coachPickerOpen: `${CHATCOACH_IMG}/coach-picker-open.png`,
   appStoreUrl: process.env.NEXT_PUBLIC_CHATCOACH_APP_STORE_URL ?? "",
-  chromeWebStoreUrl:
-    process.env.NEXT_PUBLIC_CHATCOACH_CHROME_WEB_STORE_URL ?? "",
+  chromeWebStoreUrl: process.env.NEXT_PUBLIC_CHATCOACH_WEB_LINK ?? "",
   // Cal.com / Calendly (or similar) link for discovery + design-partner calls.
-  bookingUrl: process.env.NEXT_PUBLIC_CHATCOACH_BOOKING_URL ?? "",
+  bookingUrl: process.env.NEXT_PUBLIC_CALL_LINK ?? "",
   minIosVersion: "17",
   dating: {
     mobileChatFlow: `${CHATCOACH_IMG}/dating/mobile_chat_flow.png`,

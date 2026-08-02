@@ -19,7 +19,7 @@ const projects = [
   {
     title: "a11yGradient",
     description:
-      "Chrome extension that calculates accessibility contrast against multi-color gradient backgrounds — solving a WCAG blind spot.",
+      "Chrome extension that calculates accessibility contrast against multi-color gradient backgrounds, solving a WCAG blind spot.",
     category: "Open Source · Chrome Extension",
     href: "https://github.com/Biboswan/a11yGradient",
   },
@@ -34,7 +34,7 @@ const Portfolio: React.FC = () => {
             featured projects
           </p>
           <h2 className="max-w-3xl text-[clamp(1.75rem,4vw,2rem)] leading-snug font-normal text-white">
-            A selection of work — from shipped products at SentinelOne to
+            A selection of work, from shipped products at SentinelOne to
             open-source tools and launch sites for funded startups.
           </h2>
           <Link

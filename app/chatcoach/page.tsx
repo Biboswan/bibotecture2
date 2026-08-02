@@ -1,14 +1,13 @@
 import * as React from "react"
 
 import ChatCoachShell from "./components/ChatCoachShell"
+import { ChatGptComparisonSection } from "./components/ChatGptComparisonSection"
 import { ConsumerCoachesSection } from "./components/ConsumerCoachesSection"
 import { ContrastSection } from "./components/ContrastSection"
 import { DatingSection } from "./components/DatingSection"
 import { EarlyAccessSection } from "./components/EarlyAccessSection"
-import { ExpertCoachesSection } from "./components/ExpertCoachesSection"
-import { ForCoachesSection } from "./components/ForCoachesSection"
 import { HeroSection } from "./components/HeroSection"
-import { HowItWorksSection } from "./components/HowItWorksSection"
+import { PlatformRoadmapSection } from "./components/PlatformRoadmapSection"
 import { PrivacySection } from "./components/PrivacySection"
 import { RealEstateSection } from "./components/RealEstateSection"
 
@@ -17,12 +16,11 @@ export default function ChatCoachPage() {
     <ChatCoachShell>
       <HeroSection />
       <ConsumerCoachesSection />
-      <ContrastSection />
       <DatingSection />
       <RealEstateSection />
-      <HowItWorksSection />
-      <ExpertCoachesSection />
-      <ForCoachesSection />
+      <ChatGptComparisonSection />
+      <ContrastSection />
+      <PlatformRoadmapSection />
       <PrivacySection />
       <EarlyAccessSection />
     </ChatCoachShell>

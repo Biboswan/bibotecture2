@@ -25,7 +25,7 @@ export const ProblemSection: React.FC = () => {
           Two people rarely share the same frame.
         </h2>
         <p className="text-cc-muted mx-auto mt-6 max-w-2xl text-base leading-relaxed sm:text-lg">
-          Chat Coach bridges that gap — on the WhatsApp messages you already
+          Chat Coach bridges that gap, on the WhatsApp messages you already
           send, before you hit send.
         </p>
       </div>

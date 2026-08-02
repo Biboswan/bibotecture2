@@ -3,9 +3,9 @@
 import { motion, useInView } from "motion/react"
 import * as React from "react"
 
-import { chatCoachConfig } from "../config"
 import BookCallCta from "./BookCallCta"
-import BrowserFrame from "./BrowserFrame"
+import MobileCoachDemo from "./MobileCoachDemo"
+import { realEstateCoachScenario } from "./mobileCoachScenarios"
 
 const benefits = [
   {
@@ -49,8 +49,8 @@ export const RealEstateSection: React.FC = () => {
           </h2>
           <p className="text-cc-muted mt-6 text-base leading-relaxed sm:text-lg">
             In a hyperlocal, cross-cultural business, tone and timing are
-            everything. Context-switching across hundreds of clients — while
-            keeping every conversation consistent, personal, and high-quality —
+            everything. Context-switching across hundreds of clients, while
+            keeping every conversation consistent, personal, and high-quality,
             is beyond any one person&apos;s physical limits.
           </p>
 
@@ -96,11 +96,10 @@ export const RealEstateSection: React.FC = () => {
           animate={isInView ? { opacity: 1, x: 0 } : {}}
           transition={{ duration: 0.7, ease: "easeOut", delay: 0.1 }}
         >
-          <BrowserFrame
-            src={chatCoachConfig.realEstate.chromeExtension}
-            alt="Chat Coach analyzing a real estate negotiation on WhatsApp Web with intent and reasoning"
-            address="web.whatsapp.com"
-            sizes="(max-width: 768px) 100vw, 640px"
+          <MobileCoachDemo
+            scenario={realEstateCoachScenario}
+            initialExperience="coach-chat"
+            outcome="Outcome: reveal what the buyer values before discussing a discount, and preserve room to negotiate."
           />
         </motion.div>
       </div>

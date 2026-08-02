@@ -19,5 +19,12 @@
     "import/no-unassigned-import": "off",
     "jsx-a11y/prefer-tag-over-role": "off"
   },
-  "ignorePatterns": [".next", "out", "build", "next-env.d.ts"]
+  "ignorePatterns": [
+    ".next",
+    "out",
+    "build",
+    "next-env.d.ts",
+    "chatcoach-dating-source",
+    "chatcoach-real-estate-source"
+  ]
 }

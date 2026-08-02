@@ -11,9 +11,9 @@ import DownloadCta from "./DownloadCta"
 export const CHATCOACH_HEADER_HEIGHT = 64
 
 const navLinks = [
-  { href: "#dating", label: "Dating" },
-  { href: "#real-estate", label: "Real estate" },
-  { href: "#coaches", label: "Coaches" },
+  { href: "/chatcoach/#dating", label: "Dating" },
+  { href: "/chatcoach/#real-estate", label: "Real estate" },
+  { href: "/chatcoach/#coaches", label: "Why Coaching" },
 ]
 
 const ChatCoachHeader: React.FC = () => {
@@ -54,16 +54,23 @@ const ChatCoachHeader: React.FC = () => {
             className="hidden items-center gap-8 md:flex"
           >
             {navLinks.map((link) => (
-              <a
+              <Link
                 key={link.href}
                 href={link.href}
                 className="text-cc-muted hover:text-cc-primary text-sm transition-colors"
               >
                 {link.label}
-              </a>
+              </Link>
             ))}
+            <Link
+              href="/chatcoach/for-coaches"
+              className="text-cc-muted hover:text-cc-primary text-sm transition-colors"
+            >
+              For coaches
+            </Link>
             <DownloadCta
               label="Add to Chrome"
+              brandedChromeIcon
               className="px-5 py-2.5 text-[13px]"
             />
           </nav>
@@ -115,23 +122,27 @@ const ChatCoachHeader: React.FC = () => {
           className="flex h-full flex-col items-center justify-center gap-8 px-6"
         >
           {navLinks.map((link) => (
-            <a
+            <Link
               key={link.href}
               href={link.href}
               className="text-cc-primary text-2xl font-medium"
               onClick={() => setMenuOpen(false)}
             >
               {link.label}
-            </a>
+            </Link>
           ))}
-          <DownloadCta label="Add to Chrome" className="mt-2" />
-          <a
-            href="#coaches"
+          <DownloadCta
+            label="Add to Chrome"
+            brandedChromeIcon
+            className="mt-2"
+          />
+          <Link
+            href="/chatcoach/coaches/"
             className="text-cc-subtle hover:text-cc-primary text-sm transition-colors"
             onClick={() => setMenuOpen(false)}
           >
             For coaches & experts
-          </a>
+          </Link>
         </nav>
       </div>
     </>

@@ -64,19 +64,13 @@ export const PrivacySection: React.FC = () => {
 
   const principles = [
     {
-      title: "Processed in real-time, never stored",
-      description:
-        "When you request insights, messages pass through the model to generate guidance. That processing data is not persisted on our servers.",
+      title: "Data is end to end encrypted",
+      description: "We store your chats in encrypted format.",
     },
     {
-      title: "No training on your messages",
+      title: "Data is never used to train models",
       description:
-        "We don't use your conversations to train models. Processing generates your guidance, then it's gone.",
-    },
-    {
-      title: "You stay in control",
-      description:
-        "Clear chat history from your device at any time. Because storage lives with you, deletion means deletion.",
+        "We store it for you to use it later. But we don't use it to train models.",
     },
   ]
 
@@ -93,7 +87,7 @@ export const PrivacySection: React.FC = () => {
         <SectionHeader
           label="Trust & privacy"
           title="Built for your most sensitive conversations."
-          description="Real-time processing. Nothing stored on our servers. Your conversations stay yours."
+          description="Complete transactional transparency. of your data and how it's used."
         />
 
         <div>
@@ -133,7 +127,7 @@ export const PrivacySection: React.FC = () => {
             Zero data-retention policy &amp; data-flow diagram
           </p>
           <p className="text-cc-muted mt-2 max-w-md text-sm leading-relaxed">
-            A transparent, visual walkthrough of exactly where your data goes —
+            A transparent, visual walkthrough of exactly where your data goes,
             and where it doesn&apos;t. Publishing here soon.
           </p>
         </div>
@@ -161,7 +155,7 @@ export const PrivacySection: React.FC = () => {
             ))}
           </div>
           <p className="text-cc-faint mt-5 text-xs leading-relaxed">
-            Roadmap items reflect our direction — not current guarantees.
+            Roadmap items reflect our direction, not current guarantees.
           </p>
         </div>
       </div>

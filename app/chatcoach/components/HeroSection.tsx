@@ -8,6 +8,8 @@ import { SLOW_TRANSITION } from "@/utils/animation"
 import { chatCoachConfig } from "../config"
 import BrowserFrame from "./BrowserFrame"
 import DownloadCta from "./DownloadCta"
+import PhoneShot from "./PhoneShot"
+import PrivateAlphaForm from "./PrivateAlphaForm"
 
 const Chip: React.FC<{
   className?: string
@@ -45,11 +47,6 @@ export const HeroSection: React.FC = () => {
           transition={SLOW_TRANSITION}
           className="mx-auto max-w-4xl text-center"
         >
-          <div className="cc-pill mb-8 inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-[13px]">
-            <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
-            WhatsApp · iPhone &amp; Chrome · Live in early access
-          </div>
-
           <h1 className="text-4xl leading-[1.05] font-semibold tracking-tight text-balance sm:text-5xl lg:text-7xl">
             <span className="chatcoach-gradient-text">Ace Conversations</span>
             <br />
@@ -59,23 +56,21 @@ export const HeroSection: React.FC = () => {
           </h1>
 
           <p className="text-cc-muted mx-auto mt-6 max-w-2xl text-base leading-relaxed sm:text-lg lg:text-xl">
-            Communication goes both ways — reading yourself, reading them, then
-            saying it well. Chat Coach is the mentor in your corner, 24/7, for
-            the price of a T-shirt.
+            Choose a specialized communication coach for your goals and niche,
+            available 24/7 for the price of a T-shirt.
           </p>
 
           <p className="text-cc-subtle mx-auto mt-4 max-w-2xl text-sm sm:text-base">
-            Real-time guidance, right beside your chat. Nothing stored.
+            Real-time guidance, right beside your chat.
           </p>
 
-          <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
-            <DownloadCta />
-            <a
-              href="#how-it-works"
-              className="text-cc-subtle hover:text-cc-primary text-sm transition-colors"
-            >
-              See how it works →
-            </a>
+          <div className="mt-10 flex w-full flex-col items-center justify-center gap-3 lg:flex-row lg:items-start">
+            <DownloadCta
+              label="Add to Chrome"
+              brandedChromeIcon
+              className="min-h-14"
+            />
+            <PrivateAlphaForm />
           </div>
         </motion.div>
 
@@ -99,14 +94,30 @@ export const HeroSection: React.FC = () => {
             />
           </div>
 
+          <div className="absolute -bottom-10 left-1 z-20 w-24 sm:-bottom-14 sm:-left-4 sm:w-36 lg:-left-12 lg:w-48">
+            <div className="cc-pill mb-2 ml-2 w-max rounded-full px-3 py-1 font-mono text-[8px] tracking-wide uppercase sm:text-[9px]">
+              Mobile
+            </div>
+            <PhoneShot
+              src={chatCoachConfig.realEstate.mobileQuickSuggestions}
+              alt="Chat Coach suggestions beside a WhatsApp conversation on mobile"
+              width={220}
+              sizes="(max-width: 640px) 96px, (max-width: 1024px) 144px, 192px"
+            />
+          </div>
+
+          <div className="cc-pill absolute top-3 left-3 z-10 rounded-full px-3 py-1 font-mono text-[8px] tracking-wide uppercase sm:text-[9px]">
+            Chrome extension
+          </div>
+
           <Chip
-            className="pointer-events-none absolute -top-4 -left-3 hidden sm:block lg:-left-8"
+            className="pointer-events-none absolute -top-4 -right-3 hidden sm:block lg:-right-8"
             title="Reads the moment"
             detail="Intent · tone · psychology"
             delay={0.6}
           />
           <Chip
-            className="pointer-events-none absolute -right-3 -bottom-5 hidden sm:block lg:-right-8"
+            className="pointer-events-none absolute -right-3 -bottom-5 hidden lg:-right-8 lg:block"
             title="Before you hit send"
             detail="Suggests the next right move"
             delay={0.8}

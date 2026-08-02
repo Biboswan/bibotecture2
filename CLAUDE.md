@@ -19,16 +19,20 @@ bun run db:studio        # Drizzle Studio UI
 
 Run `bun run lint`, `bun run type-check`, and `bun run build` before completing work.
 
+## Writing Style
+
+Never use em-dashes (`—`) anywhere: not in UI copy, metadata, code comments, docs, or commit messages. Em-dashes read as AI-generated. Use a comma, colon, period, or parentheses instead. This is a hard rule and applies to every file, including regenerated Framer components.
+
 ## Architecture
 
 **Next.js 16 App Router** with React 19 and React Compiler enabled. Server components by default; use `"use client"` directive only when needed.
 
-- `app/` — Pages, layouts, API routes, and `main.css` (Tailwind v4 global styles + custom animations)
-- `components/atoms/` — Atomic UI components using CVA (class-variance-authority) for variants
-- `hooks/` — Custom React hooks (useModal, useClickOutside, useDynamicHeight, useTheme)
-- `utils/` — Auth setup, metadata generation, schema.org, classNames helper, animation presets
-- `db/` — Drizzle ORM schema and migrations (Neon PostgreSQL via `@neondatabase/serverless`)
-- `config.ts` — Site-wide SEO/metadata configuration
+- `app/`: Pages, layouts, API routes, and `main.css` (Tailwind v4 global styles + custom animations)
+- `components/atoms/`: Atomic UI components using CVA (class-variance-authority) for variants
+- `hooks/`: Custom React hooks (useModal, useClickOutside, useDynamicHeight, useTheme)
+- `utils/`: Auth setup, metadata generation, schema.org, classNames helper, animation presets
+- `db/`: Drizzle ORM schema and migrations (Neon PostgreSQL via `@neondatabase/serverless`)
+- `config.ts`: Site-wide SEO/metadata configuration
 
 **Auth**: Better Auth with OAuth providers (Google, Apple, Twitter). Server instance in `utils/auth.ts`, client in `utils/auth-client.ts`. Auth API handled by catch-all route at `app/api/auth/[...all]/route.ts`.
 
@@ -41,7 +45,7 @@ Run `bun run lint`, `bun run type-check`, and `bun run build` before completing 
 oxlint handles linting and oxfmt handles formatting (no ESLint/Prettier/Biome). Key rules:
 
 - No semicolons, double quotes, ES5 trailing commas, 2-space indent, 80-char line width
-- Tailwind classes sorted automatically by oxfmt (`sortTailwindcss` — recognizes `className`, `classNames(...)`, `cva(...)`, `cx(...)`, `clsx(...)`, `twMerge(...)`)
+- Tailwind classes sorted automatically by oxfmt (`sortTailwindcss`, recognizes `className`, `classNames(...)`, `cva(...)`, `cx(...)`, `clsx(...)`, `twMerge(...)`)
 - Pre-commit hook runs `oxlint --fix` and `oxfmt` via lint-staged
 
 See `AGENTS.md` for detailed component patterns, import conventions, naming rules, and database patterns.
