@@ -91,9 +91,9 @@ export const PrivacySection: React.FC = () => {
     >
       <div className="mx-auto max-w-4xl">
         <SectionHeader
-          label="Privacy"
-          title="Built for sensitive conversations."
-          description="Real-time processing on your device. Nothing stored on our servers."
+          label="Trust & privacy"
+          title="Built for your most sensitive conversations."
+          description="Real-time processing. Nothing stored on our servers. Your conversations stay yours."
         />
 
         <div>
@@ -117,6 +117,25 @@ export const PrivacySection: React.FC = () => {
               />
             </div>
           ))}
+        </div>
+
+        <div
+          className={classNames(
+            "border-cc-strong bg-cc-surface mt-10 flex flex-col items-center justify-center rounded-2xl border border-dashed px-6 py-10 text-center transition-all duration-700",
+            isVisible ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
+          )}
+          style={{ transitionDelay: isVisible ? "350ms" : "0ms" }}
+        >
+          <p className="chatcoach-label font-mono text-[11px] tracking-[0.2em] uppercase">
+            Coming soon
+          </p>
+          <p className="text-cc-primary mt-2 text-lg font-medium">
+            Zero data-retention policy &amp; data-flow diagram
+          </p>
+          <p className="text-cc-muted mt-2 max-w-md text-sm leading-relaxed">
+            A transparent, visual walkthrough of exactly where your data goes —
+            and where it doesn&apos;t. Publishing here soon.
+          </p>
         </div>
 
         <div

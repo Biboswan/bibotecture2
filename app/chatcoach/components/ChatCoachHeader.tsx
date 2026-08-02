@@ -6,19 +6,17 @@ import * as React from "react"
 
 import classNames from "@/utils/classNames"
 
-import { Button } from "./Button"
-import { useWaitlist } from "./WaitlistProvider"
+import DownloadCta from "./DownloadCta"
 
 export const CHATCOACH_HEADER_HEIGHT = 64
 
 const navLinks = [
-  { href: "#how-it-works", label: "How it works" },
+  { href: "#dating", label: "Dating" },
+  { href: "#real-estate", label: "Real estate" },
   { href: "#coaches", label: "Coaches" },
-  { href: "#privacy", label: "Privacy" },
 ]
 
 const ChatCoachHeader: React.FC = () => {
-  const { openWaitlist } = useWaitlist()
   const [menuOpen, setMenuOpen] = React.useState(false)
 
   React.useEffect(() => {
@@ -64,9 +62,10 @@ const ChatCoachHeader: React.FC = () => {
                 {link.label}
               </a>
             ))}
-            <Button onClick={openWaitlist} className="px-5 py-2.5 text-[13px]">
-              Early access
-            </Button>
+            <DownloadCta
+              label="Add to Chrome"
+              className="px-5 py-2.5 text-[13px]"
+            />
           </nav>
 
           <button
@@ -125,14 +124,14 @@ const ChatCoachHeader: React.FC = () => {
               {link.label}
             </a>
           ))}
-          <Button
-            onClick={() => {
-              setMenuOpen(false)
-              openWaitlist()
-            }}
+          <DownloadCta label="Add to Chrome" className="mt-2" />
+          <a
+            href="#coaches"
+            className="text-cc-subtle hover:text-cc-primary text-sm transition-colors"
+            onClick={() => setMenuOpen(false)}
           >
-            Early access
-          </Button>
+            For coaches & experts
+          </a>
         </nav>
       </div>
     </>
