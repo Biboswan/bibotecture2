@@ -64,19 +64,13 @@ export const PrivacySection: React.FC = () => {
 
   const principles = [
     {
-      title: "Processed in real-time, never stored",
-      description:
-        "When you request insights, messages pass through the model to generate guidance. That processing data is not persisted on our servers.",
+      title: "Data is end to end encrypted",
+      description: "We store your chats in encrypted format.",
     },
     {
-      title: "No training on your messages",
+      title: "Data is never used to train models",
       description:
-        "We don't use your conversations to train models. Processing generates your guidance, then it's gone.",
-    },
-    {
-      title: "You stay in control",
-      description:
-        "Clear chat history from your device at any time. Because storage lives with you, deletion means deletion.",
+        "We store it for you to use it later. But we don't use it to train models.",
     },
   ]
 
@@ -91,9 +85,9 @@ export const PrivacySection: React.FC = () => {
     >
       <div className="mx-auto max-w-4xl">
         <SectionHeader
-          label="Privacy"
-          title="Built for sensitive conversations."
-          description="Real-time processing on your device. Nothing stored on our servers."
+          label="Trust & privacy"
+          title="Built for your most sensitive conversations."
+          description="Complete transactional transparency. of your data and how it's used."
         />
 
         <div>
@@ -121,6 +115,25 @@ export const PrivacySection: React.FC = () => {
 
         <div
           className={classNames(
+            "border-cc-strong bg-cc-surface mt-10 flex flex-col items-center justify-center rounded-2xl border border-dashed px-6 py-10 text-center transition-all duration-700",
+            isVisible ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
+          )}
+          style={{ transitionDelay: isVisible ? "350ms" : "0ms" }}
+        >
+          <p className="chatcoach-label font-mono text-[11px] tracking-[0.2em] uppercase">
+            Coming soon
+          </p>
+          <p className="text-cc-primary mt-2 text-lg font-medium">
+            Zero data-retention policy &amp; data-flow diagram
+          </p>
+          <p className="text-cc-muted mt-2 max-w-md text-sm leading-relaxed">
+            A transparent, visual walkthrough of exactly where your data goes,
+            and where it doesn&apos;t. Publishing here soon.
+          </p>
+        </div>
+
+        <div
+          className={classNames(
             "border-cc mt-10 border-t pt-10 transition-all duration-700",
             isVisible ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
           )}
@@ -142,7 +155,7 @@ export const PrivacySection: React.FC = () => {
             ))}
           </div>
           <p className="text-cc-faint mt-5 text-xs leading-relaxed">
-            Roadmap items reflect our direction — not current guarantees.
+            Roadmap items reflect our direction, not current guarantees.
           </p>
         </div>
       </div>

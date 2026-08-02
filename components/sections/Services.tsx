@@ -25,14 +25,14 @@ const services = [
     number: "03",
     title: "AI Integration",
     description:
-      "LLM features that actually ship — agents, RAG, structured generation on real product flows.",
+      "LLM features that actually ship: agents, RAG, structured generation on real product flows.",
     tags: ["Vercel AI SDK", "Agents & RAG", "Streaming UX"],
   },
   {
     number: "04",
     title: "Backend & Infra",
     description:
-      "APIs, databases, and cloud that hold up. Postgres, Mongo, GCP — wired for reliability.",
+      "APIs, databases, and cloud that hold up. Postgres, Mongo, GCP, wired for reliability.",
     tags: ["Postgres / Mongo", "Node APIs", "GCP infra"],
   },
 ]
@@ -46,7 +46,7 @@ const Services: React.FC = () => {
             Services
           </p>
           <h2 className="text-[clamp(1.75rem,4vw,2rem)] leading-snug font-normal text-white">
-            End-to-end product capability — design, web, AI, backend. One team,
+            End-to-end product capability: design, web, AI, backend. One team,
             idea to launch.
           </h2>
         </FadeIn>

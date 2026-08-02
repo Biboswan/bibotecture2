@@ -10,7 +10,7 @@ type PhotoKeyframe = {
   range: [number, number]
 }
 
-/** Shared scroll window — all photos spread/converge together */
+/** Shared scroll window, all photos spread/converge together */
 const CTA_PHOTO_RANGE: [number, number] = [0.15, 0.55]
 
 const CTA_PHOTOS: PhotoKeyframe[] = [

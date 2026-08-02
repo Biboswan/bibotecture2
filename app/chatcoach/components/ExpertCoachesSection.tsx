@@ -5,56 +5,44 @@ import * as React from "react"
 import classNames from "@/utils/classNames"
 
 import { useScrollAnimation } from "../hooks/useScrollAnimation"
-import { Button } from "./Button"
+import DownloadCta from "./DownloadCta"
 import SectionHeader from "./SectionHeader"
-import { useWaitlist } from "./WaitlistProvider"
 
 const coaches = [
   {
+    category: "Everyday conversations",
+    name: "ChatCoach",
+    inspiredBy: "General coach",
+    bestFor: "Clarity, EQ, tone, and everyday communication",
+    hook: "Start here when you need a thoughtful second opinion.",
+    description:
+      "Balanced communication coaching that helps you understand the moment, consider both sides, and write a response that sounds like you.",
+    example: '"What do you want them to understand after reading this?"',
+  },
+  {
     category: "Negotiation",
-    name: "The Negotiator",
-    inspiredBy: "Chris Voss-style",
+    name: "Chris Voss",
+    inspiredBy: "Specialist coach",
     bestFor: "Salary talks, deals, and pushback",
     hook: "Calibrated questions. Tactical empathy. No amateur hour.",
     description:
-      "Get FBI-style negotiation coaching in the thread — how to de-escalate, hold your frame, and move the conversation forward.",
+      "Get FBI-style negotiation coaching in the thread: how to de-escalate, hold your frame, and move the conversation forward.",
     example: '"How am I supposed to do that?"',
   },
   {
     category: "Dating",
-    name: "The Connection Coach",
-    inspiredBy: "Matthew Hussey-style",
+    name: "Matthew Hussey",
+    inspiredBy: "Specialist coach",
     bestFor: "First messages, flirting, and follow-ups",
     hook: "High-value energy. Playful. Actually memorable.",
     description:
-      "Get Matthew Hussey-style dating coaching in the thread — how to spark connection, stay confident, and never send a message that sounds copy-pasted.",
+      "Get Matthew Hussey-style dating coaching in the thread: how to spark connection, stay confident, and never send a message that sounds copy-pasted.",
     example: '"Ask something only they could answer."',
-  },
-  {
-    category: "Difficult conversations",
-    name: "The Straight Talk Coach",
-    inspiredBy: "Expert communicators",
-    bestFor: "Feedback, boundaries, and repair",
-    hook: "Say the hard thing. Keep the relationship.",
-    description:
-      "Navigate conflict, set boundaries, and recover when a message lands wrong — without nuking the connection.",
-    example: '"Name the impact, not the accusation."',
-  },
-  {
-    category: "Real estate",
-    name: "The Listing Coach",
-    inspiredBy: "Top producer style",
-    bestFor: "Buyers, sellers, follow-ups, and offers",
-    hook: "Warm. Urgent. Never desperate.",
-    description:
-      "Coach client threads on WhatsApp — follow-ups after showings, price conversations, and keeping deals moving without sounding pushy.",
-    example: '"Would Thursday at 6 work, or is there a better time this week?"',
   },
 ]
 
 export const ExpertCoachesSection: React.FC = () => {
   const { ref, isVisible } = useScrollAnimation(0.15)
-  const { openWaitlist } = useWaitlist()
 
   return (
     <section
@@ -67,12 +55,12 @@ export const ExpertCoachesSection: React.FC = () => {
     >
       <div className="mx-auto max-w-6xl">
         <SectionHeader
-          label="Choose your coach"
-          title="Not ChatGPT in a sidebar. Coaches with a point of view."
-          description="Pick an AI mode for negotiation, dating, difficult conversations, or real estate — not generic advice slapped on your chat."
+          label="Meet the coaches"
+          title="The same conversation, seen through a different lens."
+          description="Start with balanced communication coaching, or choose a specialist for negotiation or dating. Your selected coach shapes every suggestion and explanation."
         />
 
-        <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
+        <div className="grid gap-5 md:grid-cols-3">
           {coaches.map((coach, index) => (
             <article
               key={coach.name}
@@ -125,10 +113,10 @@ export const ExpertCoachesSection: React.FC = () => {
 
         <div className="mt-10 flex flex-col items-center gap-4 text-center">
           <p className="text-cc-faint max-w-2xl text-xs leading-relaxed">
-            Coach modes are inspired by well-known communication styles — not
+            Coach modes are inspired by well-known communication styles, not
             affiliated with or endorsed by any public figure.
           </p>
-          <Button onClick={openWaitlist}>Try coaches in early access</Button>
+          <DownloadCta label="Try coaches on Chrome" />
         </div>
       </div>
     </section>

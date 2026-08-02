@@ -37,6 +37,10 @@ Once configured, use:
 - `bun run test:coverage` - Run tests with coverage
 - `bun run test -- path/to/test.spec.ts` - Run single test file
 
+## Writing Style
+
+Never use em-dashes (`—`) anywhere: not in UI copy, metadata, code comments, docs, or commit messages. Em-dashes read as AI-generated. Use a comma, colon, period, or parentheses instead. This is a hard rule and applies to every file, including regenerated Framer components.
+
 ## Code Style Guidelines
 
 ### File Structure
@@ -158,7 +162,7 @@ export async function POST(request: Request) {
 oxlint handles linting and oxfmt handles formatting (no ESLint/Prettier/Biome). Key rules:
 
 - No semicolons, double quotes, ES5 trailing commas, 2-space indent, 80-char line width
-- Tailwind classes sorted automatically by oxfmt (`sortTailwindcss` — recognizes `className`, `classNames(...)`, `cva(...)`, `cx(...)`, `clsx(...)`, `twMerge(...)`)
+- Tailwind classes sorted automatically by oxfmt (`sortTailwindcss`, recognizes `className`, `classNames(...)`, `cva(...)`, `cx(...)`, `clsx(...)`, `twMerge(...)`)
 - Pre-commit hook runs `oxlint --fix` and `oxfmt` via lint-staged
 
 ### Styling Guidelines

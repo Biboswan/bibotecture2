@@ -6,19 +6,17 @@ import * as React from "react"
 
 import classNames from "@/utils/classNames"
 
-import { Button } from "./Button"
-import { useWaitlist } from "./WaitlistProvider"
+import DownloadCta from "./DownloadCta"
 
 export const CHATCOACH_HEADER_HEIGHT = 64
 
 const navLinks = [
-  { href: "#how-it-works", label: "How it works" },
-  { href: "#coaches", label: "Coaches" },
-  { href: "#privacy", label: "Privacy" },
+  { href: "/chatcoach/#dating", label: "Dating" },
+  { href: "/chatcoach/#real-estate", label: "Real estate" },
+  { href: "/chatcoach/#coaches", label: "Why Coaching" },
 ]
 
 const ChatCoachHeader: React.FC = () => {
-  const { openWaitlist } = useWaitlist()
   const [menuOpen, setMenuOpen] = React.useState(false)
 
   React.useEffect(() => {
@@ -56,17 +54,25 @@ const ChatCoachHeader: React.FC = () => {
             className="hidden items-center gap-8 md:flex"
           >
             {navLinks.map((link) => (
-              <a
+              <Link
                 key={link.href}
                 href={link.href}
                 className="text-cc-muted hover:text-cc-primary text-sm transition-colors"
               >
                 {link.label}
-              </a>
+              </Link>
             ))}
-            <Button onClick={openWaitlist} className="px-5 py-2.5 text-[13px]">
-              Early access
-            </Button>
+            <Link
+              href="/chatcoach/for-coaches"
+              className="text-cc-muted hover:text-cc-primary text-sm transition-colors"
+            >
+              For coaches
+            </Link>
+            <DownloadCta
+              label="Add to Chrome"
+              brandedChromeIcon
+              className="px-5 py-2.5 text-[13px]"
+            />
           </nav>
 
           <button
@@ -116,23 +122,27 @@ const ChatCoachHeader: React.FC = () => {
           className="flex h-full flex-col items-center justify-center gap-8 px-6"
         >
           {navLinks.map((link) => (
-            <a
+            <Link
               key={link.href}
               href={link.href}
               className="text-cc-primary text-2xl font-medium"
               onClick={() => setMenuOpen(false)}
             >
               {link.label}
-            </a>
+            </Link>
           ))}
-          <Button
-            onClick={() => {
-              setMenuOpen(false)
-              openWaitlist()
-            }}
+          <DownloadCta
+            label="Add to Chrome"
+            brandedChromeIcon
+            className="mt-2"
+          />
+          <Link
+            href="/chatcoach/coaches/"
+            className="text-cc-subtle hover:text-cc-primary text-sm transition-colors"
+            onClick={() => setMenuOpen(false)}
           >
-            Early access
-          </Button>
+            For coaches & experts
+          </Link>
         </nav>
       </div>
     </>

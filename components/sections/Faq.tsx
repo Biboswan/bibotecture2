@@ -12,7 +12,7 @@ const faqs = [
     number: "01",
     question: "Who do you typically work with?",
     answer:
-      "Early-stage founders and startups who need a full-stack partner — from first prototype through launch and beyond.",
+      "Early-stage founders and startups who need a full-stack partner, from first prototype through launch and beyond.",
   },
   {
     number: "02",
@@ -24,7 +24,7 @@ const faqs = [
     number: "03",
     question: "How is the team structured for a project?",
     answer:
-      "You work directly with Biboswan — design, frontend, backend, and AI integration handled by one senior engineer.",
+      "You work directly with Biboswan: design, frontend, backend, and AI integration handled by one senior engineer.",
   },
   {
     number: "04",

@@ -36,5 +36,9 @@
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts"
   ],
-  "exclude": ["node_modules"]
+  "exclude": [
+    "node_modules",
+    "chatcoach-dating-source",
+    "chatcoach-real-estate-source"
+  ]
 }
