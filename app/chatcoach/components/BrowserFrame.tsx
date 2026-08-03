@@ -3,9 +3,7 @@ import Image from "next/image"
 
 import classNames from "@/utils/classNames"
 
-export interface Props {
-  src: string
-  alt: string
+interface BaseProps {
   /** Fake address-bar label, e.g. "web.whatsapp.com". */
   address?: string
   priority?: boolean
@@ -13,9 +11,24 @@ export interface Props {
   sizes?: string
 }
 
+interface ImageProps extends BaseProps {
+  src: string
+  alt: string
+  children?: never
+}
+
+interface ChildrenProps extends BaseProps {
+  children: React.ReactNode
+  src?: never
+  alt?: never
+}
+
+export type Props = ImageProps | ChildrenProps
+
 const BrowserFrame: React.FC<Props> = ({
   src,
   alt,
+  children,
   address = "web.whatsapp.com",
   priority = false,
   className,
@@ -29,15 +42,19 @@ const BrowserFrame: React.FC<Props> = ({
         <span className="cc-browser-dot" />
         <span className="cc-browser-address">{address}</span>
       </div>
-      <div className="relative aspect-[16/10] w-full bg-black">
-        <Image
-          src={src}
-          alt={alt}
-          fill
-          sizes={sizes}
-          className="object-contain object-center"
-          priority={priority}
-        />
+      <div className="relative aspect-[16/10] w-full overflow-hidden bg-black">
+        {children ? (
+          children
+        ) : src && alt !== undefined ? (
+          <Image
+            src={src}
+            alt={alt}
+            fill
+            sizes={sizes}
+            className="object-contain object-center"
+            priority={priority}
+          />
+        ) : null}
       </div>
     </div>
   )

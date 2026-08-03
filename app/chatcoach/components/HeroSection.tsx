@@ -6,8 +6,8 @@ import * as React from "react"
 import { SLOW_TRANSITION } from "@/utils/animation"
 
 import { chatCoachConfig } from "../config"
-import BrowserFrame from "./BrowserFrame"
 import DownloadCta from "./DownloadCta"
+import HeroProductPreview from "./HeroProductPreview"
 import PhoneShot from "./PhoneShot"
 import PrivateAlphaForm from "./PrivateAlphaForm"
 
@@ -85,13 +85,7 @@ export const HeroSection: React.FC = () => {
             aria-hidden="true"
           />
           <div className="cc-float relative">
-            <BrowserFrame
-              src={chatCoachConfig.realEstate.chromeExtension}
-              alt="Chat Coach panel beside WhatsApp Web, reading intent and suggesting the next reply"
-              address="web.whatsapp.com"
-              priority
-              sizes="(max-width: 768px) 100vw, 1024px"
-            />
+            <HeroProductPreview />
           </div>
 
           <div className="absolute -bottom-10 left-1 z-20 w-24 sm:-bottom-14 sm:-left-4 sm:w-36 lg:-left-12 lg:w-48">
