@@ -1,12 +1,11 @@
 "use client"
 
-import Image from "next/image"
 import * as React from "react"
 
 import classNames from "@/utils/classNames"
 
-import { chatCoachConfig } from "../config"
 import { useScrollAnimation } from "../hooks/useScrollAnimation"
+import CoachPickerPreview from "./CoachPickerPreview"
 import DownloadCta from "./DownloadCta"
 
 const coachStyles = [
@@ -172,7 +171,7 @@ export const ConsumerCoachesSection: React.FC = () => {
             constantly.
           </p>
 
-          <div className="mt-8">
+          <div className="mt-8 flex flex-col items-center text-center lg:items-start lg:text-left">
             <p className="text-cc-primary mb-3 text-base font-semibold">
               Choose your coach
             </p>
@@ -191,14 +190,9 @@ export const ConsumerCoachesSection: React.FC = () => {
             aria-hidden="true"
           />
           <figure className="border-cc-strong bg-cc-elevated shadow-cc-featured relative overflow-hidden rounded-[28px] border p-2 sm:p-3">
-            <Image
-              src={chatCoachConfig.coachPickerOpen}
-              alt="Chat Coach picker open with general, negotiation, and dating coaches"
-              width={748}
-              height={1296}
-              sizes="(max-width: 1024px) 90vw, 420px"
-              className="h-auto w-full rounded-[20px]"
-            />
+            <div className="overflow-hidden rounded-[20px]">
+              <CoachPickerPreview />
+            </div>
             <figcaption className="text-cc-subtle px-3 py-3 text-center text-xs">
               Pick a coaching style without leaving your conversation.
             </figcaption>

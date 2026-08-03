@@ -60,7 +60,7 @@ export const DatingSection: React.FC = () => {
             you actually connect with.
           </p>
 
-          <div className="mt-8 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
+          <div className="mt-8 flex flex-col items-center gap-4 text-center lg:flex-row lg:items-center lg:text-left">
             <DownloadCta brandedChromeIcon />
             <span className="text-cc-faint text-xs">
               Modeled on Matthew Hussey-style coaching

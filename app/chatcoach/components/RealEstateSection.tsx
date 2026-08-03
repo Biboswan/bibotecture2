@@ -85,7 +85,7 @@ export const RealEstateSection: React.FC = () => {
             ))}
           </ul>
 
-          <div className="mt-9">
+          <div className="mt-9 flex justify-center lg:justify-start">
             <BookCallCta label="Book a discovery call" />
           </div>
         </motion.div>
