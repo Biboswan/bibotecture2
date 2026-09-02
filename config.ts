@@ -1,5 +1,6 @@
 const config = {
   baseUrl: "https://bibotecture.com",
+  cueSetUrl: "https://usecueset.com",
   appName: "Bibotecture",
   appDescription:
     "Bibotecture is a full-stack agency, architecting future-proof products for startups and founders from idea to launch.",

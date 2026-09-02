@@ -7,6 +7,15 @@ const nextConfig: NextConfig = {
   reactStrictMode: false,
   transpilePackages: ["unframer"],
   pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
+  async redirects() {
+    return [
+      {
+        source: "/chatcoach/:path*",
+        destination: "https://usecueset.com/:path*",
+        permanent: true,
+      },
+    ]
+  },
 }
 
 const withMDX = createMDX({
