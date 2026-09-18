@@ -28,10 +28,10 @@ const Footer: React.FC = () => {
               Contact us
             </p>
             <Link
-              href="mailto:bibo@bibotecture.com"
+              href="mailto:hello@bibotecture.com"
               className="text-2xl text-white hover:opacity-80"
             >
-              bibo@bibotecture.com
+              hello@bibotecture.com
             </Link>
             <Link
               href="https://cal.com/biboswan-roy-mfgllb/15min"

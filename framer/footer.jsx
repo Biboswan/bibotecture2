@@ -1042,7 +1042,7 @@ var Component = /* @__PURE__ */ React.forwardRef(function (props, ref) {
                                 }}
                               >
                                 <Link
-                                  href={"mailto:bibo@bibotecture.com"}
+                                  href={"mailto:hello@bibotecture.com"}
                                   motionChild={true}
                                   nodeId={"yEYvyIgjF"}
                                   openInNewTab={true}
@@ -1054,7 +1054,7 @@ var Component = /* @__PURE__ */ React.forwardRef(function (props, ref) {
                                     className={"framer-styles-preset-1f1g722"}
                                     data-styles-preset={"k9HPVFDWu"}
                                   >
-                                    {"bibo@bibotecture.com"}
+                                    {"hello@bibotecture.com"}
                                   </motion.a>
                                 </Link>
                               </motion.h6>
