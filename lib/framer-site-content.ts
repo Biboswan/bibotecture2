@@ -117,7 +117,7 @@ export const termsOfServiceContent: LegalSection = {
     {
       heading: "Contact",
       body: [
-        "If you have any questions about these Terms of Service, please contact us at bibo@bibotecture.com.",
+        "If you have any questions about these Terms of Service, please contact us at hello@bibotecture.com.",
       ],
     },
   ],
@@ -195,7 +195,7 @@ export const privacyPolicyContent: LegalSection = {
         "Object to or restrict processing of your information.",
         "Request portability of your data in a machine-readable format.",
         "Withdraw consent at any time where processing is based on consent.",
-        "To exercise any of these rights, contact us at bibo@bibotecture.com. We will respond within 30 days.",
+        "To exercise any of these rights, contact us at hello@bibotecture.com. We will respond within 30 days.",
       ],
     },
     {
@@ -214,7 +214,7 @@ export const privacyPolicyContent: LegalSection = {
     {
       heading: "Contact",
       body: [
-        "If you have questions, concerns, or requests regarding this Privacy Policy, please contact us at bibo@bibotecture.com.",
+        "If you have questions, concerns, or requests regarding this Privacy Policy, please contact us at hello@bibotecture.com.",
       ],
     },
   ],

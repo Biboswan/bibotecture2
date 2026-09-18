@@ -1506,7 +1506,7 @@ var Component = /* @__PURE__ */ React.forwardRef(function (props, ref) {
                               "var(--extracted-1w1cjl5, var(--token-a2ff6e51-46f4-43bd-9193-b115ff4b5b03, rgb(255, 255, 255)))",
                           }}
                         >
-                          {"bibo@bibotecture.com"}
+                          {"hello@bibotecture.com"}
                         </motion.h6>
                       </React.Fragment>
                     </RichText>

@@ -6,7 +6,7 @@ import { getMetadata } from "@/utils/metadata"
 
 export const metadata = getMetadata({
   path: "/",
-  title: `${config.appName}`,
+  title: `CueSet by Bibotecture`,
   description: config.appDescription,
 })
 

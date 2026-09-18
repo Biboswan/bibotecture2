@@ -3454,7 +3454,9 @@ var Component = /* @__PURE__ */ React.forwardRef(function (props, ref) {
               withExternalLayout={true}
             >
               <React.Fragment>
-                <motion2.p>{"Bibotecture \u2014 Full-stack agency"}</motion2.p>
+                <motion2.p>
+                  {"Bibotecture, building software products"}
+                </motion2.p>
               </React.Fragment>
             </RichText>
             <ComponentViewportProvider>
@@ -3737,7 +3739,7 @@ var Component = /* @__PURE__ */ React.forwardRef(function (props, ref) {
                             data-styles-preset={"NPn2E5Opd"}
                             dir={"auto"}
                           >
-                            {"Full-stack agency"}
+                            {"Software products and digital experiences"}
                           </motion2.h4>
                         </React.Fragment>
                       </RichText>

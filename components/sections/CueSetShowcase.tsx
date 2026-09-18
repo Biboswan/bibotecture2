@@ -24,10 +24,10 @@ const CueSetShowcase: React.FC = () => {
             An AI communication coach for clearer, more confident conversations.
           </p>
           <p className="mt-6 text-lg leading-relaxed text-[rgb(170,170,170)]">
-            CueSet analyzes user-provided messages and offers personalized
-            feedback, tone guidance, and reply suggestions across Chrome and
-            iOS. It is Bibotecture&apos;s standalone SaaS product, developed and
-            operated by our India team.
+            CueSet analyzes your messages and gives personalized feedback, tone
+            guidance, and reply suggestions across Chrome and iOS. It is
+            Bibotecture&apos;s standalone SaaS product, developed and operated
+            by our India team.
           </p>
           <div className="mt-8 flex flex-wrap gap-4">
             <Link

@@ -3,7 +3,7 @@ const config = {
   cueSetUrl: "https://usecueset.com",
   appName: "Bibotecture",
   appDescription:
-    "CueSet is an AI communication coach for Chrome and iOS, built by Bibotecture, a software company and full-stack agency.",
+    "CueSet is an AI communication coach for Chrome and iOS, built by Bibotecture, a software company creating digital products.",
   creator: "Bibotecture",
   authorName: "Bibotecture",
   authorUrl: "https://bibotecture.com",
