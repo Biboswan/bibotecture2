@@ -4,7 +4,6 @@ import * as React from "react"
 
 import CtaPhotoScrollDriver from "@/components/framer/cta-photo-scroll-driver"
 import CueSetFullscreenBanner from "@/components/layout/CueSetFullscreenBanner"
-import CueSetHero from "@/components/sections/CueSetHero"
 import CueSetShowcase from "@/components/sections/CueSetShowcase"
 import HomedeskFramer from "@/framer/homedesk"
 import FooterFramer from "@/framer/footer"
@@ -24,7 +23,6 @@ const FramerHome: React.FC = () => {
         className="framer-home-root min-h-dvh"
         style={{ backgroundColor: "var(--unframer-bg-dark, rgb(10, 10, 12))" }}
       >
-        <CueSetHero />
         <Homedesk style={{ width: "100%" }} />
         <CueSetShowcase />
         <Faq style={{ width: "100%" }} />
