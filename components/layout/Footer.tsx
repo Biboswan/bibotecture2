@@ -19,7 +19,12 @@ const Footer: React.FC = () => {
               <span className="text-2xl text-white">Bibotecture</span>
             </div>
             <p className="max-w-md text-xl leading-relaxed text-[rgb(204,204,204)]">
-              Building future proof solutions.
+              Building software products and future-proof digital experiences.
+            </p>
+            <p className="mt-5 max-w-md text-sm leading-relaxed text-[rgb(104,104,104)]">
+              Bibotecture operates through entities in India and the United
+              Kingdom. CueSet is our standalone SaaS product, developed and
+              operated by Bibotecture Private Ltd in India.
             </p>
           </div>
 

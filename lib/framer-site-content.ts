@@ -2,7 +2,7 @@ export const contactPageContent = {
   badge: "Available for new projects",
   title: "Get in touch",
   intro: [
-    "At Bibotecture, we craft your vision into a product end to end, pairing intuitive design and considered UX with well-tested, production-grade code that ships. We bring domain depth across enterprise SaaS, cybersecurity, AI, Web3, Chrome extensions, and accessibility.",
+    "Bibotecture is a software company and full-stack agency. We craft visions into products end to end, pairing intuitive design and considered UX with well-tested, production-grade code that ships. Alongside client work, we build our own products, including CueSet, an AI communication coach for Chrome and iOS.",
     "Have a project in mind? Let's create something great together! Book a call or drop a message.",
   ],
   formHeading:
@@ -49,7 +49,7 @@ export const termsOfServiceContent: LegalSection = {
     {
       heading: "Introduction",
       body: [
-        'Welcome to Bibotecture Ltd ("we," "our," "us"), a full-stack product agency based in London, UK. By accessing and using our website bibotecture.com (the "Website") and our services, you agree to comply with and be bound by these Terms of Service. If you do not agree to these terms, please do not use our Website or services.',
+        'Welcome to Bibotecture ("we," "our," "us"), a software company and full-stack product agency operating through entities in the UK and India. By accessing and using our website bibotecture.com (the "Website") and our services, you agree to comply with and be bound by these Terms of Service. If you do not agree to these terms, please do not use our Website or services.',
       ],
     },
     {
@@ -132,7 +132,7 @@ export const privacyPolicyContent: LegalSection = {
     {
       heading: "Introduction",
       body: [
-        'Bibotecture Ltd ("we," "our," "us") is a full-stack product agency based in London, UK. This Privacy Policy explains how we collect, use, disclose, and protect your information when you visit bibotecture.com or use our products and services. By using our Website, you agree to the terms of this Privacy Policy.',
+        'Bibotecture ("we," "our," "us") is a software company and full-stack product agency operating through entities in the UK and India. This Privacy Policy explains how we collect, use, disclose, and protect your information when you visit bibotecture.com or use our products and services. By using our Website, you agree to the terms of this Privacy Policy.',
       ],
     },
     {
