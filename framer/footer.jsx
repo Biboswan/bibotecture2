@@ -1851,6 +1851,25 @@ var Component = /* @__PURE__ */ React.forwardRef(function (props, ref) {
                           </ComponentViewportProvider>
                         </motion.a>
                       </Link>
+                      <a
+                        href="/careers"
+                        className="framer-jpucq0 framer-obpbuq"
+                        data-framer-name="Careers"
+                      >
+                        <span
+                          className="framer-styles-preset-l8rvat"
+                          style={{
+                            color:
+                              "var(--token-a2ff6e51-46f4-43bd-9193-b115ff4b5b03, #ffffff)",
+                            fontFamily: "Manrope, sans-serif",
+                            fontSize: 18,
+                            fontWeight: 400,
+                            lineHeight: 1.5,
+                          }}
+                        >
+                          Careers
+                        </span>
+                      </a>
                     </motion.div>
                   )}
                 </motion.div>
@@ -2014,6 +2033,25 @@ var Component = /* @__PURE__ */ React.forwardRef(function (props, ref) {
                         </ComponentViewportProvider>
                       </motion.a>
                     </Link>
+                    <a
+                      href="/careers"
+                      className="framer-130lpja framer-obpbuq"
+                      data-framer-name="Careers"
+                    >
+                      <span
+                        className="framer-styles-preset-l8rvat"
+                        style={{
+                          color:
+                            "var(--token-a2ff6e51-46f4-43bd-9193-b115ff4b5b03, #ffffff)",
+                          fontFamily: "Manrope, sans-serif",
+                          fontSize: 18,
+                          fontWeight: 400,
+                          lineHeight: 1.5,
+                        }}
+                      >
+                        Careers
+                      </span>
+                    </a>
                   </motion.div>
                 </motion.div>
               )}
